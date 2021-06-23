@@ -1,0 +1,606 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW" class="loading">
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>编译原理考试复习 - Hermit_Yoshino</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Hermit_Yoshino,"> 
+    <meta name="description" content="编译原理考试复习第一章 绪论
+由于计算机不能对程序进行翻译或进行解释，所以计算机执行某高级语言程序，需经两个阶段，即编译阶段和运行阶段
+编译系统 = 编译程序 + 运行系统
+运行系统 ：由辅助子程序,"> 
+    <meta name="author" content="Misaki Akeno"> 
+    <link rel="alternative" href="atom.xml" title="Hermit_Yoshino" type="application/atom+xml"> 
+    <link rel="icon" href="/img/ico_black.png"> 
+    
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+<meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body class="loading">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="config-title" style="display:none">Hermit_Yoshino</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://harekaze-misakiakeno.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">编译原理考试复习</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">编译原理考试复习</h1>
+        <div class="stuff">
+            <span>七月 02, 2020</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E5%A4%8D%E4%B9%A0/" rel="tag">复习</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E8%80%83%E8%AF%95/" rel="tag">考试</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="编译原理考试复习"><a href="#编译原理考试复习" class="headerlink" title="编译原理考试复习"></a>编译原理考试复习</h1><h2 id="第一章-绪论"><a href="#第一章-绪论" class="headerlink" title="第一章 绪论"></a>第一章 绪论</h2><ul>
+<li>由于计算机不能对程序进行翻译或进行解释，所以计算机执行某高级语言程序，需经两个阶段，即<strong>编译阶段</strong>和<strong>运行阶段</strong></li>
+<li><strong>编译系统</strong> = 编译程序 + 运行系统<ul>
+<li><strong>运行系统</strong> ：由辅助子程序构成的子程序库。如：数据格式转换子程序、标准函数、动态存储分配子程序等等。</li>
+<li>编译程序：先把全部源程序翻译为目标程序，然后再次执行，该目标程序可以反复执行。</li>
+<li>解释程序：对源程序逐句翻译，目标代码只能执行一次，若需要重新执行，则必须重新解释源程序，目前已不多见。</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvVuqon5wI0ue4pleQZ5*G35GKb401gNvy70OR3PExlY78xx.Y.U3G50uGO1yCia*njGYVwZLN5V18pXWM0UlZYc!/r" alt="001"></p>
+<ul>
+<li>编译程序的<strong>编译过程</strong></li>
+</ul>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvX6dEkdcXSUqS5YEI79N3U3G7baCP7wdO881s7gozv5p6sj8tJ4CV1KlCHf0z4jS*8GEHkfJU38zEqVvGR7gCS4!/r" alt="002"></p>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvetfVSMOYMMyIihL4Wf2H9Q9DJsQLI1kAWDztMjVT4HVs4GcJKuLAmxaWFftG4dS*vvGlxL*N26msgwL1ETymG4!/r" alt="003"></p>
+<h3 id="编译程序构成-考点1"><a href="#编译程序构成-考点1" class="headerlink" title="编译程序构成(考点1)"></a>编译程序构成(考点1)</h3><ol>
+<li>词法分析器：<ol>
+<li>识别出源程序的各个基本语法单位（单词或语法符号）</li>
+<li>删除无用的空白字符及其它与输入介质相关的非实质性字符（空格、回车等）</li>
+<li>删除注释</li>
+<li>进行词法检查，报告所发现的错误</li>
+</ol>
+</li>
+<li>语法分析器：<ul>
+<li>以词法分析程序输出的单词流为输入，分析源程序的结构，<strong><em>判断它是否为相应程序设计语言的合法程序</em></strong>。</li>
+<li>方法：试图为源程序构造一个<strong>语法树</strong>。</li>
+<li>词法分析器把源程序转换成了一个词素序列，它让我们知道了一个符号序列’i’、’f’是一个关键词”if”，而一个符号序列’1’、’2’、’3’、’4’是一个常量”1234”等等。但是，词法分析器的工作也到此为止了，它不能说明几个词素之间的关系。例如，对于词素串”int”、”x”、”=”、”1”、”;”，词法分析器不知道它是一个语句；对于词素串”int”、”x”、”==”、”1”、”;”，词法分析器不能检测出它的语法错误。为此，在词法分析之后，还需进行语法分析。</li>
+<li>一个语法分析器从词法分析器获得一个词素序列，并验证这个序列是否可以由源语言的文法生成。语法分析器会构造一棵语法分析树，并把它传递给编译器的其他部分进一步处理，在构建语法分析树的过程中，就验证了这个词素序列是否符合源语言的文法。</li>
+</ul>
+</li>
+<li>语义分析器：</li>
+</ol>
+<ul>
+<li>语法特征：描述各成份的形式或结构</li>
+<li>语义特征：描述各语法成份的<strong>含义</strong>和<strong>功能</strong>，<strong><em>即规定它们的属性或在执行应进行的运算或操作</em></strong><ol>
+<li>中间代码生成：</li>
+</ol>
+</li>
+<li>为了处理方便和便于代码优化，在语义分析后通常并不直接产生目标代码，而是生成介于二者之间的中间代码。<ol>
+<li>代码优化器：</li>
+</ol>
+</li>
+<li>代码优化的目的是生成质量较高的目标代码<ol>
+<li>目标代码生成程序：</li>
+</ol>
+</li>
+<li>将中间代码翻译成为目标程序<ol>
+<li>错误检查和处理程序：</li>
+</ol>
+</li>
+<li>准确地报告源程序中错误的种类及位置<ol>
+<li>信息表管理程序：</li>
+</ol>
+</li>
+<li>编译过程中，需经常收集、记录或查询程序中所出现的各种量的有关属性（信息）<ul>
+<li>为此，编译程序需要建立一批不同用途的表格</li>
+</ul>
+</li>
+</ul>
+<h2 id="第二章-形式语言基本知识"><a href="#第二章-形式语言基本知识" class="headerlink" title="第二章 形式语言基本知识"></a>第二章 形式语言基本知识</h2><ul>
+<li><h3 id="考点二，概念及术语"><a href="#考点二，概念及术语" class="headerlink" title="考点二，概念及术语"></a><strong>考点二，概念及术语</strong></h3></li>
+<li><p>字母表：</p>
+<ul>
+<li>字母表（符号表、符号集） 由若干元素（符号、字母）组成的有限非空集合</li>
+</ul>
+</li>
+<li><p>符号串：</p>
+<ol>
+<li>用字母表中符号所组成的任何有限序列</li>
+<li>符号串的长度  = 符号串中所含符号的个数     例：aba的长度为3。记为：|aba|=3</li>
+</ol>
+<ul>
+<li>$\Phi$ 不含任何元素的空集 { }</li>
+<li>{ $\epsilon$ }      ‘’  集和</li>
+<li>$\epsilon$  ‘’   空串</li>
+</ul>
+<ol>
+<li>连接：<ul>
+<li>$\alpha$和$\beta$   $\alpha\beta\neq\beta\alpha$     $s\epsilon=\epsilon s=s$</li>
+</ul>
+</li>
+<li>前缀：<ul>
+<li>把从x的尾部删去若干个（包括0）符号之后所余下的部分称x 的前缀</li>
+<li>$x = abc$</li>
+<li>$\epsilon,a,ab,abc$</li>
+</ul>
+</li>
+<li>后缀：<ul>
+<li>$x = abc$</li>
+<li>$\epsilon,c,bc,abc$</li>
+</ul>
+</li>
+<li>子串：<ul>
+<li>$y=abcd$</li>
+<li>$\epsilon,a,b,c,d,ab,bc,cd,abc,bcd,abcd$</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>符号串集合</p>
+<ol>
+<li>和<ul>
+<li>$A+B或A\cup B$</li>
+</ul>
+</li>
+<li>积<ul>
+<li>$A·B 或 AB$</li>
+</ul>
+</li>
+<li>方幂  这个是积<ul>
+<li>x为字符串</li>
+<li>$x^0=\epsilon$ $x^1=x$ $x^2=xx$</li>
+</ul>
+</li>
+<li>闭包  这个是和<ul>
+<li>$V^*=V^0\cup V^1\cup V^2 ······$  含  $\epsilon 及 V^0$</li>
+</ul>
+</li>
+<li>正比包<ul>
+<li>$V^+$  不含  $\epsilon 及 V^0$</li>
+</ul>
+</li>
+</ol>
+<h5 id="用A、B、C等表示字母表或符号串集"><a href="#用A、B、C等表示字母表或符号串集" class="headerlink" title="用A、B、C等表示字母表或符号串集"></a>用A、B、C等表示<strong><em>字母表</em></strong>或<strong><em>符号串集</em></strong></h5><h5 id="用a-b-c-…-S-T-U-…-X-Y-Z-等表示符号"><a href="#用a-b-c-…-S-T-U-…-X-Y-Z-等表示符号" class="headerlink" title="用a,b,c,…,S,T,U,…,X,Y,Z 等表示符号"></a>用a,b,c,…,S,T,U,…,X,Y,Z 等表示<strong>符号</strong></h5><h5 id="用s-t-u-…-x-y-z等表示符号串"><a href="#用s-t-u-…-x-y-z等表示符号串" class="headerlink" title="用s,t,u,…,x,y,z等表示符号串"></a>用s,t,u,…,x,y,z等表示<strong>符号串</strong></h5><p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvZNSdBLo9BCyH5K2Kdjkr.24VTmc84.UYnsOC1qgJa6pXp5WH*NhjSrPg6s9.SdVgv*M0Eh57PtXc7pLFKjudo0!/r" alt="004"></p>
+</li>
+<li><h3 id="考点三"><a href="#考点三" class="headerlink" title="考点三"></a><strong>考点三</strong></h3></li>
+<li><p>上下文无关文法：</p>
+<ul>
+<li><strong>所有的产生式左边只有一个非终结符</strong></li>
+<li>$::= \   \rightarrow  —&gt;$  组成 等价</li>
+<li>$==&gt;       \Rightarrow$推导</li>
+</ul>
+</li>
+<li><p><strong>推导</strong>：从语言最大的一个语法范畴（本例中是&lt;句子&gt;）开始，反复用语法规则中“::=” 右侧的符号串取代其左侧符号，直到所得的符号串中不再含有可被替换语法范畴。每次替换称为一步（直接）推导，并用符号“$\Rightarrow$”表示。</p>
+</li>
+<li><p><strong>文法及语言的形式定义</strong>     <strong>$G$就是文法</strong></p>
+<ul>
+<li>$G=(V_N,V_T,P,S)$</li>
+<li>$V_N$：非终结符号符集</li>
+<li>$V_T$：终结符号集<ol>
+<li>$V_N\cap V_T = \Phi$</li>
+<li>$S\in V_N$</li>
+</ol>
+</li>
+<li>P：产生式 （变化的方法）</li>
+<li>S：语句 <strong>开始符号</strong>或称作识别符号，它是一个非终结符，至少要在一条规则中作为左部出现</li>
+</ul>
+</li>
+<li><h4 id="四种类型的文法（文法和语言的关系）"><a href="#四种类型的文法（文法和语言的关系）" class="headerlink" title="四种类型的文法（文法和语言的关系）"></a>四种类型的文法<strong>（文法和语言的关系）</strong></h4><ol>
+<li><p>0型文法   0型（递归可枚举）<strong>语言</strong>    PSG  （短语结构文法）</p>
+<ul>
+<li>P中含有$\alpha(\alpha \in V^+) \rightarrow  \beta (\beta \in V^*)$</li>
+<li>简单来说就是包含 $aa \rightarrow a | a \rightarrow \epsilon$   （推着推着人没了）<ul>
+<li>字符串推字符串，越推越少</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>1型文法   1 型(前后文有关)文法    CSG</p>
+<ul>
+<li>​    $\alpha_1A\alpha_2 \rightarrow  \alpha_1\beta\alpha_2   (\alpha_1,\alpha_2\in V^*)(\beta \in V^+)(A\in V_N)$ <ul>
+<li>好像是这样  $V_N\rightarrow V_N or V_T$</li>
+<li>？？必须得前后都有东西？</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>2型文法    2型 (前后文无关)文法 CFG 上下文无关文法</p>
+<ul>
+<li><p>$A \rightarrow  \beta   (\beta \in V^+)(A\in V_N)$</p>
+</li>
+<li><p>就像之前的$&lt;句子&gt;\rightarrow&lt;主语短语&gt;&lt;动词短语&gt;$</p>
+</li>
+<li>$&lt;名词&gt;\rightarrow 书$</li>
+</ul>
+</li>
+<li><p><strong>3型文法</strong></p>
+<ul>
+<li>$A\rightarrow aB \ 或 \ A \rightarrow a$   其中 $A,B\in V_N \ a\in V_T$   右线性文法</li>
+<li>$A\rightarrow Ba \ 或 \ A \rightarrow a$   其中 $A,B\in V_N \ a\in V_T$   左线性文法</li>
+<li>通常，把左线性文法和右线性文法都称为<strong>3型文法（正规文法）</strong></li>
+<li>3型文法产生的语言称为3型（正规）语言，它可由有限自动机识别。正规语言可用正规表达式表示。</li>
+<li>注：若一文法既含左线性又含右线性产生式，则它不一定是3型文法！<br>3型文法还可拓广定义为 $A\rightarrow \alpha B \ 或 \ A \rightarrow \alpha \   \    (\alpha\in V_T^+)$</li>
+</ul>
+</li>
+<li><p>$L_3\subset L_2\subset L_1 \subset L_0$</p>
+</li>
+</ol>
+</li>
+<li><p><strong>推导</strong>：</p>
+</li>
+</ul>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvTGBhZSRx4xmvPKdMSePHS351zlhap.Zk*FLci6dTsjUWmV1dKV1*bEPzRFAJ2rBbs.RO*2cD1rN0VCAmr6sxng!/r" alt="005"><br>还有一种<img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvYMxMFqrLraMnVt4kH9AvLdkUkYd1wND2lvT8mZi7pWBYBJjD.27tUUM*IXEeRFcC6k.6GLcbl6oHVLjKuJLAFY!/r" alt="006"></p>
+<ul>
+<li><strong>句子和句型</strong><ul>
+<li><strong>语言</strong>：文法推导到最后的所有结果的集合<br><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvUn7TewuOE.vVkn9HLfGMg7DU8ua7unhhnqLtOcDSKwZxEubMitAj6byz8JYOLFvVoZef7fAPsOvMmAcWWiAmYg!/r" alt="007"></li>
+<li>综合的来看<br><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvWbZBLj1uHqE0jXsfnC0IT9LgcFetPXodmHe70usW.McCsaDYZbmVy*BQzQu6P*.QN8ejfNdWA4ZtfCARolZPek!/r" alt="008"></li>
+</ul>
+</li>
+</ul>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvcyxG7f*kucBUxP1rEOVaDfWqbda2TyILY3SdiuDFIo2FsC1RhWs9UReVCKZ4f6s0CYpQLUCaSEXU0Tb5JPpBoc!/r" alt="009"></p>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvUSMlZeBM3ejUOkE6weSNBeGN9unYLnssZ5I2xtvlftk4KpsfHDqdHFAX0ASsWXY5pCVxSGHGi1aQsxEiZQaY.k!/r" alt="010"><br><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvecy0UUd8OGQyDVfth*n3AOGKqtpFwRHgSEHwBNs0bYvLVpOK.ZwXUl54.lOBpBk2lrQb0ZxMFg7tDX3sK0PGVs!/r" alt="011"></p>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvUEb.YliIpAMjTVeW8b1o3klwYOjD9xraGByTqa0ptTuwXDlJjZyYYpB7N0BPQ6iLxpKV36Ey27Tqwrq3GVynEw!/r" alt="012"></p>
+<ul>
+<li><h3 id="考点四"><a href="#考点四" class="headerlink" title="考点四"></a>考点四</h3></li>
+<li><p>最左与最右推导</p>
+</li>
+</ul>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvRTSh7BqtgT*gXtuOvJHiVpxzyeNXpuKAOhvHS8CB6mhClj9rg24u9yZctCdwK3XNMWbuvGmSzLVO5VAwkiCL5E!/r" alt="013"></p>
+<ul>
+<li>最左（右）推导所得句型称为左（右）句型（答案？）</li>
+<li>其中<strong>最右推导</strong>成为<strong>规范推导</strong>，<strong>右句型</strong>称为<strong>规范句型</strong></li>
+<li>推导的逆过程称作<strong>归约</strong>，自底向上</li>
+</ul>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvYDZ1M2Ucol.qYkhJbGfHopPmWWJUkTv2u3AQb.fjwhMxzqu6T1pSmnNmWzua6N6tnrBNixOA15JPh*j3K3MPvk!/r" alt="014"></p>
+<ul>
+<li><p>例如 $a\rightarrow b+i$与$b\rightarrow i$ 如果句子为$b+i$ 优先使用前面的等价反推，而不是使用后面的</p>
+</li>
+<li><p>例如：最左规约     <strong>最右推导成就最左规约</strong><br><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvd**55uxx0acTPXve2l2X0eqTRZ7.YIDrvj2V2DoHYUztkIiUdGrpWgw20I9.GkxL3ctMkYCC*fqNchmu0rCgbE!/r" alt="015"></p>
+</li>
+<li><h4 id="语法树"><a href="#语法树" class="headerlink" title="语法树"></a>语法树</h4></li>
+</ul>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvQw1qYtDvrijIE9bBXaarE7UeyvKWECFk3xltYwv7AWgA9RdCXFeJk1Lr43tfruB5DWb*4OnLFVL0sDvZ2isxmM!/r" alt="016"><br><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvRw2qs0zLnjkLBAwYliRucKgNajDk06aisDPLQXdKD2drpETT31GCitcBInafmHBRywlGSmoNEi.HScPJlelezg!/r" alt="017"></p>
+<ul>
+<li><strong>二义性</strong><ul>
+<li>同结果不同过程</li>
+<li>原因：在产生句子的过程中某些直接推导有多于一种选择，推导顺序不同<br><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvc6c*cY193rBleLvY9nMwMTQ4z7BNn3BS.s.YAFpiSPpYZudn1xIOWMggnUZ2q8aigcD5PqDQiXClx6jxyyqzCA!/r" alt="018"></li>
+</ul>
+</li>
+</ul>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvZKNTL0tY.HWKR6GZYe8uV3JWEU5xkwS2DcmGrtQNC.7z92Ee1xe7eZy7sGtGFI.zllOdrlGJ9bU7bRiR*Mr6I8!/r" alt="019"></p>
+<ul>
+<li><h3 id="考点5短语、直接短语和句柄"><a href="#考点5短语、直接短语和句柄" class="headerlink" title="考点5短语、直接短语和句柄"></a>考点5<strong>短语、直接短语和句柄</strong></h3></li>
+</ul>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvSm2ztFpTfDHQj.YW*gJIPvPBZN3rgA*ii8Ryl4XX8dg3eQs2QyVTJeWPY0PxEZYswOwsfE*73pfiddWBmIRpzI!/r" alt="020"></p>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvdONKM5WR0OXcQeio7mhFhl5ayikX1JL.EkMVPry1v6YjeKl6FoQOzurwSOhX64Zh.D74e9vsJu1CLz1SdN2jXY!/r" alt="021"></p>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvXEWQKNMVtaWLA7UEdcGn2N9xd0h1uj54OOxg*TPetuIklW.b301LtgRCOFo2Iems5wDldDmVWh4ql6AJnzf4Ak!/r" alt="022"></p>
+<ul>
+<li><h3 id="考点6-无用符号和无用产生式的删除"><a href="#考点6-无用符号和无用产生式的删除" class="headerlink" title="考点6     无用符号和无用产生式的删除"></a>考点6     <strong>无用符号和无用产生式的删除</strong></h3><ul>
+<li>两部走，简单粗暴<br><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvSeioWn178iEBnoCNd5V78p66PO9cMvrulAGc93qfIyKlDk5y8RM7mx6RQtmpwe8Vei*SN50QlsgJLb3qFhYzn4!/r" alt="023"></li>
+</ul>
+</li>
+</ul>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvQ14*PNzGUPrWy1qRZcYc*ZeBUDqkT3t*LVKX8BXP42qbLFeDcGRmeqIMyw8Y15ooUb.JSnD7VaJGoNdkxRgweM!/r" alt="024"></p>
+<ul>
+<li>背后原理</li>
+</ul>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvR4VTj3nT14TJp3hORs6dKwMtNSnsmta19ngl6k8xGI1.Upx1IU*G2SiQ04FxwyGuNVCGUI8CeYt7RVpJsE6CAY!/r" alt="025"></p>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvbsB*uCa1rms.kNllXCp9SWHvA15XProo*uggZpvLGR5BTeeycdIbAtQSIaaf0v9vVY2vnK05Q2vK0csezPGptA!/r" alt="026"></p>
+<ul>
+<li>例题：</li>
+</ul>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvd8PmNz*cqv7AX8Y4.MWXRAw2rhCllDyES8pQpyeMj2HOU33HK56ceqc5XtAt2D0IOWLOJpl24PTyyyaskHGkR8!/r" alt="027"></p>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvRw.d3LfHLrjHilVxZFnwF7bkHh80bj7CrvL5Ub76ZuKpG.TZbwopARZlVtWXqvKHpJqWBquNAb*X572CmJJzy0!/r" alt="028"></p>
+<ul>
+<li><h3 id="考点7-epsilon-产生式消除"><a href="#考点7-epsilon-产生式消除" class="headerlink" title="考点7   $\epsilon -产生式消除$"></a>考点7   $\epsilon -产生式消除$</h3></li>
+</ul>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvaDhR*9VN1MAGJmi9ztE9tXakiKSxglJYD28PBMzR2.JP6HitgVvn6u1NYLEQ64LkyOCrdiB*xgZiZ0F5T.xaxw!/r" alt="029"></p>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvSZG*Qux*tFnCq36W*PJv71MTfam0w.Rew0Ip01JZ3lz9FyS3rV6Ax8w6MqU6QLEBMX1zv*Ct7rPKi2qy*8H7c0!/r" alt="030"></p>
+<ul>
+<li>例题：</li>
+</ul>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvRGRlZiWRYVTP6cIE4nR1hRhQvOq4xa8EEq62hMxBvp6KrnKQ49qftb3aTOySN13T2iUR87ZNvHnEeiBeddzi3k!/r" alt="031"></p>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvWxRSaNTTtmOqMdnIAKaWv.4prXP9ntPPAriDCG7WxbR8x0HTQgOQPwRYy9ZAFfZHWUUN8WLH3ypGUhZqB61tH0!/r" alt="032"></p>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvR4DoBbsqrrlrSoOxphg5nwlg7WvFiSCKmImIIiFk7rgKy7NVrkMJ1j5fcPUU0N3IimYY1IlYqiGTkCo3VK1yII!/r" alt="033"></p>
+<h2 id="第三章-词法分析及语法分析"><a href="#第三章-词法分析及语法分析" class="headerlink" title="第三章 词法分析及语法分析"></a>第三章 词法分析及语法分析</h2><h4 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h4><ul>
+<li>模式(pattern)：产生和识别元素的规则</li>
+<li>记号(token)： 按照某个模式(或规则)识别出的元素(一组)。记号的区分:记号=记号的类别+记号的属性</li>
+<li>单词(lexeme)：被识别出的元素自身的值(一个)，也称为词值</li>
+</ul>
+<h4 id="左右线性文法构造转换图-考点8"><a href="#左右线性文法构造转换图-考点8" class="headerlink" title="左右线性文法构造转换图  考点8"></a>左右线性文法构造转换图  考点8</h4><p>  <strong>正规文法</strong></p>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvUIlgqUN.Q6VQajQJY0Mb2CTouVODB2wN1YzD61ZUEQAhhC**kx033f.PbrykfWXwYwOPNXoVE3i3c*tXGfDMFA!/r" alt="034"></p>
+<ul>
+<li>左线性文法<ul>
+<li><a href="https://blog.csdn.net/Wonz5130/article/details/89326488">https://blog.csdn.net/Wonz5130/article/details/89326488</a></li>
+</ul>
+</li>
+</ul>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvV20Tb7bt0v5iVWZNBaeU4m0QYERfjfvnNiBcGemXBxvHNOWEqLcKraJurDAcjRm9g9NhtQdDhteWChsgHVvW0M!/r" alt="035"></p>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvdrtMIJKVn*yBIpkJ6p1HUp6Dihz3FW3Z6xGpZfLUz8aUQ0jbta8jMp34fJ6lpfer3DcN7IR*Rdkswm*2TLOwi0!/r" alt="036"></p>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvbgfUP91jkt*6YHpKiVk*iZk3Y53.9qiBuL0VgtHESh6ccHr9QFgc6eMYy1shs1J42HHMoy2a5kOj6jVmMbg1jQ!/r" alt="037"></p>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvZfTC6etxrBuR2g5XLxHqatV2jq5pEyOxbagOOAGk8PLXLMXJHwPzBpnzZM4vr83Ei4r*zD0tLKzbFGhJHW3DxE!/r" alt="037"></p>
+<ul>
+<li>右线性文法<br><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvd*2MeFJ3FspgwPM2mfsCD8kquVY*FWgO*TW7AXMj.g0CmZzqk7CdpbAmNAlx96eHMCG4TuTi1N57jGtJdoG03o!/r" alt="038"></li>
+</ul>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvcAsOeadYvmvbPWZWcbpVLlA6HaiPRSKRL*dwlRyvoJwEwE.j5cRw.Frr813CnwR9lJ7WyDMegMLUoy8VOtmDfs!/r" alt="039"></p>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvXiwatpvs3FyUnpUAxo3ybouE08NeI19kJLGspfh05S*nFd43Y3qcHunP8K6GWfGthe0GbTUTR1N3Cb01wPTBBE!/r" alt="040"></p>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvZptx8jCBRPJ5r0*eM9us45939zBQ.aueaL8oAYkCM38xwt5T3rVFI7vRmvQu3dvfV9yOl7DjO7WTPiLN4MByKg!/r" alt="041"></p>
+<h4 id="FDA-确定有限自动机-考点9"><a href="#FDA-确定有限自动机-考点9" class="headerlink" title="FDA 确定有限自动机  考点9"></a>FDA 确定有限自动机  考点9</h4><p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvU7E5EGfgkqkLtKrbHPuBITvIzYFIyAEcrioSkkN5qnuoOg0J2B3*M3LEcEJXFHJD7nQVfWYx5d97LOz5lITHKA!/r" alt="042"></p>
+<ul>
+<li>每一项哪些内容</li>
+</ul>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvS8J82DACNGpj87MSy15YPBkZ3yTTiaQc6NYc.cqDc43zpEDYBr0YASVA*gsAwaWJxas3KbbwzzTeap1b1Nm*qc!/r" alt="043"></p>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvf1Qz66tJ5v6.kFtvyTbstF2Ahz.gFgOcr1YsviFUOphHvgCP8raOOPXPUWX3ptu*qafMm*yY7uKMDvFyJ78bYE!/r" alt="044"></p>
+<ul>
+<li><h5 id="FDA接受集"><a href="#FDA接受集" class="headerlink" title="FDA接受集"></a>FDA接受集</h5></li>
+</ul>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvUevP6UOqT8ThstgoxfHX3WmEhKYqBK*4Ok65hriWK28sENMn8FNhKPeD5OL1JsQMfFRmd7*lzGF3EsZo5OyOAo!/r" alt="045"></p>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvbn5*NVXJ7riwh350Onllj78Gd9VMP6jRmTt4kjB8buLLcs5dSee7bm7LRWqt4icMwYPcQtCZkJSVO4ii3E4UfA!/r" alt="046"></p>
+<h4 id="非确定有限自动机-NFA"><a href="#非确定有限自动机-NFA" class="headerlink" title="非确定有限自动机 NFA"></a>非确定有限自动机 NFA</h4><ul>
+<li>更直观，更又好</li>
+<li><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvaWsGf9ajMHMtqcaSoBHgTb1v5YCCBmidnttZUhbxjVthcUDZiSuVx6M4zb7joxhinTbjn8DOHU8pjUafqkvjKE!/r" alt="047"><ul>
+<li>状态转换函数不唯一为0次及以上的转换</li>
+<li>初始集也不唯一<br><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvVEohwOEuCaSnZZKTXS8KGd92c15so4B6rrUpYqiolKeoQ5*2mWP3ZM3Llq.fNg2pOw20xCIzDQqm0B72cYfZj8!/r" alt="048"></li>
+</ul>
+</li>
+</ul>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvTcKwMdvwyPfECTk*uZrjlqoWKgVkynk*rlMGb0tMVBexDeW1ZWB6nfEYrqVItt8G4B4klZq.kBfJ14gppPi6Ig!/r" alt="049"></p>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvTPkQY*5yNHVro7kEzkfM41iyCv7m7NVbnqXQqO8jztF4bTotbTpKenLoNaViOJpgz1LiqzNeAsZNSgKzqvO1Xc!/r" alt="050"></p>
+<ul>
+<li><p>两者识别能力相同</p>
+</li>
+<li><h3 id="NFA转DFA-考点10"><a href="#NFA转DFA-考点10" class="headerlink" title="NFA转DFA    考点10"></a>NFA转DFA    考点10</h3></li>
+</ul>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvU*VYdCxJ6TTgghaC4oNcUCgpbbFg0zak4dL8vjs2LHnQirD2vZivhMFKUdAZirbjtU.iDM1M8ckCh2GpEmpkUg!/r" alt="051"></p>
+<ul>
+<li><h3 id="带空的-考点11"><a href="#带空的-考点11" class="headerlink" title="带空的 考点11"></a>带空的 考点11</h3></li>
+</ul>
+<p><img src="https://user.qzone.qq.com/2507944266/infocenter?_t_=0.8971435332905566" alt="052"></p>
+<ul>
+<li><h3 id="考点12"><a href="#考点12" class="headerlink" title="考点12"></a>考点12</h3><ul>
+<li>最小化，简单来说就是分类，关键看有没有转换到不同状态<br><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvetOzrPGAS01WZa9Rsajo0DG*BGJ8gwWnwxNOTnr5988CuBBthZpZItyk*aUP*ixjxn0MfEHLOQuTutotHcxmhY!/r" alt="053"><br><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvWXUXFFJK5zMYQpeuRAXT3bNhTTUNTSZWbYGqqqJLsjwDOO9Yi32exmTBHdVRFMUvylWolglvhf0FSuxsXnhJ4w!/r" alt="054"></li>
+</ul>
+</li>
+<li><h3 id="考点13"><a href="#考点13" class="headerlink" title="考点13"></a>考点13</h3></li>
+</ul>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvfhBTjJImA2i0M1Y3jjuHVWf3XLd5OCjOxe8SxqxdN9xRCAkmgqVhAiKU2CKfJyM0XRPkViv0WFL*ONxbfsZJfc!/r" alt="055"></p>
+<ul>
+<li>推论中的公理<br><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvcDmV3h5uzIyUb3Hg8K48oWa4RWMcv2z5AprHWD*VpQZRZF.pOEozaan0Kor4yLNYWgdyEsJFC3lTXwOxA9A3TU!/r" alt="056"></li>
+</ul>
+<h2 id="第四章-语法分析器"><a href="#第四章-语法分析器" class="headerlink" title="第四章 语法分析器"></a>第四章 语法分析器</h2><p>基础知识</p>
+<ul>
+<li>消除左递归，好像只要求最简单的直接左递归</li>
+</ul>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvTlG07K.F6*NKcbT0V6Trvw29RzSyxT8zjhtTLsBhssiKaxKimNTFUzf9dbZdUTaR7XPg2zX3NkFaCyPq3rpjj8!/r" alt="057"></p>
+<ul>
+<li>first和follow集</li>
+</ul>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvecIQfPw.A2VFSUhD0e2Iq7hGA*v.Lru6f5etB3LwbzeTK6B3x8zEU72FFK9M0x8bhM8TDGqsPRHQzqJx27qDRQ!/r" alt="058"></p>
+<ul>
+<li><p>回溯：</p>
+<ul>
+<li>来自递归下降<br><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvTVlaz0oiulCUs4oPITXVAZkjqzn4e.HadAHfgw.t5mVH2x*r7mhKvGRvRIQAfMicSyo.lc.l8P9TBA0FRtxrMc!/r" alt="059"></li>
+</ul>
+</li>
+<li><h3 id="考点14"><a href="#考点14" class="headerlink" title="考点14"></a>考点14</h3></li>
+<li><p>为了消除递归下降的语法分析过程中的回溯，我们必须确定对每个非终结符号应用哪一个产生式而不是一次次地尝试。假设有一组产生式A→α|β，其中α、β的首符号不同并且α、β不能都生成空串ε，对输入符号a，我们必须确定应用哪一个产生式：</p>
+<ol>
+<li>如果a是α的首符号，那么可以应用产生式A→α；如果a是β的首符号，那么可以应用产生式A→β；</li>
+<li>如果α可能生成空串ε，并且a可能紧跟在A之后，那么也可以应用产生式A→α；如果β可能生成空串ε，并且a可能紧跟在A之后，那么也可以应用产生式A→β；</li>
+<li>如果前两步都没有找到匹配的产生式，那么从A推导得到的串的前缀都不能匹配a。</li>
+</ol>
+</li>
+<li><p>实际上，步骤1就是FIRST(α)或者FIRST(β)，步骤2就是FOLLOW(A)，步骤3报告了一个语法错误，经过上述步骤后，我们可以唯一确定一个产生式（或者发现一个语法错误）。到此，我们知道了如何根据FIRST和FOLLOW集合实现无回溯的递归下降的语法分析。</p>
+</li>
+</ul>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvRuxjcBG2522VLRUsNGXN2dcIMzD4P0pjTyVvRhCODvyP4zHjXCr*M9jHmqt2ZEjRKNgl5H1JGBnzWIH93Yewgs!/r" alt="060"></p>
+<ul>
+<li><h3 id="考点16"><a href="#考点16" class="headerlink" title="考点16"></a>考点16</h3></li>
+</ul>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvWoEYAAJJKK1laca7.SjJtGCbObacsLociVLKOCfed1QQLk1wK5aJQoeCfisuoIkTrLjNy4CO6hwrMzry.UD9z0!/r" alt="061"></p>
+<h2 id="考点"><a href="#考点" class="headerlink" title="考点"></a>考点</h2><ol>
+<li><em>绪论</em></li>
+<li><em>文法和语言的基本概念和术语</em></li>
+<li><em>推导、句型、句子以及文法和语言的关系</em></li>
+<li><em>规范推导、规范规约、推导方法以及语法树和二义性</em></li>
+<li><em>短语、直接短语和句柄</em></li>
+<li><em>空符号串—产生式的消除算法</em></li>
+<li><em>文法的化简与改造：消除无用产生式的算法</em></li>
+<li><em>正规文法和状态转化图</em></li>
+<li><em>有限自动机</em></li>
+<li><em>非确定有限自动机的确定化</em></li>
+<li><em>具有空符号串动作的FA</em></li>
+<li><em>确定化有限自动机状态数的最小化</em></li>
+<li><strong>正规式与正规集</strong></li>
+<li><strong>预测分析表</strong></li>
+<li><strong>LL(1)分析法</strong></li>
+<li><strong>回溯的消除，LL（1）文法（定义）</strong></li>
+</ol>
+<h2 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h2><ul>
+<li>字母表：<ul>
+<li>若干元素（符号、字母）组成的有限非空集合，or，一个高级语言程序能够使用全体字符构成集合</li>
+</ul>
+</li>
+<li>符号串：<ul>
+<li>用字母表中符号所组成的任何有限序列</li>
+</ul>
+</li>
+<li>推导：<ul>
+<li>从文法的开始符号出发，反复连续使用所有可能的产生式，将一个符号串中的非终结符用某个产生式右部进行替换和展开，直到全部为终结符为止</li>
+</ul>
+</li>
+<li>最左推导：<ul>
+<li>在整个推导过程中，每一步都是替换句型中最左边的非终结符</li>
+</ul>
+</li>
+<li>句型：<ul>
+<li>若$S$是文法$G$的开始符号，从开始符号$S$符号出发推导出的符号串称为文法$G$的一个句型</li>
+</ul>
+</li>
+<li>句子：<ul>
+<li>若$X$是文法$G$的一个句型，且$X\in V^*_T$，称$X$是文法$G$的一个句子</li>
+</ul>
+</li>
+<li>语言：<ul>
+<li>从文法$G$的开始符号$S$出发，能推导出的句子的全体</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvRTSh7BqtgT*gXtuOvJHiVpxzyeNXpuKAOhvHS8CB6mhrcB6Mebqm2SJjMXXUMY8INx*jnDfT10u*TOn7brFqvc!/r" alt="062"></p>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvbase5Gs8jIR7LB9x18QGQMe8beBa9zDMXc9Lio7LGtviEB6RzZoH24LZC2fplU9YKhZADoIBdkJfnAA97hSNxE!/r" alt="063"></p>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvePD0nZmCmbu7z9MMcQRK3D.B6CQi.HTlR2eY8z4vmEnJd7cAMJhBtyLfiyYbSSJVvko8HXcm.3H9w6LAzAkQ5s!/r" alt="064"></p>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvews8v.Js77NO.sT2Tl8eks5pIDsl3i4*aWvEIlwqBYZqonRihZ9Dw22NMVdtpcjC.JogVldGftuXnl7tYdlS6k!/r" alt="065"></p>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvXfW5fDTeu9xCmyVkY8fVV9t5gzbuj3rpl19fHLXuJm87svMZs8kN7VNX0dwGpCAJ9pkLMrInitCNlphNjmU4*M!/r" alt="066"></p>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvYufOjALoWjR8Pgdr0veVfj*ANkm3SCANL1IDMkKQyBDyLERhakX1iDfpQnndT4SV6JZnJjje9ppJ9M9a5nBVV4!/r" alt="067"></p>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM3JCPcP/gliYV*h0f2f2HjcOdYSYvfh9hfZOCywxEsKFPkKBO90QuyGiwJcGPck2rE2z84DpuYVhhXvpsKOznJcU78HJIaCm7Yrvoq*Fy4vGN0JLM9o!/r" alt="068"></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='/High Free Spirits.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+		data-enable='false'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

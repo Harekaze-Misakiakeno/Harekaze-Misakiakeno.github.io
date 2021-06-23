@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW" class="loading">
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>windows10开机脚本 - Hermit_Yoshino</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Hermit_Yoshino,"> 
+    <meta name="description" content="windows10开机脚本参考https://cloud.tencent.com/developer/article/1466109
+目标windows开机能运行bat文件我这里准备了两个测试用的脚,"> 
+    <meta name="author" content="Misaki Akeno"> 
+    <link rel="alternative" href="atom.xml" title="Hermit_Yoshino" type="application/atom+xml"> 
+    <link rel="icon" href="/img/ico_black.png"> 
+    
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+<meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body class="loading">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="config-title" style="display:none">Hermit_Yoshino</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://harekaze-misakiakeno.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">windows10开机脚本</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">windows10开机脚本</h1>
+        <div class="stuff">
+            <span>四月 20, 2021</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/window/" rel="tag">window</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="windows10开机脚本"><a href="#windows10开机脚本" class="headerlink" title="windows10开机脚本"></a>windows10开机脚本</h1><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://cloud.tencent.com/developer/article/1466109">https://cloud.tencent.com/developer/article/1466109</a></p>
+<h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>windows开机能运行bat文件<br>我这里准备了两个测试用的脚本<br><code>start1.bat</code></p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span></span><br><span class="line"><span class="built_in">start</span> explorer c:\</span><br></pre></td></tr></table></figure>
+<p><code>start2.bat</code></p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span></span><br><span class="line"><span class="built_in">ping</span> github.com</span><br></pre></td></tr></table></figure>
+<h2 id="方法1（最简便）"><a href="#方法1（最简便）" class="headerlink" title="方法1（最简便）"></a>方法1（最简便）</h2><p>直接把你想开机运行的脚本移至<br><code>C:\Windows\System32\GroupPolicy\Machine\Scripts\Startup</code><br>或者是<br><code>C:\Windows\System32\GroupPolicy\User\Scripts\Logon</code><br>这两个位置其实对应着</p>
+<p><code>win+r</code>打开<code>运行</code><br>输入<code>gpedit.msc</code><br>如下图所示的文件夹</p>
+<p><img src="http://r.photo.store.qq.com/psc?/V51omi8H2ZybVP1W54I94cQfjz3797Im/45NBuzDIW489QBoVep5mcTvy6sQQ38jr5Vy8MwWPivHsOoUCcE7E3dfW1FuBdgkoA2xJysrxxtF4QnxBcKpP5LAAejNbXf6PnN60QGyOsls!/r" alt="http://r.photo.store.qq.com/psc?/V51omi8H2ZybVP1W54I94cQfjz3797Im/45NBuzDIW489QBoVep5mcTvy6sQQ38jr5Vy8MwWPivHsOoUCcE7E3dfW1FuBdgkoA2xJysrxxtF4QnxBcKpP5LAAejNbXf6PnN60QGyOsls!/r"></p>
+<h2 id="方法2（最全面）"><a href="#方法2（最全面）" class="headerlink" title="方法2（最全面）"></a>方法2（最全面）</h2><p>直接看图吧</p>
+<p>右击<code>此电脑</code>选择<code>管理</code></p>
+<p><img src="http://r.photo.store.qq.com/psc?/V51omi8H2ZybVP1W54I94cQfjz3797Im/45NBuzDIW489QBoVep5mcUDNqCrrBSogYloaqMGIQKwgrkLeM.ZkMjDD0.034JwNasNx5tAk2Ght4LV2i0tILMYd.6NeNPuNaF61ouELdB0!/r" alt="http://r.photo.store.qq.com/psc?/V51omi8H2ZybVP1W54I94cQfjz3797Im/45NBuzDIW489QBoVep5mcUDNqCrrBSogYloaqMGIQKwgrkLeM.ZkMjDD0.034JwNasNx5tAk2Ght4LV2i0tILMYd.6NeNPuNaF61ouELdB0!/r"></p>
+<p><img src="http://r.photo.store.qq.com/psc?/V51omi8H2ZybVP1W54I94cQfjz3797Im/45NBuzDIW489QBoVep5mcWXpLKIsHectez.3pbKTxgQPbApCcfbwaMcaGkbK2e1mMwoQdHM1gfzMPz.tvyUppO*sRT3F*WULD5EozLkUTAg!/r" alt="http://r.photo.store.qq.com/psc?/V51omi8H2ZybVP1W54I94cQfjz3797Im/45NBuzDIW489QBoVep5mcWXpLKIsHectez.3pbKTxgQPbApCcfbwaMcaGkbK2e1mMwoQdHM1gfzMPz.tvyUppO*sRT3F*WULD5EozLkUTAg!/r"></p>
+<p><img src="http://r.photo.store.qq.com/psc?/V51omi8H2ZybVP1W54I94cQfjz3797Im/45NBuzDIW489QBoVep5mcZUG9DTW6iCsu89n.btD9fs3yTai.3K0ddEFBAyDQksXoKkZsDmOVzMoAUugy5Bsj5pQcI7pVbTHLhuudYV7JYw!/r" alt="http://r.photo.store.qq.com/psc?/V51omi8H2ZybVP1W54I94cQfjz3797Im/45NBuzDIW489QBoVep5mcZUG9DTW6iCsu89n.btD9fs3yTai.3K0ddEFBAyDQksXoKkZsDmOVzMoAUugy5Bsj5pQcI7pVbTHLhuudYV7JYw!/r"></p>
+<p><img src="http://r.photo.store.qq.com/psc?/V51omi8H2ZybVP1W54I94cQfjz3797Im/45NBuzDIW489QBoVep5mcTvy6sQQ38jr5Vy8MwWPivFrSomxontKcDfItP*3It2XYDAIFYxnHiH9fVUmwQe3YNOdZlHFmyx7x82gnoBLSto!/r" alt="http://r.photo.store.qq.com/psc?/V51omi8H2ZybVP1W54I94cQfjz3797Im/45NBuzDIW489QBoVep5mcTvy6sQQ38jr5Vy8MwWPivFrSomxontKcDfItP*3It2XYDAIFYxnHiH9fVUmwQe3YNOdZlHFmyx7x82gnoBLSto!/r"></p>
+<p><img src="http://r.photo.store.qq.com/psc?/V51omi8H2ZybVP1W54I94cQfjz3797Im/45NBuzDIW489QBoVep5mcTvy6sQQ38jr5Vy8MwWPivE0Jbxyn00t8BIwfGAey4oWJdeEjR4Szn9nxqLdgR0RT2b9689oFTCUsG7LqqE*9z0!/r" alt="http://r.photo.store.qq.com/psc?/V51omi8H2ZybVP1W54I94cQfjz3797Im/45NBuzDIW489QBoVep5mcTvy6sQQ38jr5Vy8MwWPivE0Jbxyn00t8BIwfGAey4oWJdeEjR4Szn9nxqLdgR0RT2b9689oFTCUsG7LqqE*9z0!/r"></p>
+<p><img src="http://r.photo.store.qq.com/psc?/V51omi8H2ZybVP1W54I94cQfjz3797Im/45NBuzDIW489QBoVep5mcZUG9DTW6iCsu89n.btD9fvmxqXNgBd8P.b1SsxMD7xKA4O.EGVoPkPkX6bdRNqK1ubYTrxu.vTUTkBUSL7bx54!/r" alt="http://r.photo.store.qq.com/psc?/V51omi8H2ZybVP1W54I94cQfjz3797Im/45NBuzDIW489QBoVep5mcZUG9DTW6iCsu89n.btD9fvmxqXNgBd8P.b1SsxMD7xKA4O.EGVoPkPkX6bdRNqK1ubYTrxu.vTUTkBUSL7bx54!/r"></p>
+<p><img src="http://r.photo.store.qq.com/psc?/V51omi8H2ZybVP1W54I94cQfjz3797Im/45NBuzDIW489QBoVep5mcQY28NJeFzLOTR6*KWJaRtjRhftFHjQ9sU8VQrr8yjouu5pWO2V1g91OnU5GTttSOmxldih4GAns6wZbzXQ3VXw!/r" alt="http://r.photo.store.qq.com/psc?/V51omi8H2ZybVP1W54I94cQfjz3797Im/45NBuzDIW489QBoVep5mcQY28NJeFzLOTR6*KWJaRtjRhftFHjQ9sU8VQrr8yjouu5pWO2V1g91OnU5GTttSOmxldih4GAns6wZbzXQ3VXw!/r"></p>
+<p><img src="http://r.photo.store.qq.com/psc?/V51omi8H2ZybVP1W54I94cQfjz3797Im/45NBuzDIW489QBoVep5mcTvy6sQQ38jr5Vy8MwWPivEfpG1w6NxKQEHFFsZI.wX6lmdMuXPek76YpjyeL.mf7c0kfzo8*s3mySP4hQuuftA!/r" alt="http://r.photo.store.qq.com/psc?/V51omi8H2ZybVP1W54I94cQfjz3797Im/45NBuzDIW489QBoVep5mcTvy6sQQ38jr5Vy8MwWPivEfpG1w6NxKQEHFFsZI.wX6lmdMuXPek76YpjyeL.mf7c0kfzo8*s3mySP4hQuuftA!/r"></p>
+<p><img src="http://r.photo.store.qq.com/psc?/V51omi8H2ZybVP1W54I94cQfjz3797Im/45NBuzDIW489QBoVep5mcWXpLKIsHectez.3pbKTxgRK7TLE7coGS5cs33YtnBlC5hHZ1jq0lWlBm9UTgMyIN.iILxMyAhh8h60.myB1H*A!/r" alt="http://r.photo.store.qq.com/psc?/V51omi8H2ZybVP1W54I94cQfjz3797Im/45NBuzDIW489QBoVep5mcWXpLKIsHectez.3pbKTxgRK7TLE7coGS5cs33YtnBlC5hHZ1jq0lWlBm9UTgMyIN.iILxMyAhh8h60.myB1H*A!/r"></p>
+<p>这里点属性可以修改上面的信息</p>
+<p><img src="http://r.photo.store.qq.com/psc?/V51omi8H2ZybVP1W54I94cQfjz3797Im/45NBuzDIW489QBoVep5mcWXpLKIsHectez.3pbKTxgRpaYIkYhBGaU9VLMaCO6sPrpKy0p.ETUQyTonR6bm.dIXtJdo0kA1QYGsoFLeuRpI!/r" alt="http://r.photo.store.qq.com/psc?/V51omi8H2ZybVP1W54I94cQfjz3797Im/45NBuzDIW489QBoVep5mcWXpLKIsHectez.3pbKTxgRpaYIkYhBGaU9VLMaCO6sPrpKy0p.ETUQyTonR6bm.dIXtJdo0kA1QYGsoFLeuRpI!/r"></p>
+<p>注：同一个启动项可以运行多个脚本，这些脚本会依次执行，只有在上一个脚本执行完时，下一个脚本才会执行</p>
+<h2 id="方法3（与方法1类似）"><a href="#方法3（与方法1类似）" class="headerlink" title="方法3（与方法1类似）"></a>方法3（与方法1类似）</h2><p>与方法1类似</p>
+<p>win+r<code>打开</code>运行<code>输入</code>gpedit.msc`</p>
+<p>按图进行添加</p>
+<p><img src="http://r.photo.store.qq.com/psc?/V51omi8H2ZybVP1W54I94cQfjz3797Im/45NBuzDIW489QBoVep5mcWXpLKIsHectez.3pbKTxgSB1ClqZ1R3oH0LD1ywUOGde4G48JzbqPTHtWRpH*.Py1Ng5wi8sd5zZht9*h2JnHI!/r" alt="http://r.photo.store.qq.com/psc?/V51omi8H2ZybVP1W54I94cQfjz3797Im/45NBuzDIW489QBoVep5mcWXpLKIsHectez.3pbKTxgSB1ClqZ1R3oH0LD1ywUOGde4G48JzbqPTHtWRpH*.Py1Ng5wi8sd5zZht9*h2JnHI!/r"></p>
+<p>注：本人在<code>启动</code>时添加并没有成功，建议想方法1一样在登录初添加，在方法1的地方选择添加</p>
+<p><img src="http://r.photo.store.qq.com/psc?/V51omi8H2ZybVP1W54I94cQfjz3797Im/45NBuzDIW489QBoVep5mcTvy6sQQ38jr5Vy8MwWPivHsOoUCcE7E3dfW1FuBdgkoA2xJysrxxtF4QnxBcKpP5LAAejNbXf6PnN60QGyOsls!/r" alt="http://r.photo.store.qq.com/psc?/V51omi8H2ZybVP1W54I94cQfjz3797Im/45NBuzDIW489QBoVep5mcTvy6sQQ38jr5Vy8MwWPivHsOoUCcE7E3dfW1FuBdgkoA2xJysrxxtF4QnxBcKpP5LAAejNbXf6PnN60QGyOsls!/r"></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="music/High Free Spirits.mp3">
+            </audio>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+		data-enable='false'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

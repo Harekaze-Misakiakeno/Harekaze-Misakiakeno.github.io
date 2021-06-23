@@ -1,0 +1,456 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW" class="loading">
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>vue学习(一) - Hermit_Yoshino</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Hermit_Yoshino,"> 
+    <meta name="description" content="Vue笔记(一)写在前面生活开始变化，总之要学vue了
+开始vue差不多给我的感觉就是一个javascript的库，就和python一样
+1npm install vue
+1&amp;lt;script s,"> 
+    <meta name="author" content="Misaki Akeno"> 
+    <link rel="alternative" href="atom.xml" title="Hermit_Yoshino" type="application/atom+xml"> 
+    <link rel="icon" href="/img/ico_black.png"> 
+    
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+<meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body class="loading">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="config-title" style="display:none">Hermit_Yoshino</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://harekaze-misakiakeno.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">vue学习(一)</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">vue学习(一)</h1>
+        <div class="stuff">
+            <span>九月 25, 2020</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E5%85%A5%E9%97%A8/" rel="tag">入门</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="Vue笔记-一"><a href="#Vue笔记-一" class="headerlink" title="Vue笔记(一)"></a>Vue笔记(一)</h1><h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>生活开始变化，总之要学vue了</p>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p><code>vue</code>差不多给我的感觉就是一个<code>javascript</code>的库，就和python一样</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vue</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="声明渲染"><a href="#声明渲染" class="headerlink" title="声明渲染"></a>声明渲染</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  &#123;&#123; message &#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">var app = new Vue(&#123;</span><br><span class="line">  el: '#app',</span><br><span class="line">  data: &#123;</span><br><span class="line">    message: 'Hello Vue!'</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app-2"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-bind:title</span>=<span class="string">"message"</span>&gt;</span></span><br><span class="line">    鼠标悬停几秒钟查看此处动态绑定的提示信息！</span><br><span class="line">  <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">var app2 = new Vue(&#123;</span><br><span class="line">  el: '#app-2',</span><br><span class="line">  data: &#123;</span><br><span class="line">    message: '页面加载于 ' + new Date().toLocaleString()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="指令-列举"><a href="#指令-列举" class="headerlink" title="指令-列举"></a>指令-列举</h3><h4 id="v-text"><a href="#v-text" class="headerlink" title="v-text"></a>v-text</h4><ul>
+<li><p><strong>预期</strong>：<code>string</code></p>
+</li>
+<li><p><strong>示例</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;span v-text&#x3D;&quot;msg&quot;&gt;&lt;&#x2F;span&gt;</span><br><span class="line">&lt;!-- 和下面的一样 --&gt;</span><br><span class="line">&lt;span&gt;&#123;&#123;msg&#125;&#125;&lt;&#x2F;span&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>参考</strong>：</p>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"msg"</span> <span class="attr">v-text</span>=<span class="string">"msg"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript"><span class="keyword">var</span> v_text = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">  el : <span class="string">'#v-text'</span>,</span></span><br><span class="line">  data: &#123;</span><br><span class="line"><span class="handlebars"><span class="xml">    html : '<span class="tag">&lt;<span class="name">strong</span>&gt;</span>Hello<span class="tag">&lt;/<span class="name">strong</span>&gt;</span> <span class="tag">&lt;<span class="name">br</span>/&gt;</span>Vue!'</span></span></span><br><span class="line">  &#125;</span><br><span class="line">  &#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>效果：</li>
+<li></li>
+</ul>
+<p><strong>注：</strong><code>v-html</code> 与 <code>v-text</code> 的区别主要是 前者输出位html，后者会输出全部text，例如<code>&lt;br/&gt;</code>，前者会换行，而后者会直接输出</p>
+<h4 id="v-html"><a href="#v-html" class="headerlink" title="v-html"></a>v-html</h4><ul>
+<li><p><strong>预期</strong>：<code>string</code></p>
+</li>
+<li><p><strong>详细</strong>：<br>在网站上动态渲染任意 HTML 是非常危险的，因为容易导致 [XSS 攻击]</p>
+</li>
+<li><p><strong>示例</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div v-html&#x3D;&quot;html&quot;&gt;&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>参考</strong>：</p>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"v-html"</span> <span class="attr">v-html</span>=<span class="string">"html"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript"><span class="keyword">var</span> v_html = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">  el : <span class="string">'#v-html'</span>,</span></span><br><span class="line">  data: &#123;</span><br><span class="line"><span class="handlebars"><span class="xml">    html : '<span class="tag">&lt;<span class="name">strong</span>&gt;</span>Hello<span class="tag">&lt;/<span class="name">strong</span>&gt;</span> <span class="tag">&lt;<span class="name">br</span>/&gt;</span>Vue!'</span></span></span><br><span class="line">  &#125;</span><br><span class="line">  &#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>效果：</strong></li>
+</ul>
+<p><strong>注：</strong><code>v-html</code> 与 <code>v-text</code> 的区别主要是 前者输出位html，后者会输出全部text，例如<code>&lt;br/&gt;</code>，前者会换行，而后者会直接输出</p>
+<h4 id="v-show"><a href="#v-show" class="headerlink" title="v-show"></a>v-show</h4><ul>
+<li><p><strong>预期</strong>：<code>any</code></p>
+</li>
+<li><p><strong>用法</strong>：</p>
+<p>根据表达式之真假值，切换元素的 <code>display</code> CSS property。</p>
+<p>当条件变化时该指令触发过渡效果。</p>
+</li>
+<li><p><strong>参考</strong>：</p>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">id</span>=<span class="string">"v-show"</span> <span class="attr">v-show</span>=<span class="string">"ok"</span>&gt;</span>Hello!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript"><span class="keyword">var</span> v_show = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">  el : <span class="string">'#v-show'</span>,</span></span><br><span class="line">  data: &#123;</span><br><span class="line"><span class="actionscript">    ok : <span class="literal">false</span></span></span><br><span class="line">  &#125;</span><br><span class="line">  &#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>效果：</strong>(false、0、null、undefined时不显示)</li>
+</ul>
+<h4 id="v-if"><a href="#v-if" class="headerlink" title="v-if"></a>v-if</h4><p>使用时会出现一闪的情况</p>
+<ul>
+<li><p><strong>预期</strong>：<code>any</code></p>
+</li>
+<li><p><strong>用法</strong>：</p>
+<p>当和 <code>v-if</code> 一起使用时，<code>v-for</code> 的优先级比 <code>v-if</code> 更高。详见<a href="https://cn.vuejs.org/v2/guide/list.html#v-for-with-v-if">列表渲染教程</a></p>
+</li>
+<li><p><strong>参考</strong>：</p>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">'v-if'</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-if</span>=<span class="string">"awesome"</span>&gt;</span>Vue is awesome!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-else</span>&gt;</span>Oh no 😢<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript"><span class="keyword">var</span> v_if_else = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">  el : <span class="string">'#v-if'</span>,</span></span><br><span class="line">  data: &#123;</span><br><span class="line">    awesome : 1</span><br><span class="line">  &#125;</span><br><span class="line">  &#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>效果：</strong>(false、0、null、undefined时不显示)</li>
+</ul>
+<h5 id="v-if-vs-v-show"><a href="#v-if-vs-v-show" class="headerlink" title="v-if vs v-show"></a><code>v-if</code> vs <code>v-show</code></h5><p><code>v-if</code> 是“真正”的条件渲染，因为它会确保在切换过程中条件块内的事件监听器和子组件适当地被销毁和重建。</p>
+<p><code>v-if</code> 也是<strong>惰性的</strong>：如果在初始渲染时条件为假，则什么也不做——直到条件第一次变为真时，才会开始渲染条件块。</p>
+<p>相比之下，<code>v-show</code> 就简单得多——不管初始条件是什么，元素总是会被渲染，并且只是简单地基于 CSS 进行切换。</p>
+<p>一般来说，<code>v-if</code> 有更高的切换开销，而 <code>v-show</code> 有更高的初始渲染开销。因此，如果需要非常频繁地切换，则使用 <code>v-show</code> 较好；如果在运行时条件很少改变，则使用 <code>v-if</code> 较好。</p>
+<h4 id="v-else"><a href="#v-else" class="headerlink" title="v-else"></a>v-else</h4><p>使用时会出现一闪的情况</p>
+<ul>
+<li><p><strong>不需要表达式</strong></p>
+</li>
+<li><p><strong>限制</strong>：前一兄弟元素必须有 <code>v-if</code> 或 <code>v-else-if</code>。</p>
+</li>
+<li><p><strong>用法</strong>：</p>
+<p>为 <code>v-if</code> 或者 <code>v-else-if</code> 添加“else 块”。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id&#x3D;&#39;v-if&#39;&gt;</span><br><span class="line">  &lt;h1 v-if&#x3D;&quot;awesome&quot;&gt;Vue is awesome!&lt;&#x2F;h1&gt;</span><br><span class="line">  &lt;h1 v-else&gt;Oh no 😢&lt;&#x2F;h1&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var v_if_else &#x3D; new Vue(&#123;</span><br><span class="line">  el : &#39;#v-if&#39;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    awesome : 1</span><br><span class="line">  &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>效果</strong>：同 v-if</p>
+</li>
+</ul>
+<h4 id="v-else-if"><a href="#v-else-if" class="headerlink" title="v-else-if"></a>v-else-if</h4><blockquote>
+<p>2.1.0 新增</p>
+</blockquote>
+<ul>
+<li><p><strong>类型</strong>：<code>any</code></p>
+</li>
+<li><p><strong>限制</strong>：前一兄弟元素必须有 <code>v-if</code> 或 <code>v-else-if</code>。</p>
+</li>
+<li><p><strong>用法</strong>：</p>
+<p>表示 <code>v-if</code> 的“else if 块”。可以链式调用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id&#x3D;&quot;v_if_else&quot;&gt;</span><br><span class="line">  &lt;div v-if&#x3D;&quot;type &#x3D;&#x3D;&#x3D; &#39;A&#39;&quot;&gt;</span><br><span class="line">    A</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;div v-else-if&#x3D;&quot;type &#x3D;&#x3D;&#x3D; &#39;B&#39;&quot;&gt;</span><br><span class="line">    B</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;div v-else-if&#x3D;&quot;type &#x3D;&#x3D;&#x3D; &#39;C&#39;&quot;&gt;</span><br><span class="line">    C</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;div v-else&gt;</span><br><span class="line">    Not A&#x2F;B&#x2F;C</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var v_if_else &#x3D; new Vue(&#123;</span><br><span class="line">  el : &#39;#v_if_else&#39;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    type : &#39;A&#39;</span><br><span class="line">  &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>效果</strong>：输出A</p>
+</li>
+</ul>
+<h4 id="v-for"><a href="#v-for" class="headerlink" title="v-for"></a>v-for</h4><ul>
+<li><p><strong>预期</strong>：<code>Array | Object | number | string | Iterable (2.6 新增)</code></p>
+</li>
+<li><p><strong>用法</strong>：</p>
+<p>基于源数据多次渲染元素或模板块。此指令之值，必须使用特定语法 <code>alias in expression</code>，为当前遍历的元素提供别名：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div v-for&#x3D;&quot;item in items&quot;&gt;</span><br><span class="line">  &#123;&#123; item.text &#125;&#125;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+<p>另外也可以为数组索引指定别名 (或者用于对象的键)：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div v-for&#x3D;&quot;(item, index) in items&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">&lt;div v-for&#x3D;&quot;(val, key) in object&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">&lt;div v-for&#x3D;&quot;(val, name, index) in object&quot;&gt;&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+<p><code>v-for</code> 的默认行为会尝试原地修改元素而不是移动它们。要强制其重新排序元素，你需要用特殊 attribute <code>key</code> 来提供一个排序提示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div v-for&#x3D;&quot;item in items&quot; :key&#x3D;&quot;item.id&quot;&gt;</span><br><span class="line">  &#123;&#123; item.text &#125;&#125;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+<p>从 2.6 起，<code>v-for</code> 也可以在实现了<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Iteration_protocols#可迭代协议">可迭代协议</a>的值上使用，包括原生的 <code>Map</code> 和 <code>Set</code>。不过应该注意的是 Vue 2.x 目前并不支持可响应的 <code>Map</code> 和 <code>Set</code> 值，所以无法自动探测变更。</p>
+<p>当和 <code>v-if</code> 一起使用时，<code>v-for</code> 的优先级比 <code>v-if</code> 更高。详见<a href="https://cn.vuejs.org/v2/guide/list.html#v-for-with-v-if">列表渲染教程</a></p>
+<p><code>v-for</code> 的详细用法可以通过以下链接查看教程详细说明。</p>
+</li>
+<li><p><strong>参考</strong>：</p>
+<ul>
+<li><p>```html</p>
+<div id="v-for">
+  <div v-for="item in items">
+    <!-- item 也可为 (item, index) 其中 index 为索引 从0 开始-->
+    
+  </div>
+</div>
+
+<p>&lt;/body&gt;<br><script><br>var v_if_else = new Vue({<br>  el : ‘#v-for’,<br>  data: {</p>
+<pre><code>items : [
+  {text: 1},
+  {text: 2},
+  {text: 3},
+  {text: 4},
+]
+</code></pre><p>  }<br>  })<br>&lt;/script&gt;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
+</li>
+<li><p><a href="https://cn.vuejs.org/v2/guide/list.html">列表渲染</a></p>
+</li>
+<li><p><a href="https://cn.vuejs.org/v2/guide/list.html#key">key</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#### v-on</span><br><span class="line"></span><br><span class="line">- **缩写**：&#96;@&#96;</span><br><span class="line"></span><br><span class="line">- **预期**：&#96;Function | Inline Statement | Object&#96;</span><br><span class="line"></span><br><span class="line">- **参数**：&#96;event&#96;</span><br><span class="line"></span><br><span class="line">- **修饰符**：</span><br><span class="line"></span><br><span class="line">  - &#96;.stop&#96; - 调用 &#96;event.stopPropagation()&#96;。</span><br><span class="line">  - &#96;.prevent&#96; - 调用 &#96;event.preventDefault()&#96;。</span><br><span class="line">  - &#96;.capture&#96; - 添加事件侦听器时使用 capture 模式。</span><br><span class="line">  - &#96;.self&#96; - 只当事件是从侦听器绑定的元素本身触发时才触发回调。</span><br><span class="line">  - &#96;.&#123;keyCode | keyAlias&#125;&#96; - 只当事件是从特定键触发时才触发回调。</span><br><span class="line">  - &#96;.native&#96; - 监听组件根元素的原生事件。</span><br><span class="line">  - &#96;.once&#96; - 只触发一次回调。</span><br><span class="line">  - &#96;.left&#96; - (2.2.0) 只当点击鼠标左键时触发。</span><br><span class="line">  - &#96;.right&#96; - (2.2.0) 只当点击鼠标右键时触发。</span><br><span class="line">  - &#96;.middle&#96; - (2.2.0) 只当点击鼠标中键时触发。</span><br><span class="line">  - &#96;.passive&#96; - (2.3.0) 以 &#96;&#123; passive: true &#125;&#96; 模式添加侦听器</span><br><span class="line"></span><br><span class="line">- **用法**：</span><br><span class="line"></span><br><span class="line">  绑定事件监听器。事件类型由参数指定。表达式可以是一个方法的名字或一个内联语句，如果没有修饰符也可以省略。</span><br><span class="line"></span><br><span class="line">  用在普通元素上时，只能监听[**原生 DOM 事件**](https:&#x2F;&#x2F;developer.mozilla.org&#x2F;zh-CN&#x2F;docs&#x2F;Web&#x2F;Events)。用在自定义元素组件上时，也可以监听子组件触发的**自定义事件**。</span><br><span class="line"></span><br><span class="line">  在监听原生 DOM 事件时，方法以事件为唯一的参数。如果使用内联语句，语句可以访问一个 &#96;$event&#96; property：&#96;v-on:click&#x3D;&quot;handle(&#39;ok&#39;, $event)&quot;&#96;。</span><br><span class="line"></span><br><span class="line">  从 &#96;2.4.0&#96; 开始，&#96;v-on&#96; 同样支持不带参数绑定一个事件&#x2F;监听器键值对的对象。注意当使用对象语法时，是不支持任何修饰器的。</span><br><span class="line"></span><br><span class="line">- **示例**：</span><br></pre></td></tr></table></figure>
+<!-- 方法处理器 -->
+<button v-on:click="doThis"></button>
+
+</li>
+</ul>
+<!-- 动态事件 (2.6.0+) -->
+<button v-on:[event]="doThis"></button>
+
+<!-- 内联语句 -->
+<button v-on:click="doThat('hello', $event)"></button>
+
+<!-- 缩写 -->
+<button @click="doThis"></button>
+
+<!-- 动态事件缩写 (2.6.0+) -->
+<button @[event]="doThis"></button>
+
+<!-- 停止冒泡 -->
+<button @click.stop="doThis"></button>
+
+<!-- 阻止默认行为 -->
+<button @click.prevent="doThis"></button>
+
+<!-- 阻止默认行为，没有表达式 -->
+<form @submit.prevent></form>
+
+<!--  串联修饰符 -->
+<button @click.stop.prevent="doThis"></button>
+
+<!-- 键修饰符，键别名 -->
+<input @keyup.enter="onEnter">
+
+<!-- 键修饰符，键代码 -->
+<input @keyup.13="onEnter">
+
+<!-- 点击回调只会触发一次 -->
+<button v-on:click.once="doThis"></button>
+
+<!-- 对象语法 (2.4.0+) -->
+<button v-on="{ mousedown: doThis, mouseup: doThat }"></button>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">在子组件上监听自定义事件 (当子组件触发“my-event”时将调用事件处理器)：</span><br></pre></td></tr></table></figure>
+<my-component @my-event="handleThis"></my-component>
+
+<!-- 内联语句 -->
+<my-component @my-event="handleThis(123, $event)"></my-component>
+
+<!-- 组件中的原生事件 -->
+<my-component @click.native="onClick"></my-component>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- **参考**：</span><br><span class="line"></span><br><span class="line">  - [事件处理器](https:&#x2F;&#x2F;cn.vuejs.org&#x2F;v2&#x2F;guide&#x2F;events.html)</span><br><span class="line">  - [组件 - 自定义事件](https:&#x2F;&#x2F;cn.vuejs.org&#x2F;v2&#x2F;guide&#x2F;components.html#监听子组件事件)</span><br><span class="line"></span><br><span class="line">### [v-bind](https:&#x2F;&#x2F;cn.vuejs.org&#x2F;v2&#x2F;api&#x2F;#v-bind)</span><br><span class="line"></span><br><span class="line">- **缩写**：&#96;:&#96;</span><br><span class="line"></span><br><span class="line">- **预期**：&#96;any (with argument) | Object (without argument)&#96;</span><br><span class="line"></span><br><span class="line">- **参数**：&#96;attrOrProp (optional)&#96;</span><br><span class="line"></span><br><span class="line">- **修饰符**：</span><br><span class="line"></span><br><span class="line">  - &#96;.prop&#96; - 作为一个 DOM property 绑定而不是作为 attribute 绑定。([差别在哪里？](https:&#x2F;&#x2F;stackoverflow.com&#x2F;questions&#x2F;6003819&#x2F;properties-and-attributes-in-html#answer-6004028))</span><br><span class="line">  - &#96;.camel&#96; - (2.1.0+) 将 kebab-case attribute 名转换为 camelCase。(从 2.1.0 开始支持)</span><br><span class="line">  - &#96;.sync&#96; (2.3.0+) 语法糖，会扩展成一个更新父组件绑定值的 &#96;v-on&#96; 侦听器。</span><br><span class="line"></span><br><span class="line">- **用法**：</span><br><span class="line"></span><br><span class="line">  动态地绑定一个或多个 attribute，或一个组件 prop 到表达式。</span><br><span class="line"></span><br><span class="line">  在绑定 &#96;class&#96; 或 &#96;style&#96; attribute 时，支持其它类型的值，如数组或对象。可以通过下面的教程链接查看详情。</span><br><span class="line"></span><br><span class="line">  在绑定 prop 时，prop 必须在子组件中声明。可以用修饰符指定不同的绑定类型。</span><br><span class="line"></span><br><span class="line">  没有参数时，可以绑定到一个包含键值对的对象。注意此时 &#96;class&#96; 和 &#96;style&#96; 绑定不支持数组和对象。</span><br><span class="line"></span><br><span class="line">- **示例**：</span><br></pre></td></tr></table></figure>
+<!-- 绑定一个 attribute -->
+<img v-bind:src="imageSrc">
+
+<!-- 动态 attribute 名 (2.6.0+) -->
+<button v-bind:[key]="value"></button>
+
+<!-- 缩写 -->
+<p><img :src="imageSrc"></p>
+<!-- 动态 attribute 名缩写 (2.6.0+) -->
+<button :[key]="value"></button>
+
+<!-- 内联字符串拼接 -->
+<p><img :src="'/path/to/images/' + fileName"></p>
+<!-- class 绑定 -->
+<div :class="{ red: isRed }"></div>
+<div :class="[classA, classB]"></div>
+<div :class="[classA, { classB: isB, classC: isC }]">
+
+<!-- style 绑定 -->
+<div :style="{ fontSize: size + 'px' }"></div>
+<div :style="[styleObjectA, styleObjectB]"></div>
+
+<!-- 绑定一个全是 attribute 的对象 -->
+<div v-bind="{ id: someProp, 'other-attr': otherProp }"></div>
+
+<!-- 通过 prop 修饰符绑定 DOM attribute -->
+<div v-bind:text-content.prop="text"></div>
+
+<!-- prop 绑定。“prop”必须在 my-component 中声明。-->
+<p><my-component :prop="someThing">&lt;/my-component&gt;</p>
+<!-- 通过 $props 将父组件的 props 一起传给子组件 -->
+<p><child-component v-bind="$props">&lt;/child-component&gt;</p>
+<!-- XLink -->
+<p><svg><a :xlink:special="foo"></a></svg></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#96;.camel&#96; 修饰符允许在使用 DOM 模板时将 &#96;v-bind&#96; property 名称驼峰化，例如 SVG 的 &#96;viewBox&#96; property：</span><br></pre></td></tr></table></figure>
+<p><svg :view-box.camel="viewBox"></svg></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  在使用字符串模板或通过 &#96;vue-loader&#96;&#x2F;&#96;vueify&#96; 编译时，无需使用 &#96;.camel&#96;。</span><br><span class="line"></span><br><span class="line">- **参考**：</span><br><span class="line"></span><br><span class="line">  - [Class 与 Style 绑定](https:&#x2F;&#x2F;cn.vuejs.org&#x2F;v2&#x2F;guide&#x2F;class-and-style.html)</span><br><span class="line">  - [组件 - Props](https:&#x2F;&#x2F;cn.vuejs.org&#x2F;v2&#x2F;guide&#x2F;components.html#通过-Prop-向子组件传递数据)</span><br><span class="line">  - [组件 - &#96;.sync&#96; 修饰符](https:&#x2F;&#x2F;cn.vuejs.org&#x2F;v2&#x2F;guide&#x2F;components-custom-events.html#sync-修饰符)</span><br><span class="line"></span><br><span class="line">### [v-model](https:&#x2F;&#x2F;cn.vuejs.org&#x2F;v2&#x2F;api&#x2F;#v-model)</span><br><span class="line"></span><br><span class="line">- **预期**：随表单控件类型不同而不同。</span><br><span class="line"></span><br><span class="line">- **限制**：</span><br><span class="line"></span><br><span class="line">  - &#96;&lt;input&gt;&#96;</span><br><span class="line">  - &#96;&lt;select&gt;&#96;</span><br><span class="line">  - &#96;&lt;textarea&gt;&#96;</span><br><span class="line">  - components</span><br><span class="line"></span><br><span class="line">- **修饰符**：</span><br><span class="line"></span><br><span class="line">  - [&#96;.lazy&#96;](https:&#x2F;&#x2F;cn.vuejs.org&#x2F;v2&#x2F;guide&#x2F;forms.html#lazy) - 取代 &#96;input&#96; 监听 &#96;change&#96; 事件</span><br><span class="line">  - [&#96;.number&#96;](https:&#x2F;&#x2F;cn.vuejs.org&#x2F;v2&#x2F;guide&#x2F;forms.html#number) - 输入字符串转为有效的数字</span><br><span class="line">  - [&#96;.trim&#96;](https:&#x2F;&#x2F;cn.vuejs.org&#x2F;v2&#x2F;guide&#x2F;forms.html#trim) - 输入首尾空格过滤</span><br><span class="line"></span><br><span class="line">- **用法**：</span><br><span class="line"></span><br><span class="line">  在表单控件或者组件上创建双向绑定。细节请看下面的教程链接。</span><br><span class="line"></span><br><span class="line">- **参考**：</span><br><span class="line"></span><br><span class="line">  - [表单控件绑定](https:&#x2F;&#x2F;cn.vuejs.org&#x2F;v2&#x2F;guide&#x2F;forms.html)</span><br><span class="line">  - [组件 - 在输入组件上使用自定义事件](https:&#x2F;&#x2F;cn.vuejs.org&#x2F;v2&#x2F;guide&#x2F;components-custom-events.html#将原生事件绑定到组件)</span><br><span class="line"></span><br><span class="line">### [v-slot](https:&#x2F;&#x2F;cn.vuejs.org&#x2F;v2&#x2F;api&#x2F;#v-slot)</span><br><span class="line"></span><br><span class="line">- **缩写**：&#96;#&#96;</span><br><span class="line"></span><br><span class="line">- **预期**：可放置在函数参数位置的 JavaScript 表达式 (在[支持的环境下](https:&#x2F;&#x2F;cn.vuejs.org&#x2F;v2&#x2F;guide&#x2F;components-slots.html#解构插槽-Props)可使用解构)。可选，即只需要在为插槽传入 prop 的时候使用。</span><br><span class="line"></span><br><span class="line">- **参数**：插槽名 (可选，默认值是 &#96;default&#96;)</span><br><span class="line"></span><br><span class="line">- **限用于**</span><br><span class="line"></span><br><span class="line">  - &#96;&lt;template&gt;&#96;</span><br><span class="line">  - [组件](https:&#x2F;&#x2F;cn.vuejs.org&#x2F;v2&#x2F;guide&#x2F;components-slots.html#独占默认插槽的缩写语法) (对于一个单独的带 prop 的默认插槽)</span><br><span class="line"></span><br><span class="line">- **用法**：</span><br><span class="line"></span><br><span class="line">  提供具名插槽或需要接收 prop 的插槽。</span><br><span class="line"></span><br><span class="line">- **示例**：</span><br><span class="line"></span><br><span class="line">  &#96;&#96;&#96;html</span><br><span class="line">  &lt;!-- 具名插槽 --&gt;</span><br><span class="line">  &lt;base-layout&gt;</span><br><span class="line">    &lt;template v-slot:header&gt;</span><br><span class="line">      Header content</span><br><span class="line">    &lt;&#x2F;template&gt;</span><br><span class="line">  </span><br><span class="line">    Default slot content</span><br><span class="line">  </span><br><span class="line">    &lt;template v-slot:footer&gt;</span><br><span class="line">      Footer content</span><br><span class="line">    &lt;&#x2F;template&gt;</span><br><span class="line">  &lt;&#x2F;base-layout&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;!-- 接收 prop 的具名插槽 --&gt;</span><br><span class="line">  &lt;infinite-scroll&gt;</span><br><span class="line">    &lt;template v-slot:item&#x3D;&quot;slotProps&quot;&gt;</span><br><span class="line">      &lt;div class&#x3D;&quot;item&quot;&gt;</span><br><span class="line">        &#123;&#123; slotProps.item.text &#125;&#125;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;template&gt;</span><br><span class="line">  &lt;&#x2F;infinite-scroll&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;!-- 接收 prop 的默认插槽，使用了解构 --&gt;</span><br><span class="line">  &lt;mouse-position v-slot&#x3D;&quot;&#123; x, y &#125;&quot;&gt;</span><br><span class="line">    Mouse position: &#123;&#123; x &#125;&#125;, &#123;&#123; y &#125;&#125;</span><br><span class="line">  &lt;&#x2F;mouse-position&gt;</span><br></pre></td></tr></table></figure>
+<p>更多细节请查阅以下链接。</p>
+</li>
+<li><p><strong>参考</strong>：</p>
+<ul>
+<li><a href="https://cn.vuejs.org/v2/guide/components-slots.html">组件 - 插槽</a></li>
+<li><a href="https://github.com/vuejs/rfcs/blob/master/active-rfcs/0001-new-slot-syntax.md">RFC-0001</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="v-pre"><a href="#v-pre" class="headerlink" title="v-pre"></a><a href="https://cn.vuejs.org/v2/api/#v-pre">v-pre</a></h3><ul>
+<li><p><strong>不需要表达式</strong></p>
+</li>
+<li><p><strong>用法</strong>：</p>
+<p>跳过这个元素和它的子元素的编译过程。可以用来显示原始 Mustache 标签。跳过大量没有指令的节点会加快编译。</p>
+</li>
+<li><p><strong>示例</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;span v-pre&gt;&#123;&#123; this will not be compiled &#125;&#125;&lt;&#x2F;span&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="v-cloak"><a href="#v-cloak" class="headerlink" title="v-cloak"></a><a href="https://cn.vuejs.org/v2/api/#v-cloak">v-cloak</a></h3><ul>
+<li><p><strong>不需要表达式</strong></p>
+</li>
+<li><p><strong>用法</strong>：</p>
+<p>这个指令保持在元素上直到关联实例结束编译。和 CSS 规则如 <code>[v-cloak] { display: none }</code> 一起用时，这个指令可以隐藏未编译的 Mustache 标签直到实例准备完毕。</p>
+</li>
+<li><p><strong>示例</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[v-cloak] &#123;</span><br><span class="line">  display: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div v-cloak&gt;</span><br><span class="line">  &#123;&#123; message &#125;&#125;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>  不会显示，直到编译结束。</p>
+<h3 id="v-once"><a href="#v-once" class="headerlink" title="v-once"></a><a href="https://cn.vuejs.org/v2/api/#v-once">v-once</a></h3><ul>
+<li><p><strong>不需要表达式</strong></p>
+</li>
+<li><p><strong>详细</strong>：</p>
+<p>只渲染元素和组件<strong>一次</strong>。随后的重新渲染，元素/组件及其所有的子节点将被视为静态内容并跳过。这可以用于优化更新性能。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 单个元素 --&gt;</span><br><span class="line">&lt;span v-once&gt;This will never change: &#123;&#123;msg&#125;&#125;&lt;&#x2F;span&gt;</span><br><span class="line">&lt;!-- 有子元素 --&gt;</span><br><span class="line">&lt;div v-once&gt;</span><br><span class="line">  &lt;h1&gt;comment&lt;&#x2F;h1&gt;</span><br><span class="line">  &lt;p&gt;&#123;&#123;msg&#125;&#125;&lt;&#x2F;p&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">&lt;!-- 组件 --&gt;</span><br><span class="line">&lt;my-component v-once :comment&#x3D;&quot;msg&quot;&gt;&lt;&#x2F;my-component&gt;</span><br><span class="line">&lt;!-- &#96;v-for&#96; 指令--&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li v-for&#x3D;&quot;i in list&quot; v-once&gt;&#123;&#123;i&#125;&#125;&lt;&#x2F;li&gt;</span><br><span class="line">&lt;&#x2F;ul&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>参考</strong>：</p>
+<ul>
+<li><a href="https://cn.vuejs.org/v2/guide/syntax.html#插值">数据绑定语法- 插值</a></li>
+<li><a href="https://cn.vuejs.org/v2/guide/components-edge-cases.html#通过-v-once-创建低开销的静态组件">组件 - 对低开销的静态组件使用 <code>v-once</code></a></li>
+</ul>
+</li>
+</ul>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='/High Free Spirits.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+		data-enable='false'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>
