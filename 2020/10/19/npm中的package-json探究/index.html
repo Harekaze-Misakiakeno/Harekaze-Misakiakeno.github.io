@@ -1,0 +1,212 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW" class="loading">
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>npm中的package.json探究 - Hermit_Yoshino</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Hermit_Yoshino,"> 
+    <meta name="description" content="npm package.json探究写在前面创建时间：2020-10-16 14:46:53
+用了这么久的npm但是都没有探索过，今天探索下
+参考资料http://nodejs.cn/learn/t,"> 
+    <meta name="author" content="Misaki Akeno"> 
+    <link rel="alternative" href="atom.xml" title="Hermit_Yoshino" type="application/atom+xml"> 
+    <link rel="icon" href="/img/ico_black.png"> 
+    
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+<meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body class="loading">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="config-title" style="display:none">Hermit_Yoshino</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://harekaze-misakiakeno.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">npm中的package.json探究</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">npm中的package.json探究</h1>
+        <div class="stuff">
+            <span>十月 19, 2020</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/npm/" rel="tag">npm</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E5%85%A5%E9%97%A8/" rel="tag">入门</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="npm-package-json探究"><a href="#npm-package-json探究" class="headerlink" title="npm package.json探究"></a>npm package.json探究</h1><h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>创建时间：2020-10-16 14:46:53</p>
+<p>用了这么久的npm但是都没有探索过，今天探索下</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="http://nodejs.cn/learn/the-package-json-guide">http://nodejs.cn/learn/the-package-json-guide</a></p>
+<h2 id="正篇"><a href="#正篇" class="headerlink" title="正篇"></a>正篇</h2><h3 id="文件结构"><a href="#文件结构" class="headerlink" title="文件结构"></a>文件结构</h3><p>对于应用程序，<code>package.json</code> 文件中的内容没有固定的要求。 唯一的要求是必须遵守 JSON 格式，否则，尝试以编程的方式访问其属性的程序则无法读取它。<br>说白了就是只要符合json格式就行<br>该文件可以使用命令<code>npm init</code>自动生成，当然也可以手动修改</p>
+<h3 id="name"><a href="#name" class="headerlink" title="name"></a>name</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   <span class="string">"name"</span>: <span class="string">"test-project"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>软件包的名称<br>名称必须少于 214 个字符，且不能包含空格，只能包含小写字母、连字符（-）或下划线（_）。</p>
+<h3 id="author"><a href="#author" class="headerlink" title="author"></a>author</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   <span class="string">"author"</span>: <span class="string">"Yoshino"</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>也可以是这样<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"author"</span>: &#123;</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"Yoshino"</span>,</span><br><span class="line">    <span class="string">"email"</span>: <span class="string">""</span>,</span><br><span class="line">    <span class="string">"url"</span>: <span class="string">"http://harekaze-misakiakeno.github.io/"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>软件包的作者名称</p>
+<h3 id="contributors"><a href="#contributors" class="headerlink" title="contributors"></a>contributors</h3><p>除作者外，该项目可以有一个或多个贡献者。 此属性是列出他们的数组<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   <span class="string">"contributors"</span>: [</span><br><span class="line">     <span class="string">"Akeno"</span></span><br><span class="line">     ]</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
+<h3 id="bugs"><a href="#bugs" class="headerlink" title="bugs"></a>bugs</h3><p>链接到软件包的问题跟踪器，最常用的是 GitHub 的 issues 页面<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   <span class="string">"bugs"</span>: <span class="string">"http://harekaze-misakiakeno.github.io/"</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure><br>这个地方说实话我也没搞懂，他的意思可能是采坑之后看配置文件，然后反馈么？不知道有没有懂的大佬解释一下</p>
+<h3 id="homepage"><a href="#homepage" class="headerlink" title="homepage"></a>homepage</h3><p>设置软件包的主页<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   <span class="string">"homepage"</span>: <span class="string">"http://harekaze-misakiakeno.github.io/"</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
+<h3 id="version"><a href="#version" class="headerlink" title="version"></a>version</h3><p>指定软件包的当前版本<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   <span class="string">"version"</span>: <span class="string">"0.0.1"</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure><br>第一个数字是主版本号，第二个数字是次版本号，第三个数字是补丁版本号。</p>
+<p>这些数字中的含义是：仅修复缺陷的版本是补丁版本，引入向后兼容的更改的版本是次版本，具有重大更改的是主版本。</p>
+<h3 id="license"><a href="#license" class="headerlink" title="license"></a>license</h3><p>指定软件包的许可证<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   <span class="string">"license"</span>: <span class="string">"MIT"</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
+<h3 id="keywords"><a href="#keywords" class="headerlink" title="keywords"></a>keywords</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="string">"keywords"</span>: [</span><br><span class="line">	  <span class="string">"hun"</span>,</span><br><span class="line">	  <span class="string">"xian yu"</span>,</span><br><span class="line">	  <span class="string">"la ji"</span>,</span><br><span class="line">	  <span class="string">"mei qian tu"</span>,</span><br><span class="line">	  <span class="string">"kan bu dao xi wang"</span></span><br><span class="line">	]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此属性包含与软件包功能相关的关键字数组<br>在浏览 <a href="https://www.npmjs.com/">https://www.npmjs.com/</a> 网站时快速看到该包的关键字，以便找到你的软件包</p>
+<h3 id="description"><a href="#description" class="headerlink" title="description"></a>description</h3><p>此属性包含了对软件包的简短描述<br>如果要将软件包发布到 npm，则这个属性特别有用，人们可以知道该软件包是的作用。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"description"</span>:  <span class="string">"了解package.json"</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="repository"><a href="#repository" class="headerlink" title="repository"></a>repository</h3><p>此属性指定了此程序包仓库所在的位置<br>这里放的是nodejs中文网的链接<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="string">"repository"</span>: <span class="string">"github:nodejscn/node-api-cn"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>或者是这样<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="string">"repository"</span>: &#123;</span><br><span class="line">  <span class="string">"type"</span>: <span class="string">"git"</span>,</span><br><span class="line">  <span class="string">"url"</span>: <span class="string">"https://github.com/nodejscn/node-api-cn.git"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="main"><a href="#main" class="headerlink" title="main"></a>main</h3><p>设置软件包的入口点。<br>当在应用程序中导入此软件包时，应用程序会在该位置搜索模块的导出。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"main"</span>: <span class="string">"src/main.js"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="private"><a href="#private" class="headerlink" title="private"></a>private</h3><p>如果设置为 true，则可以防止应用程序/软件包被意外发布到 npm 上<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"private"</span>: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="scripts"><a href="#scripts" class="headerlink" title="scripts"></a>scripts</h3><p>可以定义一组可以运行的 node 脚本<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">  <span class="string">"dev"</span>: <span class="string">"webpack-dev-server --inline --progress --config build/webpack.dev.conf.js"</span>,</span><br><span class="line">  <span class="string">"start"</span>: <span class="string">"npm run dev"</span>,</span><br><span class="line">  <span class="string">"unit"</span>: <span class="string">"jest --config test/unit/jest.conf.js --coverage"</span>,</span><br><span class="line">  <span class="string">"test"</span>: <span class="string">"npm run unit"</span>,</span><br><span class="line">  <span class="string">"lint"</span>: <span class="string">"eslint --ext .js,.vue src test/unit"</span>,</span><br><span class="line">  <span class="string">"build"</span>: <span class="string">"node build/build.js"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>这些脚本是命令行应用程序。 可以通过调用 npm run XXXX 或 yarn XXXX 来运行它们，其中 XXXX 是命令的名称。 例如：npm run dev<br>可以为命令使用任何的名称，脚本也可以是任何操作<br>所以当你输入<code>npm run dev</code>的时候，其实背后做出了很多的操作</p>
+<h3 id="dependencies"><a href="#dependencies" class="headerlink" title="dependencies"></a>dependencies</h3><p>设置作为依赖安装的 npm 软件包的列表。</p>
+<p>当使用 npm 或 yarn 安装软件包时：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install &lt;PACKAGENAME&gt;</span><br><span class="line">yarn add &lt;PACKAGENAME&gt;</span><br></pre></td></tr></table></figure><br>该软件包会被自动地插入此列表中。</p>
+<p>示例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="string">"dependencies"</span>: &#123;</span><br><span class="line">  <span class="string">"vue"</span>: <span class="string">"^2.5.2"</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="devDependencies"><a href="#devDependencies" class="headerlink" title="devDependencies"></a>devDependencies</h3><p>设置作为开发依赖安装的 <code>npm</code> 软件包的列表。</p>
+<p>它们不同于 <code>dependencies</code>，因为它们只需安装在开发机器上，而无需在生产环境中运行代码。</p>
+<p>当使用 npm 或 yarn 安装软件包时：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install --dev &lt;PACKAGENAME&gt;</span><br><span class="line">yarn add --dev &lt;PACKAGENAME&gt;</span><br></pre></td></tr></table></figure><br>该软件包会被自动地插入此列表中。</p>
+<p>示例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="string">"devDependencies"</span>: &#123;</span><br><span class="line">  <span class="string">"autoprefixer"</span>: <span class="string">"^7.1.2"</span>,</span><br><span class="line">  <span class="string">"babel-core"</span>: <span class="string">"^6.22.1"</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="engines"><a href="#engines" class="headerlink" title="engines"></a>engines</h3><p>设置此软件包/应用程序要运行的 Node.js 或其他命令的版本<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="string">"engines"</span>: &#123;</span><br><span class="line">  <span class="string">"node"</span>: <span class="string">"&gt;= 10.0.0"</span>,</span><br><span class="line">  <span class="string">"npm"</span>: <span class="string">"&gt;= 10.0.0"</span>,</span><br><span class="line">  <span class="string">"yarn"</span>: <span class="string">"^0.13.0"</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>然而貌似我把<code>npm</code>改到<code>&gt;=10.0.0</code>也不影响运行，不知为何</p>
+<h3 id="browserslist"><a href="#browserslist" class="headerlink" title="browserslist"></a>browserslist</h3><p>用于告知要支持哪些浏览器（及其版本）。 Babel、Autoprefixer 和其他工具会用到它，以将所需的 polyfill 和 fallback 添加到目标浏览器<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"browserslist"</span>: [</span><br><span class="line">  <span class="string">"&gt; 1%"</span>,</span><br><span class="line">  <span class="string">"last 2 versions"</span>,</span><br><span class="line">  <span class="string">"not ie &lt;= 8"</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure><br>browserslist官网<a href="https://github.com/browserslist/browserslist">https://github.com/browserslist/browserslist</a></p>
+<h3 id="命令特有的属性"><a href="#命令特有的属性" class="headerlink" title="命令特有的属性"></a>命令特有的属性</h3><p>package.json 文件还可以承载命令特有的配置，例如 Babel、ESLint 等。</p>
+<p>每个都有特有的属性，例如 eslintConfig、babel 等。 它们是命令特有的，可以在相应的命令/项目文档中找到如何使用它们。</p>
+<h3 id="软件包版本"><a href="#软件包版本" class="headerlink" title="软件包版本"></a>软件包版本</h3><p>在上面的描述中，已经看到类似以下的版本号：〜3.0.0 或 ^0.13.0。 它们是什么意思，还可以使用哪些其他的版本说明符？</p>
+<p>该符号指定了软件包能从该依赖接受的更新。</p>
+<p>鉴于使用了 semver（语义版本控制），所有的版本都有 3 个数字，第一个是主版本，第二个是次版本，第三个是补丁版本，具有以下规则：</p>
+<p>~: 如果写入的是 〜0.13.0，则只更新补丁版本：即 0.13.1 可以，但 0.14.0 不可以。<br>^: 如果写入的是 ^0.13.0，则要更新补丁版本和次版本：即 0.13.1、0.14.0、依此类推。<br><em>: 如果写入的是 </em>，则表示接受所有的更新，包括主版本升级。</p>
+<blockquote>
+<p>: 接受高于指定版本的任何版本。<br>=: 接受等于或高于指定版本的任何版本。<br>&lt;=: 接受等于或低于指定版本的任何版本。<br>&lt;: 接受低于指定版本的任何版本。<br>还有其他的规则：</p>
+</blockquote>
+<p>无符号: 仅接受指定的特定版本。<br>latest: 使用可用的最新版本。<br>还可以在范围内组合以上大部分内容，例如：1.0.0 || &gt;=1.1.0 &lt;1.2.0，即使用 1.0.0 或从 1.1.0 开始但低于 1.2.0 的版本。</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='/High Free Spirits.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+		data-enable='false'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

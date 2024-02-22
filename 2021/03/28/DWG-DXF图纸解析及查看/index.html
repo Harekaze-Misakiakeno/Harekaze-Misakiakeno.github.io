@@ -1,0 +1,214 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW" class="loading">
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DWG-DXF图纸解析及查看 - Hermit_Yoshino</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Hermit_Yoshino,"> 
+    <meta name="description" content="DWG-DXF图纸解析及查看目标：能够解析dwg格式文件，以及通过web查看 
+开源方案思路：将dwg格式的文件转换为公开格式的dxf文件，之后通过开源的代码与在线查看
+实现过程
+通过libredw,"> 
+    <meta name="author" content="Misaki Akeno"> 
+    <link rel="alternative" href="atom.xml" title="Hermit_Yoshino" type="application/atom+xml"> 
+    <link rel="icon" href="/img/ico_black.png"> 
+    
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+<meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body class="loading">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="config-title" style="display:none">Hermit_Yoshino</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://harekaze-misakiakeno.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">DWG-DXF图纸解析及查看</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">DWG-DXF图纸解析及查看</h1>
+        <div class="stuff">
+            <span>三月 28, 2021</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/CAD%E5%9B%BE%E7%BA%B8/" rel="tag">CAD图纸</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="DWG-DXF图纸解析及查看"><a href="#DWG-DXF图纸解析及查看" class="headerlink" title="DWG-DXF图纸解析及查看"></a>DWG-DXF图纸解析及查看</h1><h2 id="目标："><a href="#目标：" class="headerlink" title="目标："></a>目标：</h2><p>能够解析dwg格式文件，以及通过web查看 </p>
+<h2 id="开源方案思路："><a href="#开源方案思路：" class="headerlink" title="开源方案思路："></a>开源方案思路：</h2><p>将dwg格式的文件转换为公开格式的dxf文件，之后通过开源的代码与在线查看</p>
+<h3 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h3><ol>
+<li>通过libredwg（<a href="https://github.com/LibreDWG/libredwg）把dwg格式转换成dxf格式">https://github.com/LibreDWG/libredwg）把dwg格式转换成dxf格式</a></li>
+</ol>
+<p><img src="https://tcs-devops.aliyuncs.com/storage/1123645b705df9acf2ecf2868b79e1910dc6?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTYxNzUyNzU5MSwiaWF0IjoxNjE2OTIyNzkxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExMjM2NDViNzA1ZGY5YWNmMmVjZjI4NjhiNzllMTkxMGRjNiJ9.erMy-QlI_3Uutf_TImjRpwk9davMftBCejjrU2a4Z2g&amp;download=%E5%9B%BE%E7%89%872.png" alt=""></p>
+<p>此时的dxf可以直接打开查看其中的内容、注意这里我转换出来的dxf为gbk格式</p>
+<ol>
+<li>使用fs和dxf-parser（<a href="https://github.com/gdsestimating/dxf-parser）读取解析">https://github.com/gdsestimating/dxf-parser）读取解析</a></li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">const</span> DxfParser = <span class="built_in">require</span>(<span class="string">'dxf-parser'</span>);</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">const</span> rbuf = fs.readFileSync(<span class="string">'文件目录'</span>, <span class="string">'utf8'</span>);</span><br><span class="line">    <span class="keyword">const</span> parser = <span class="keyword">new</span> DxfParser();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> dxfData = parser.parseSync(rbuf);</span><br><span class="line"><span class="comment">//这里解析出来的为 json 格式</span></span><br><span class="line">    &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">      ctx.body = <span class="built_in">console</span>.error(err.stack);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>使用view-dxf（<a href="https://github.com/meng885234/view-dxf）查看">https://github.com/meng885234/view-dxf）查看</a></li>
+</ol>
+<p>类似的还有<a href="https://github.com/gdsestimating/three-dxf">https://github.com/gdsestimating/three-dxf</a> 但是加载库时直接报错</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Viewer <span class="keyword">from</span> <span class="string">'view-dxf'</span></span><br><span class="line"><span class="keyword">new</span> Viewer(dxfData, <span class="built_in">document</span>.getElementById(<span class="string">'cad-view'</span>), <span class="number">2000</span>, <span class="number">2000</span>, dxfData, (dxfCallback) =&gt; &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(dxfCallback, <span class="string">'用户操作之后的回调函数'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">&lt;div id=<span class="string">"cad-view</span></span><br><span class="line"><span class="string">"</span>&gt;&lt;<span class="regexp">/div&gt;</span></span><br></pre></td></tr></table></figure>
+<p>但遇到带有中文的dxf文件是解析会报错，猜测是由于解析出的json中带有中文的key值所致</p>
+<p>此时已可进行拖动与放大</p>
+<h2 id="商业方案解决思路"><a href="#商业方案解决思路" class="headerlink" title="商业方案解决思路"></a>商业方案解决思路</h2><h3 id="先说下，这些厂商都没有给我钱，我只是和大家一样通过搜索引擎寻找的解决方案。如果条件允许，我更希望大家能更多的支持开源事业，将我们的中文开源社区做到世界最佳。"><a href="#先说下，这些厂商都没有给我钱，我只是和大家一样通过搜索引擎寻找的解决方案。如果条件允许，我更希望大家能更多的支持开源事业，将我们的中文开源社区做到世界最佳。" class="headerlink" title="先说下，这些厂商都没有给我钱，我只是和大家一样通过搜索引擎寻找的解决方案。如果条件允许，我更希望大家能更多的支持开源事业，将我们的中文开源社区做到世界最佳。"></a>先说下，这些厂商都没有给我钱，我只是和大家一样通过搜索引擎寻找的解决方案。如果条件允许，我更希望大家能更多的支持开源事业，将我们的中文开源社区做到世界最佳。</h3><ol>
+<li><a href="http://www.xunjiecad.com/">http://www.xunjiecad.com/</a></li>
+<li><a href="http://www.mxdraw.com/download.html">http://www.mxdraw.com/download.html</a></li>
+<li><a href="https://cadviewer.com">https://cadviewer.com</a></li>
+</ol>
+<h2 id="CADViewerJS思路"><a href="#CADViewerJS思路" class="headerlink" title="CADViewerJS思路"></a>CADViewerJS思路</h2><p>CADViewerJS有试用版，这里拿它举个例子 CADViewerJS试用版下载地址</p>
+<p><a href="https://cadviewer.com/alldownloads/">https://cadviewer.com/alldownloads/</a></p>
+<p><img src="https://tcs-devops.aliyuncs.com/storage/11238e3d8eb5efe9387a2b793c0a829afa2a?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTYxNzUyNzU5MSwiaWF0IjoxNjE2OTIyNzkxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExMjM4ZTNkOGViNWVmZTkzODdhMmI3OTNjMGE4MjlhZmEyYSJ9.-07CXiRxE1IOqYZG2_jkFzl0Yf_WeADpf8z5bTFjFYE&amp;download=image.png" alt=""></p>
+<p>下载的内容有三部分，依次为：</p>
+<p>前端html的部分</p>
+<p>后端服务的部分</p>
+<p>cad相关文件解析器的部分</p>
+<p><strong>这三者需要相互配合才能实现正常功能</strong></p>
+<p><img src="https://tcs-devops.aliyuncs.com/storage/1123e8bd4f6e523aafda2acdc7ae5af08c37?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTYxNzUyNzU5MSwiaWF0IjoxNjE2OTIyNzkxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExMjNlOGJkNGY2ZTUyM2FhZmRhMmFjZGM3YWU1YWYwOGMzNyJ9.g1lP9zsUKEqsCQq-p677QUEgn3j4C2lPVX_bIEP_zNc&amp;download=image.png" alt=""></p>
+<p>之后按照官方文档进行配置启动即可</p>
+<p><a href="https://cadviewer.com/cadviewertechdocs/handlers/nodejs/"><strong>https://cadviewer.com/cadviewertechdocs/handlers/nodejs/</strong></a></p>
+<h3 id="实现过程-1"><a href="#实现过程-1" class="headerlink" title="实现过程"></a>实现过程</h3><p>下载完后 将前端与后端部分解压到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c:&#x2F;nodejs&#x2F;cadviewer</span><br></pre></td></tr></table></figure>
+<p>其中的cad相关文件解析器的部分需要放到如下图的位置</p>
+<p><img src="https://tcs-devops.aliyuncs.com/storage/11235aede18dd8f3efd1334123fb489452f3?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTYxNzUyNzU5MSwiaWF0IjoxNjE2OTIyNzkxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExMjM1YWVkZTE4ZGQ4ZjNlZmQxMzM0MTIzZmI0ODk0NTJmMyJ9.8I0gMa4DTOnCSGtWfOguCbSnuF02LMQixToRdL300jo&amp;download=image.png" alt=""></p>
+<p>将<strong>CADViewer_config.json</strong>中的内容替换成<strong>CADViewer_config_nodejs.json中的内容</strong></p>
+<p><img src="https://tcs-devops.aliyuncs.com/storage/112340eed90ef695fccc6a4baf643d23eca4?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTYxNzUyNzU5MSwiaWF0IjoxNjE2OTIyNzkxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExMjM0MGVlZDkwZWY2OTVmY2NjNmE0YmFmNjQzZDIzZWNhNCJ9.oc9puyHXaPIpFgScOXqiEY-XNGw-XU-zuA1VCa1jBJs&amp;download=image.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#安装相关依赖并启动服务</span><br><span class="line">npm i express</span><br><span class="line">npm i request</span><br><span class="line">node CVserver-v6_4_21.js</span><br><span class="line">npm install http-server -g</span><br><span class="line">http-server -p 8081</span><br></pre></td></tr></table></figure>
+<p>前端需要替换的部分为</p>
+<p><img src="https://tcs-devops.aliyuncs.com/storage/1123e697efa431f102cf2d050038db28cce7?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTYxNzUyNzU5MSwiaWF0IjoxNjE2OTIyNzkxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExMjNlNjk3ZWZhNDMxZjEwMmNmMmQwNTAwMzhkYjI4Y2NlNyJ9.ytObqLI_EkhjOCww_KSlaC7hb32teatzorMaQwd1ZQM&amp;download=image.png" alt=""></p>
+<p>这里的html为你想要访问的html页面，下方的文件为你想要查看的cad文件</p>
+<p><img src="https://tcs-devops.aliyuncs.com/storage/1123127158175f0d221f49b031bf27a3b028?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTYxNzUyNzU5MSwiaWF0IjoxNjE2OTIyNzkxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExMjMxMjcxNTgxNzVmMGQyMjFmNDliMDMxYmYyN2EzYjAyOCJ9.xJuxOkgHQumZcaYCGeZdMLH-Qv9i6Y6_eeBg9OMmeXE&amp;download=image.png" alt="https://tcs-devops.aliyuncs.com/storage/1123127158175f0d221f49b031bf27a3b028?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTYxNzUyNzU5MSwiaWF0IjoxNjE2OTIyNzkxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExMjMxMjcxNTgxNzVmMGQyMjFmNDliMDMxYmYyN2EzYjAyOCJ9.xJuxOkgHQumZcaYCGeZdMLH-Qv9i6Y6_eeBg9OMmeXE&amp;download=image.png"></p>
+<p><a href="https://cadviewer.com/alldownloads/fonts/"><strong>https://cadviewer.com/alldownloads/fonts/</strong></a></p>
+<p>下载字体以支持中文字体</p>
+<p>字体放置位置为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\nodejs\cadviewer\converters\ax2020\windows\fonts</span><br></pre></td></tr></table></figure>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="music/High Free Spirits.mp3">
+            </audio>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+		data-enable='false'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

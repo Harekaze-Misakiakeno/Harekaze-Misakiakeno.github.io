@@ -1,0 +1,235 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW" class="loading">
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>在ubuntu18上安装java、nginx、tomcat、mysql、maven - Hermit_Yoshino</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Hermit_Yoshino,"> 
+    <meta name="description" content="在ubuntu18上安装nginx、mysql、tomcat、java、maven写在前面之前写过一篇apache,mysql,php在linux上的安装，但是现在服务器换系统了，从centos6换,"> 
+    <meta name="author" content="Misaki Akeno"> 
+    <link rel="alternative" href="atom.xml" title="Hermit_Yoshino" type="application/atom+xml"> 
+    <link rel="icon" href="/img/ico_black.png"> 
+    
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+<meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body class="loading">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="config-title" style="display:none">Hermit_Yoshino</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://harekaze-misakiakeno.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">在ubuntu18上安装java、nginx、tomcat、mysql、maven</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">在ubuntu18上安装java、nginx、tomcat、mysql、maven</h1>
+        <div class="stuff">
+            <span>九月 01, 2020</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <h1 id="在ubuntu18上安装nginx、mysql、tomcat、java、maven"><a href="#在ubuntu18上安装nginx、mysql、tomcat、java、maven" class="headerlink" title="在ubuntu18上安装nginx、mysql、tomcat、java、maven"></a>在ubuntu18上安装nginx、mysql、tomcat、java、maven</h1><h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>之前写过一篇<a href="https://blog.csdn.net/Hermit_Yoshino/article/details/88548521">apache,mysql,php在linux上的安装</a>，但是现在服务器换系统了，从centos6换到了ubuntu18，主要还是centos6自带的程序版本都很老了，同时手动升级有非常麻烦，干脆就直接换了新版的ubuntu18</p>
+<h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">lsb_release -a</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看版本信息</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Distributor ID:	Ubuntu</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Description:	Ubuntu 18.04.4 LTS</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Release:	18.04</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Codename:	bionic</span></span><br></pre></td></tr></table></figure>
+<p>下载安装包</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 这里我是用的是jdk8</span></span><br><span class="line">wget https://javadl.oracle.com/webapps/download/GetFile/1.8.0_261-b12/a4634525489241b9a9e1aa73d9e118e6/linux-i586/jdk-8u261-linux-x64.tar.gz -O jdk-8u261-linux-x64.tar.gz</span><br><span class="line"><span class="meta">#</span><span class="bash"> 这个链接不保证永久可行</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 也可以使用百度云，之后可能会上传csdn</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 下载 tomcat8.5</span></span><br><span class="line">wget https://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-8/v8.5.57/bin/apache-tomcat-8.5.57.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> nginx 当前最新的稳定版1.18</span></span><br><span class="line">wget http://nginx.org/download/nginx-1.18.0.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> mysql 5.7</span></span><br><span class="line">wget https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.26-linux-glibc2.12-x86_64.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 当前最新的maven3.6.3</span></span><br><span class="line">wget https://mirror.bit.edu.cn/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz</span><br><span class="line"><span class="meta">#</span><span class="bash"> 下载网址 http://maven.apache.org/download.cgi</span></span><br></pre></td></tr></table></figure>
+<p>安装依赖</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install libpcre3 libpcre3-dev zlib1g-dev</span><br></pre></td></tr></table></figure>
+<p>jdk8 下载 链接: <a href="https://pan.baidu.com/s/1KgABp3Z8Giz4SpDG2ChIQA">https://pan.baidu.com/s/1KgABp3Z8Giz4SpDG2ChIQA</a> 提取码: cxzt</p>
+<h2 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 安装依赖</span></span><br><span class="line">apt install libpcre3 libpcre3-dev openssl libssl-dev zlib1g-dev</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf nginx-1.18.0.tar.gz</span><br><span class="line">cd nginx-1.18.0</span><br><span class="line">./configure --prefix=/usr/local/nginx</span><br><span class="line"><span class="meta">#</span><span class="bash"> 选择安装目录</span></span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<h2 id="安装java"><a href="#安装java" class="headerlink" title="安装java"></a>安装java</h2><p>解压安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf jdk-8u261-linux-x64.tar.gz</span><br><span class="line">mkdir -p /usr/local/jdk</span><br><span class="line">mv jdk1.8.0_261/ /usr/local/jdk</span><br></pre></td></tr></table></figure>
+<p>配置环境变量</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/profile</span><br><span class="line"><span class="meta">#</span><span class="bash"> 修改环境变量</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 在最后添加</span></span><br><span class="line">export JAVA_HOME=/usr/local/jdk/jdk1.8.0_261/</span><br><span class="line">export JRE_HOME=$&#123;JAVA_HOME&#125;/jre</span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/lib</span><br><span class="line">export PATH=.:$&#123;JAVA_HOME&#125;/bin:$PATH</span><br><span class="line"><span class="meta">#</span><span class="bash"> 使环境变量生效</span></span><br><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
+<p>查看是否生效<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br><span class="line"><span class="meta">#</span><span class="bash"> java version <span class="string">"1.8.0_261"</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Java(TM) SE Runtime Environment (build 1.8.0_261-b12)</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Java HotSpot(TM) 64-Bit Server VM (build 25.261-b12, mixed mode)</span></span><br><span class="line">javac -version</span><br><span class="line"><span class="meta">#</span><span class="bash"> javac 1.8.0_261</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="安装maven"><a href="#安装maven" class="headerlink" title="安装maven"></a>安装maven</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 安装</span></span><br><span class="line">tar -zxvf apache-maven-3.6.3-bin.tar.gz</span><br><span class="line">mv apache-maven-3.6.3 /usr/local/maven</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 修改并配置环境变量</span></span><br><span class="line">vim /etc/profile</span><br><span class="line">source /etc/profile</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 这是最后就该完后所有添加的内容</span></span><br><span class="line">export JAVA_HOME=/usr/local/jdk/jdk1.8.0_261/</span><br><span class="line">export JRE_HOME=$&#123;JAVA_HOME&#125;/jre</span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/lib</span><br><span class="line">export PATH=.:$&#123;JAVA_HOME&#125;/bin:$PATH</span><br><span class="line"></span><br><span class="line">export M2_HOME=/usr/local/maven/</span><br><span class="line">export PATH=$&#123;M2_HOME&#125;/bin:$PATH</span><br></pre></td></tr></table></figure>
+<p>测试是否安装完成<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mvn -v</span><br><span class="line"><span class="meta">#</span><span class="bash">出现版本号即成功</span></span><br></pre></td></tr></table></figure></p>
+<p>初始化本地仓库</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn help:system</span><br></pre></td></tr></table></figure>
+<p>顺便添加个ojdbc</p>
+<p>链接：<a href="https://pan.baidu.com/s/1kwsR8MJWkxBcFxgXrgz-6A">https://pan.baidu.com/s/1kwsR8MJWkxBcFxgXrgz-6A</a>  提取码：jdbc<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc14 -Dversion=10.2.0.4.0 -Dpackaging=jar -Dfile=/usr/local/jar/ojdbc/ojdbc14-10.2.0.4.0.jar#这里是路径</span><br></pre></td></tr></table></figure></p>
+<h2 id="安装tomcat"><a href="#安装tomcat" class="headerlink" title="安装tomcat"></a>安装tomcat</h2><p>解压安装<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf apache-tomcat-8.5.57.tar.gz</span><br><span class="line">mv apache-tomcat-8.5.57 /usr/local/tomcat8.5</span><br></pre></td></tr></table></figure><br>修改启动文件<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sudo vim startup.sh</span><br><span class="line">sudo vim shutdown.sh</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 在倒数第二行加入</span></span><br><span class="line">JAVA_HOME=/usr/local/jdk/jdk1.8.0_261/</span><br><span class="line">JRE_HOME=$&#123;JAVA_HOME&#125;/jre</span><br><span class="line">PATH=$JAVA_HOME/bin:$PATH</span><br><span class="line">CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</span><br><span class="line">TOMCAT_HOME=/usr/local/tomcat8.5</span><br></pre></td></tr></table></figure></p>
+<p>启动测试</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">./bin/startup.sh</span><br><span class="line"><span class="meta">#</span><span class="bash">Using CATALINA_BASE:   /usr/<span class="built_in">local</span>/tomcat8.5</span></span><br><span class="line"><span class="meta">#</span><span class="bash">Using CATALINA_HOME:   /usr/<span class="built_in">local</span>/tomcat8.5</span></span><br><span class="line"><span class="meta">#</span><span class="bash">Using CATALINA_TMPDIR: /usr/<span class="built_in">local</span>/tomcat8.5/temp</span></span><br><span class="line"><span class="meta">#</span><span class="bash">Using JRE_HOME:        /usr/<span class="built_in">local</span>/jdk/jdk1.8.0_261//jre</span></span><br><span class="line"><span class="meta">#</span><span class="bash">Using CLASSPATH:       <span class="comment">#/usr/local/tomcat8.5/bin/bootstrap.jar:/usr/local/tomcat8.5/bin/tomcat-juli.jar</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash">Tomcat started.</span></span><br></pre></td></tr></table></figure>
+<p>访问服务器的8080端口</p>
+<p>看到Tomcat界面表示成功</p>
+<h2 id="安装mysql"><a href="#安装mysql" class="headerlink" title="安装mysql"></a>安装mysql</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf mysql-5.7.26-linux-glibc2.12-x86_64.tar.gz</span><br><span class="line">mv mysql-5.7.26-linux-glibc2.12-x86_64 &#x2F;usr&#x2F;local&#x2F;mysql</span><br></pre></td></tr></table></figure>
+<p>创建用户和用户组并分配相应的权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">groupadd mysql</span><br><span class="line">useradd -g mysql mysql -s &#x2F;sbin&#x2F;nologin</span><br></pre></td></tr></table></figure>
+<p>安装依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install numactl.x86_64 libaio1 libaio-dev</span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong>：这里的依赖和centos里的略有不同centos里面的为<code>libaio</code>，所以看你有些的教程，嗯、你懂的</p>
+<h3 id="初始化及配置"><a href="#初始化及配置" class="headerlink" title="初始化及配置"></a>初始化及配置</h3><p>编辑my.cnf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;my.cnf</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line">[client]</span><br><span class="line">port &#x3D; 3306</span><br><span class="line">socket &#x3D; &#x2F;tmp&#x2F;mysql.sock</span><br><span class="line">[mysql]</span><br><span class="line">prompt &#x3D; &quot;\u@db \R:\m:\s [\d]&gt; &quot;</span><br><span class="line">no-auto-rehash</span><br><span class="line">[mysqld]</span><br><span class="line">user &#x3D; mysql</span><br><span class="line">port &#x3D; 3306</span><br><span class="line">basedir &#x3D; &#x2F;usr&#x2F;local&#x2F;mysql</span><br><span class="line">datadir &#x3D; &#x2F;data&#x2F;mysql&#x2F;</span><br><span class="line">socket &#x3D; &#x2F;tmp&#x2F;mysql.sock</span><br><span class="line">character-set-server &#x3D; utf8mb4</span><br><span class="line">skip_name_resolve &#x3D; 1</span><br><span class="line">open_files_limit &#x3D; 65535</span><br><span class="line">back_log &#x3D; 1024</span><br><span class="line">max_connections &#x3D; 512</span><br><span class="line">max_connect_errors &#x3D; 1000000</span><br><span class="line">table_open_cache &#x3D; 1024</span><br><span class="line">table_definition_cache &#x3D; 1024</span><br><span class="line">table_open_cache_instances &#x3D; 64</span><br><span class="line">thread_stack &#x3D; 512k</span><br><span class="line">external-locking &#x3D; FALSE</span><br><span class="line">max_allowed_packet &#x3D; 32M</span><br><span class="line">#sork_buffer_size &#x3D; 4M</span><br><span class="line">join_buffer_size &#x3D; 4M</span><br><span class="line">thread_cache_size &#x3D; 768</span><br><span class="line">query_cache_size &#x3D; 0</span><br><span class="line">query_cache_type &#x3D; 0</span><br><span class="line">interactive_timeout &#x3D; 600</span><br><span class="line">wait_timeout &#x3D; 600</span><br><span class="line">tmp_table_size &#x3D; 32M</span><br><span class="line">max_heap_table_size &#x3D; 32M</span><br><span class="line">slow_query_log &#x3D; 1</span><br><span class="line">slow_query_log_file &#x3D; &#x2F;data&#x2F;mysql&#x2F;slow.log</span><br><span class="line">log-error &#x3D; &#x2F;data&#x2F;mysql&#x2F;error.log</span><br><span class="line">long_query_time &#x3D; 0.5</span><br><span class="line">server-id &#x3D; 3306100</span><br><span class="line">log-bin &#x3D; &#x2F;data&#x2F;mysql&#x2F;mysql-binlog</span><br><span class="line">sync_binlog &#x3D; 1</span><br><span class="line">binlog_cache_size &#x3D; 4M</span><br><span class="line">max_binlog_cache_size &#x3D; 1G</span><br><span class="line">#max_binlog_szie &#x3D; 1G</span><br><span class="line">expire_logs_days &#x3D; 7</span><br><span class="line">#master_logs_days &#x3D; 7</span><br><span class="line">master_info_repository &#x3D; TABLE</span><br><span class="line">relay_log_info_repository &#x3D; TABLE</span><br><span class="line">gtid_mode &#x3D; on</span><br><span class="line">enforce_gtid_consistency &#x3D; 1</span><br><span class="line">log_slave_updates</span><br><span class="line">binlog_format &#x3D; row</span><br><span class="line">relay_log_recovery &#x3D; 1</span><br><span class="line">relay-log-purge &#x3D; 1</span><br><span class="line">key_buffer_size &#x3D; 32M</span><br><span class="line">read_buffer_size &#x3D; 8M</span><br><span class="line">read_rnd_buffer_size &#x3D; 4M</span><br><span class="line">bulk_insert_buffer_size &#x3D; 64M</span><br><span class="line"></span><br><span class="line">lock_wait_timeout &#x3D; 3600</span><br><span class="line">explicit_defaults_for_timestamp &#x3D; 1</span><br><span class="line">innodb_thread_concurrency &#x3D; 0</span><br><span class="line">innodb_sync_spin_loops &#x3D; 100</span><br><span class="line">innodb_spin_wait_delay &#x3D; 30</span><br><span class="line">transaction_isolation &#x3D; REPEATABLE-READ</span><br><span class="line">innodb_buffer_pool_size &#x3D; 1024M</span><br><span class="line">innodb_buffer_pool_instances &#x3D; 8</span><br><span class="line">innodb_buffer_pool_load_at_startup &#x3D; 1</span><br><span class="line">innodb_buffer_pool_dump_at_shutdown &#x3D; 1</span><br><span class="line">innodb_data_file_path &#x3D; ibdatal:1G:autoextend</span><br><span class="line">innodb_flush_log_at_trx_commit &#x3D; 1</span><br><span class="line">innodb_log_buffer_size &#x3D; 32M</span><br><span class="line">innodb_log_file_size &#x3D; 2G</span><br><span class="line">innodb_log_files_in_group &#x3D; 2</span><br><span class="line">innodb_io_capacity &#x3D; 2000</span><br><span class="line">innodb_io_capacity_max &#x3D; 4000</span><br><span class="line">innodb_flush_neighbors &#x3D; 0</span><br><span class="line">innodb_write_io_threads &#x3D; 8</span><br><span class="line">innodb_read_io_threads &#x3D; 8</span><br><span class="line">innodb_purge_threads &#x3D; 4</span><br><span class="line">innodb_page_cleaners &#x3D; 4</span><br><span class="line">innodb_open_files &#x3D; 65535</span><br><span class="line">innodb_max_dirty_pages_pct &#x3D; 50</span><br><span class="line">innodb_flush_method &#x3D; O_DIRECT</span><br><span class="line">innodb_lru_scan_depth &#x3D; 4000</span><br><span class="line">#innodb_checksum_algorithm &#x3D; src32</span><br><span class="line">innodb_lock_wait_timeout &#x3D; 10</span><br><span class="line">innodb_rollback_on_timeout &#x3D; 1</span><br><span class="line">innodb_print_all_deadlocks &#x3D; 1</span><br><span class="line">innodb_file_per_table &#x3D; 1</span><br><span class="line">innodb_online_alter_log_max_size &#x3D; 4G</span><br><span class="line">#internal_tmp_disk_storage_engine &#x3D; InnoDB</span><br><span class="line">innodb_stats_on_metadata &#x3D; 0</span><br><span class="line">innodb_status_file &#x3D; 1</span><br><span class="line">innodb_status_output &#x3D; 0</span><br><span class="line">innodb_status_output_locks &#x3D; 0</span><br><span class="line">#performance_schema</span><br><span class="line">performance_schema &#x3D; 1</span><br><span class="line">performance_schema_instrument &#x3D; &#39;%&#x3D;on&#39;</span><br><span class="line">#innodb monitor</span><br><span class="line">innodb_monitor_enable &#x3D; &quot;module_innodb&quot;</span><br><span class="line">innodb_monitor_enable &#x3D; &quot;module_server&quot;</span><br><span class="line">innodb_monitor_enable &#x3D; &quot;module_dml&quot;</span><br><span class="line">innodb_monitor_enable &#x3D; &quot;module_ddl&quot;</span><br><span class="line">innodb_monitor_enable &#x3D; &quot;module_trx&quot;</span><br><span class="line">innodb_monitor_enable &#x3D; &quot;module_os&quot;</span><br><span class="line">innodb_monitor_enable &#x3D; &quot;module_purge&quot;</span><br><span class="line">innodb_monitor_enable &#x3D; &quot;module_log&quot;</span><br><span class="line">innodb_monitor_enable &#x3D; &quot;module_lock&quot;</span><br><span class="line">innodb_monitor_enable &#x3D; &quot;module_buffer&quot;</span><br><span class="line">innodb_monitor_enable &#x3D; &quot;module_index&quot;</span><br><span class="line">innodb_monitor_enable &#x3D; &quot;module_ibuf_system&quot;</span><br><span class="line">innodb_monitor_enable &#x3D; &quot;module_buffer_page&quot;</span><br><span class="line">innodb_monitor_enable &#x3D; &quot;module_adaptive_hash&quot;</span><br><span class="line">[mysqldump]</span><br><span class="line">quick</span><br><span class="line">max_allowd_packet</span><br></pre></td></tr></table></figure>
+<p>别忘了添加权限不是root账户的话记得添加sudo</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chown mysql:mysql -R &#x2F;usr&#x2F;local&#x2F;mysql</span><br><span class="line">mkdir -p &#x2F;data&#x2F;mysql</span><br><span class="line">chown mysql:mysql -R &#x2F;data&#x2F;mysql</span><br></pre></td></tr></table></figure>
+<p>初始化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;usr&#x2F;local&#x2F;mysql</span><br><span class="line">bin&#x2F;mysqld \</span><br><span class="line">--initialize \</span><br><span class="line">--user&#x3D;mysql \</span><br><span class="line">--basedir&#x3D;&#x2F;usr&#x2F;local&#x2F;mysql \</span><br><span class="line">--datadir&#x3D;&#x2F;data&#x2F;mysql</span><br></pre></td></tr></table></figure>
+<h2 id="3-设置root用户密码"><a href="#3-设置root用户密码" class="headerlink" title="3.设置root用户密码"></a>3.设置root用户密码</h2><p>启动mysql，并查看生成的初始密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">support-files&#x2F;mysql.server start  # 启动MySQL</span><br><span class="line">cat &#x2F;data&#x2F;mysql&#x2F;error.log |grep password  #查看生成的初始密码</span><br></pre></td></tr></table></figure>
+<p>这里提醒一下如果在启动过程中出了error或者其他错误，可以查看日志文件进行修复，没有可以忽略这一步，如果是my.cnf里面的问题，一般直接使用#进行注释就可以了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#查看日志文件</span><br><span class="line">cat &#x2F;data&#x2F;mysql&#x2F;error.log</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20190508172307407.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="ドラッグして移動"></p>
+<p> 登录并输入刚才设置的密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin&#x2F;mysql -uroot -p</span><br></pre></td></tr></table></figure>
+<p>同理进入mysql后设置密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set password&#x3D;password(&#39;root&#39;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GRANT ALL PRIVILEGES ON *.* TO &#39;root&#39;@&#39;%&#39; IDENTIFIED BY &#39;your password&#39; WITH GRANT OPTION;</span><br><span class="line">FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;sysconfig&#x2F;iptables</span><br><span class="line">#加入以下字段</span><br><span class="line">-A INPUT -p tcp -m state --state NEW -m tcp --dport 3306 -j ACCEP</span><br></pre></td></tr></table></figure>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='/High Free Spirits.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+		data-enable='false'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

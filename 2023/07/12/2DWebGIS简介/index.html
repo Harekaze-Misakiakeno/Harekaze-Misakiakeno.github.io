@@ -1,0 +1,266 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW" class="loading">
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>2DWebGIS简介 - Hermit_Yoshino</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Hermit_Yoshino,"> 
+    <meta name="description" content="2DWebGIS引擎GIS简介地理信息系统（英语：Geographic Information System，缩写：GIS）是一门综合性学科，结合地理学与地图学，已经广泛的应用在不同的领域，是用于输,"> 
+    <meta name="author" content="Misaki Akeno"> 
+    <link rel="alternative" href="atom.xml" title="Hermit_Yoshino" type="application/atom+xml"> 
+    <link rel="icon" href="/img/ico_black.png"> 
+    
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+<meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body class="loading">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="config-title" style="display:none">Hermit_Yoshino</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://harekaze-misakiakeno.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">2DWebGIS简介</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">2DWebGIS简介</h1>
+        <div class="stuff">
+            <span>七月 12, 2023</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/GIS/" rel="tag">GIS</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E6%9E%B6%E6%9E%84/" rel="tag">架构</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="2DWebGIS引擎"><a href="#2DWebGIS引擎" class="headerlink" title="2DWebGIS引擎"></a>2DWebGIS引擎</h1><h2 id="GIS简介"><a href="#GIS简介" class="headerlink" title="GIS简介"></a>GIS简介</h2><p><strong>地理信息系统</strong>（英语：<strong>G</strong>eographic <strong>I</strong>nformation <strong>S</strong>ystem，缩写：<strong>GIS</strong>）是一门综合性学科，结合地理学与地图学，已经广泛的应用在不同的领域，是用于输入、存储、查询、分析和显示地理数据的计算机系统，可以分为以下五部分：</p>
+<ul>
+<li><strong>人员</strong>，是GIS中最重要的组成部分。开发人员必须定义GIS中被执行的各种任务，开发处理程序。熟练的操作人员通常可以克服GIS软件功能的不足，但是相反的情况就不成立。最好的软件也无法弥补操作人员对GIS的一无所知所带来的副作用。</li>
+<li><strong>数据</strong>，精确可用的数据可以影响到查询和分析的结果。</li>
+<li><strong>硬件</strong>，硬件的性能影响到处理速度，使用是否方便及可能的输出方式。</li>
+<li><strong>软件</strong>，不仅包含GIS软件，还包括各种数据库，绘图、统计、影像处理及其它程序。</li>
+<li><strong>过程</strong>，GIS要求明确定义，一致的方法来生成正确的可验证的结果。</li>
+</ul>
+<p>GIS属于信息系统的一类，不同在于它能运作和处理地理参照数据。<strong>地理参照数据</strong>描述地球表面（包括大气层和较浅的地表下空间）空间要素的位置和属性，在GIS中的两种地理数据成分：空间数据，与空间要素几何特性有关；属性数据，提供空间要素的信息。</p>
+<h2 id="软件功能分布"><a href="#软件功能分布" class="headerlink" title="软件功能分布"></a>软件功能分布</h2><p><img src="https://github.com/Harekaze-Misakiakeno/markdown_images/blob/master/WebGIS2d/0.0%E5%88%86%E5%B8%83.png?raw=true" alt=""></p>
+<p>GIS数据的存储、处理、发布和展示是一个完整的WebGIS应用的基本流程。不同的软件或库可能有不同的具体实现方法，但是大致的步骤和原理是相似的。下面我给出一个可能的例子，仅供参考：</p>
+<ul>
+<li><strong>GIS数据存储</strong>：假设我们有一些矢量数据（如shp文件）和栅格数据（如tif文件），我们可以使用PostGIS数据库来存储这些数据。PostGIS是一种开源的空间数据库扩展，可以在PostgreSQL数据库中存储、管理和查询地理信息数据。我们可以使用pgAdmin或者psql等工具来连接PostGIS数据库，创建表，导入数据，设置空间索引等操作。</li>
+<li><strong>GIS数据处理</strong>：假设我们需要对存储在PostGIS数据库中的数据进行一些处理，如投影转换、空间分析、几何运算等。我们可以使用GDAL/OGR库来实现这些功能。GDAL/OGR是一种开源的GIS库，主要用于栅格和矢量数据的格式转换和空间分析。我们可以使用GDAL/OGR提供的命令行工具或者编程接口（如Python）来对PostGIS数据库中的数据进行读写、修改、转换等操作。</li>
+<li><strong>MWS发布服务</strong>：假设我们需要将处理好的数据发布为Web服务，以便在Web端进行访问和展示。我们可以使用GeoServer来实现这个功能。GeoServer是一种开源的GIS服务器软件，可以发布OGC标准的Web服务，如WMS、WFS、WCS、WMTS等。我们可以使用GeoServer提供的Web管理界面来配置数据源（如PostGIS）、创建图层、设置样式、发布服务等操作。</li>
+<li><strong>Web端展示数据</strong>：假设我们需要在Web端展示发布好的Web服务，以便用户进行交互和查询。我们可以使用OpenLayers或者Leaflet等开源的Web GIS框架来实现这个功能。OpenLayers和Leaflet都是基于JavaScript的客户端库，可以加载多种类型和来源的地图图层，提供丰富的地图控件和交互功能。我们可以使用HTML、CSS和JavaScript来编写Web页面，调用OpenLayers或者Leaflet提供的API来加载GeoServer发布的Web服务，并设置地图视图、控件、事件等 。</li>
+</ul>
+<h2 id="GIS坐标系定义"><a href="#GIS坐标系定义" class="headerlink" title="GIS坐标系定义"></a>GIS坐标系定义</h2><h2 id="2DWebGIS解决方案"><a href="#2DWebGIS解决方案" class="headerlink" title="2DWebGIS解决方案"></a>2DWebGIS解决方案</h2><h3 id="LeafLet"><a href="#LeafLet" class="headerlink" title="LeafLet"></a>LeafLet</h3><p><img src="https://github.com/Harekaze-Misakiakeno/markdown_images/blob/master/WebGIS2d/0.5leaflet.jpeg?raw=true" alt=""></p>
+<h4 id="渲染地图方法"><a href="#渲染地图方法" class="headerlink" title="渲染地图方法"></a>渲染地图方法</h4><p>Leaflet可以使用Canvas或者非Canvas的DOM元素来渲染地图，具体取决于图层的类型和设置。一般来说，矢量图层（如L.Polyline、L.Polygon、L.CircleMarker等）可以使用Canvas或者SVG来渲染，而栅格图层（如L.TileLayer、L.ImageOverlay等）只能使用非Canvas的DOM元素（如<img>）来渲染。你可以通过设置L_PREFER_CANVAS为true来让Leaflet尽可能地使用Canvas来渲染矢量图层，这样可以提高性能和质量，但是会失去事件监听和交互功能。你也可以通过设置L_NO_TOUCH为true来让Leaflet尽可能地使用非Canvas的DOM元素来渲染矢量图层，这样可以提供事件监听和交互功能，但是会降低性能和质量。</p>
+<h4 id="根据地图状态得到可视区域信息"><a href="#根据地图状态得到可视区域信息" class="headerlink" title="根据地图状态得到可视区域信息"></a>根据地图状态得到可视区域信息</h4><ul>
+<li>地图使用<code>L.CRS.EPSG3857</code>作为crs属性，这是一个常用的地理坐标系统，它将经纬度坐标投影为墨卡托坐标。</li>
+<li>地图使用[51.505, -0.09]作为center属性，这是一个经纬度坐标，表示伦敦的位置。</li>
+<li>地图使用13作为zoom属性，这是一个整数，表示地图的缩放级别。</li>
+<li>地图使用[800, 600]作为窗口的大小，这是一个像素坐标，表示地图在页面上的宽度和高度。</li>
+<li>我们想要获取地图当前显示的Bounds，也就是经纬度范围。</li>
+</ul>
+<p>那么，我们需要进行以下几个步骤：</p>
+<ul>
+<li>首先，我们需要将<code>center</code>属性转换为<code>CRS</code>坐标，也就是墨卡托坐标。我们可以使用地图的<code>crs</code>属性提供的<code>project()</code>方法来进行这一步。具体来说，我们需要调用<code>L.CRS.EPSG3857.project(L.latLng(51.505, -0.09))</code>来得到结果。结果是一个Point对象，表示<code>[-10065.738, 6711373.753]</code>。</li>
+<li>然后，我们需要将CRS坐标转换为像素坐标。我们可以使用地图的<strong>zoom</strong>属性来进行这一步。具体来说，我们需要将<strong>CRS</strong>坐标乘以2的zoom次方来得到结果。结果是一个<strong>Point</strong>对象，表示<code>[-1610528.0, 107382796.1]</code>。</li>
+<li>接着，我们需要将像素坐标转换为窗口坐标。我们可以使用地图的窗口的大小来进行这一步。具体来说，我们需要将像素坐标加上窗口宽度和高度的一半来得到结果。结果是一个<strong>Point</strong>对象，表示<code>[-801028.0, 53782796.1]</code>。</li>
+<li>最后，我们需要根据窗口坐标来获取<strong>Bounds</strong>。我们可以使用地图提供的<code>unproject()</code>方法来进行这一步。具体来说，我们需要分别对窗口左上角和右下角的坐标进行反投影，并构造一个LatLngBounds对象来得到结果。结果是一个<strong>LatLngBounds</strong>对象，表示<code>[[51.488, -0.112], [51.522, -0.068]]</code>。</li>
+</ul>
+<h4 id="请求数据"><a href="#请求数据" class="headerlink" title="请求数据"></a>请求数据</h4><h5 id="WMS"><a href="#WMS" class="headerlink" title="WMS"></a>WMS</h5><p>如果使用wms，我们需要根据crs、LatLngBounds和zoom来构造一个合适的wms请求，并发送给wms服务地址。具体来说，我们需要将LatLngBounds转换为CRS坐标，并作为bbox参数；我们需要将crs作为srs参数；我们需要根据窗口的大小来设置width和height参数；我们需要指定request为GetMap，并选择合适的layers、styles和format参数。然后，我们会得到一个完整的wms请求URL，例如：<a href="http://ows.mundialis.de/services/service?request=GetMap&amp;layers=OSM-WMS&amp;styles=&amp;format=image/png&amp;width=800&amp;height=600&amp;srs=EPSG:3857&amp;bbox=-10065.738,-0.09,6711373.753,51.505。我们可以将这个URL作为一个ImageOverlay对象添加到地图上，或者将其作为一个TileLayer.WMS对象添加到地图上（这样会自动切分为多个小图片）。">http://ows.mundialis.de/services/service?request=GetMap&amp;layers=OSM-WMS&amp;styles=&amp;format=image/png&amp;width=800&amp;height=600&amp;srs=EPSG:3857&amp;bbox=-10065.738,-0.09,6711373.753,51.505。我们可以将这个URL作为一个ImageOverlay对象添加到地图上，或者将其作为一个TileLayer.WMS对象添加到地图上（这样会自动切分为多个小图片）。</a></p>
+<h5 id="TMS"><a href="#TMS" class="headerlink" title="TMS"></a>TMS</h5><p>如果使用tms，我们需要根据crs、center和zoom来构造一个合适的tms请求，并发送给tms服务地址。具体来说，我们需要将center转换为CRS坐标，并根据zoom计算出其对应的瓦片行列号；我们需要指定layers为想要显示的图层名称；我们需要将zoom、瓦片行号和瓦片列号作为URL路径的一部分。然后，我们会得到一个完整的tms请求URL，例如：<a href="http://tile.openstreetmap.org/13/4092/2729.png。我们可以将这个URL作为一个TileLayer对象添加到地图上。">http://tile.openstreetmap.org/13/4092/2729.png。我们可以将这个URL作为一个TileLayer对象添加到地图上。</a></p>
+<ul>
+<li>首先，我们需要将center属性转换为CRS坐标，也就是墨卡托坐标。我们可以使用地图的crs属性提供的project()方法来进行这一步。具体来说，我们需要调用L.CRS.EPSG3857.project(L.latLng(51.505, -0.09))来得到结果。结果是一个Point对象，表示[-10065.738, 6711373.753]。</li>
+<li>然后，我们需要将CRS坐标转换为像素坐标。我们可以使用地图的zoom属性来进行这一步。具体来说，我们需要将CRS坐标乘以2的zoom次方来得到结果。结果是一个Point对象，表示[-1610528.0, 107382796.1]。</li>
+<li>接着，我们需要将像素坐标转换为瓦片坐标。我们可以使用地图提供的getTileSize()方法来进行这一步。具体来说，我们需要将像素坐标除以瓦片大小（默认为256）来得到结果。结果是一个Point对象，表示[-6292.5, 419320.6]。</li>
+<li>最后，我们需要将瓦片坐标转换为TMS请求参数。我们可以使用地图提供的wrapLatLng()方法和tms属性来进行这一步。具体来说，我们需要将瓦片坐标取整并限制在有效范围内（0到2的zoom次方减1）来得到瓦片行列号；如果tms属性为true（默认为false），我们需要将瓦片行号取反（即2的zoom次方减1减去瓦片行号）来适应TMS的Y轴方向；然后，我们需要将图层名称、缩放级别、瓦片行号和瓦片列号作为URL路径的一部分。结果是一个完整的TMS请求URL，例如：<a href="http://tile.openstreetmap.org/13/4092/2729.png。">http://tile.openstreetmap.org/13/4092/2729.png。</a></li>
+</ul>
+<h4 id="渲染"><a href="#渲染" class="headerlink" title="渲染"></a>渲染</h4><p><img src="https://github.com/Harekaze-Misakiakeno/markdown_images/blob/master/WebGIS2d/0.7leaflet-render.jpeg?raw=true" alt=""></p>
+<h5 id="WMS-1"><a href="#WMS-1" class="headerlink" title="WMS"></a>WMS</h5><p>如果使用wms得到底图数据，我们可以将其作为一个ImageOverlay对象添加到地图上。ImageOverlay对象会创建一个<img>元素，并将其添加到地图的.leaflet-overlay-pane容器中。ImageOverlay对象会根据地图的crs、center、zoom属性计算出图片的经纬度范围，并使用CSS样式中的transform属性来设置图片的位置和大小。例如，如果图片的经纬度范围为[[51.488, -0.112], [51.522, -0.068]]，那么ImageOverlay对象会将其转换为CRS坐标（墨卡托坐标），然后根据缩放级别转换为像素坐标，最后根据中心位置转换为窗口坐标。假设窗口坐标为[376, -184]，那么ImageOverlay对象会使用CSS样式中的transform: translate3d(376px, -184px, 0px)来设置图片的位置。</p>
+<h5 id="TMS-1"><a href="#TMS-1" class="headerlink" title="TMS"></a>TMS</h5><p>如果使用tms得到底图数据，我们可以将其作为一个TileLayer对象添加到地图上。TileLayer对象会创建多个<img>元素，并将其添加到地图的.leaflet-tile-pane容器中。TileLayer对象会根据地图的crs、center、zoom属性计算出需要加载哪些瓦片，并使用CSS样式中的transform属性来设置瓦片的位置和大小。例如，如果瓦片的行列号为[4092, 2729]，那么TileLayer对象会根据缩放级别计算出瓦片对应的像素坐标，最后根据中心位置转换为窗口坐标。假设窗口坐标为[376, -184]，那么TileLayer对象会使用CSS样式中的transform: translate3d(376px, -184px, 0px)来设置瓦片的位置。</p>
+<h3 id="OpenLayers"><a href="#OpenLayers" class="headerlink" title="OpenLayers"></a>OpenLayers</h3><p><img src="https://github.com/Harekaze-Misakiakeno/markdown_images/blob/master/WebGIS2d/1openlayers.jpg?raw=true" alt=""></p>
+<h4 id="架构设计"><a href="#架构设计" class="headerlink" title="架构设计"></a>架构设计</h4><p><img src="https://github.com/Harekaze-Misakiakeno/markdown_images/blob/master/WebGIS2d/3openlayers-flow.png?raw=true" alt=""></p>
+<h4 id="流程简述"><a href="#流程简述" class="headerlink" title="流程简述"></a>流程简述</h4><ol>
+<li>假设我们有一个地图（map），它包含了一个瓦片图层（tileLayer），这个图层使用了一个TileWMS源（tileWMSSource）来获取WMS服务的瓦片。</li>
+<li>当用户使用拖拽交互（dragPanInteraction）来平移地图时，这个交互会改变view的中心点（center）属性，并触发view的change:center事件。</li>
+<li>当view的change:center事件被触发时，map会监听到这个事件，并调用map.render()方法来重新渲染地图。</li>
+<li>当map.render()方法被调用时，map会遍历它的所有图层，并调用每个图层的render()方法来重新渲染图层。</li>
+<li>当tileLayer的render()方法被调用时，tileLayer会根据view的分辨率（resolution）和范围（extent）来计算需要显示的瓦片坐标（tileCoord），并调用tileWMSSource的getTile()方法来获取对应的瓦片。</li>
+<li>当tileWMSSource的getTile()方法被调用时，tileWMSSource会根据瓦片坐标（tileCoord）、投影（projection）和其他参数（params）来生成一个WMS请求的url，并发送一个HTTP请求到WMS服务端。</li>
+<li>当WMS服务端收到HTTP请求时，它会根据请求的url中的参数，如LAYERS、BBOX、WIDTH、HEIGHT等，来动态生成和返回一个地图瓦片图片。</li>
+<li>当tileWMSSource收到WMS服务端返回的地图瓦片图片时，它会将这个图片缓存起来，并触发tileload事件，通知tileLayer瓦片已经加载完成。</li>
+<li>当tileLayer监听到tileload事件时，它会将这个图片添加到DOM中，并显示在地图上。</li>
+</ol>
+<h4 id="重投影（Reprojection）"><a href="#重投影（Reprojection）" class="headerlink" title="重投影（Reprojection）"></a>重投影（Reprojection）</h4><p><img src="https://github.com/Harekaze-Misakiakeno/markdown_images/blob/master/WebGIS2d/4mercator_equal-area.png?raw=true" alt=""></p>
+<p><img src="https://github.com/Harekaze-Misakiakeno/markdown_images/blob/master/WebGIS2d/5reprojection.jpg?raw=true" alt=""></p>
+<p>OpenLayers是通过以下步骤来针对每个栅格进行坐标转换并重采样的：</p>
+<ol>
+<li>首先，OpenLayers会根据目标坐标系（view的projection）和原始坐标系（source的projection）来创建一个ol/reproj/Tile对象，这个对象表示一个重投影后的瓦片。</li>
+<li>然后，OpenLayers会根据重投影后的瓦片的范围（extent）和分辨率（resolution）来计算需要请求的原始瓦片的范围（extent）和分辨率（resolution），并调用source的getTile()方法来获取对应的原始瓦片。</li>
+<li>接着，OpenLayers会根据原始瓦片的范围（extent）和分辨率（resolution）来创建一个ol/reproj/Triangulation对象，这个对象表示一个三角剖分，用来描述原始坐标系和目标坐标系之间的变换关系。</li>
+<li>最后，OpenLayers会根据重投影后的瓦片的大小（width和height）、原始瓦片的图片（image）、三角剖分对象（triangulation）以及插值方法（interpolation）来创建一个Canvas对象，并使用Canvas.getContext(‘2d’).drawImage()方法来绘制重采样后的图片。</li>
+</ol>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li><a href="https://zh.wikipedia.org/zh-cn/%E5%9C%B0%E7%90%86%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F">https://zh.wikipedia.org/zh-cn/%E5%9C%B0%E7%90%86%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F</a></li>
+<li><a href="https://www.esri.com/en-us/arcgis/products/index">https://www.esri.com/en-us/arcgis/products/index</a></li>
+<li><a href="https://blog.csdn.net/weixin_43715910/article/details/108350962">https://blog.csdn.net/weixin_43715910/article/details/108350962</a></li>
+<li><a href="https://blog.csdn.net/guo45682/article/details/117792157">https://blog.csdn.net/guo45682/article/details/117792157</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/102923131">https://zhuanlan.zhihu.com/p/102923131</a></li>
+<li><a href="https://postgis.net/">https://postgis.net/</a></li>
+<li><a href="https://gdal.org/">https://gdal.org/</a></li>
+<li><a href="https://docs.geoserver.org/stable/en/user/">https://docs.geoserver.org/stable/en/user/</a></li>
+<li><a href="https://openlayers.org/">https://openlayers.org/</a></li>
+<li><a href="https://leafletjs.com/">https://leafletjs.com/</a></li>
+<li><a href="https://www.template.net/graphic-design/leaflets/">https://www.template.net/graphic-design/leaflets/</a></li>
+<li><a href="https://design.tutsplus.com/articles/what-is-a-leaflet--cms-37850">https://design.tutsplus.com/articles/what-is-a-leaflet—cms-37850</a></li>
+<li><a href="https://dribbble.com/tags/architecture%20brochure">https://dribbble.com/tags/architecture%20brochure</a></li>
+<li><a href="https://www.creativevivid.com/design/brochures/architecture-brochure/">https://www.creativevivid.com/design/brochures/architecture-brochure/</a></li>
+<li><a href="https://stackoverflow.com/questions/12735303/how-to-change-the-map-center-in-leaflet-js">https://stackoverflow.com/questions/12735303/how-to-change-the-map-center-in-leaflet-js</a></li>
+<li><a href="https://stackoverflow.com/questions/20527296/leaflet-js-center-and-zoom-on-feature-group">https://stackoverflow.com/questions/20527296/leaflet-js-center-and-zoom-on-feature-group</a></li>
+<li><a href="https://stackoverflow.com/questions/38351570/match-center-of-a-tile-layer-with-center-of-the-map-on-leaflet">https://stackoverflow.com/questions/38351570/match-center-of-a-tile-layer-with-center-of-the-map-on-leaflet</a></li>
+<li><a href="https://gis.stackexchange.com/questions/423633/calculating-leaflet-scale-ratio-for-the-particular-zoom-level">https://gis.stackexchange.com/questions/423633/calculating-leaflet-scale-ratio-for-the-particular-zoom-level</a></li>
+<li><a href="https://stackoverflow.com/questions/34137648/leaflet-bounds-with-padding">https://stackoverflow.com/questions/34137648/leaflet-bounds-with-padding</a></li>
+<li><a href="https://vue2-leaflet.netlify.app/examples/set-bounds.html">https://vue2-leaflet.netlify.app/examples/set-bounds.html</a></li>
+<li><a href="https://stackoverflow.com/questions/65966825/how-to-bounds-in-leaflet">https://stackoverflow.com/questions/65966825/how-to-bounds-in-leaflet</a></li>
+<li><a href="https://stackoverflow.com/questions/46544933/what-is-main-difference-between-web-map-service-and-tile-map-service">https://stackoverflow.com/questions/46544933/what-is-main-difference-between-web-map-service-and-tile-map-service</a></li>
+<li><a href="https://stackoverflow.com/questions/41631573/how-to-calculate-tiles-coordinates-in-leaflet-to-request-tms-server">https://stackoverflow.com/questions/41631573/how-to-calculate-tiles-coordinates-in-leaflet-to-request-tms-server</a></li>
+<li><a href="https://stackoverflow.com/questions/37674478/leaflet-data-visualization-framework-export-as-image">https://stackoverflow.com/questions/37674478/leaflet-data-visualization-framework-export-as-image</a></li>
+<li><a href="https://gis.stackexchange.com/questions/269711/rotating-current-map-extent-around-center-point-in-openlayers">https://gis.stackexchange.com/questions/269711/rotating-current-map-extent-around-center-point-in-openlayers</a></li>
+<li><a href="https://www.wolfram.com/language/12/new-in-geography/country-polygon-distortion-in-the-mercator-projection.html.zh">https://www.wolfram.com/language/12/new-in-geography/country-polygon-distortion-in-the-mercator-projection.html.zh</a></li>
+<li><a href="https://en.wikipedia.org/wiki/2.5D">https://en.wikipedia.org/wiki/2.5D</a></li>
+<li><a href="https://iclient.supermap.io/web/books/modern-web-gis-in-action/12xian-dai-webgis-de-ti-xi-jie-gou.html">https://iclient.supermap.io/web/books/modern-web-gis-in-action/12xian-dai-webgis-de-ti-xi-jie-gou.html</a></li>
+</ol>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='/High Free Spirits.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+		data-enable='false'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

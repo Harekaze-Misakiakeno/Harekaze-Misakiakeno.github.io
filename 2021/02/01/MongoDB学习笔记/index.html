@@ -1,0 +1,269 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW" class="loading">
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>MongoDB学习笔记 - Hermit_Yoshino</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Hermit_Yoshino,"> 
+    <meta name="description" content="MongoDB学习笔记参考资料
+http://c.biancheng.net/view/6542.html
+https://blog.csdn.net/chandoudeyuyi/article/d,"> 
+    <meta name="author" content="Misaki Akeno"> 
+    <link rel="alternative" href="atom.xml" title="Hermit_Yoshino" type="application/atom+xml"> 
+    <link rel="icon" href="/img/ico_black.png"> 
+    
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+<meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body class="loading">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="config-title" style="display:none">Hermit_Yoshino</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://harekaze-misakiakeno.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">MongoDB学习笔记</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">MongoDB学习笔记</h1>
+        <div class="stuff">
+            <span>二月 01, 2021</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="MongoDB学习笔记"><a href="#MongoDB学习笔记" class="headerlink" title="MongoDB学习笔记"></a>MongoDB学习笔记</h1><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li><a href="http://c.biancheng.net/view/6542.html">http://c.biancheng.net/view/6542.html</a></li>
+<li><a href="https://blog.csdn.net/chandoudeyuyi/article/details/80038743">https://blog.csdn.net/chandoudeyuyi/article/details/80038743</a></li>
+</ol>
+<h2 id="MongoDB"><a href="#MongoDB" class="headerlink" title="MongoDB"></a>MongoDB</h2><p>使用的数据存储方式为<code>Binary JSON</code>(<code>BSON</code>)，就是改进后利于长期存储的和修改更新的<code>JOSN</code></p>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>描述示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NULL</td>
+<td>表示空值或者不存在的字段，{“x” : null}</td>
+</tr>
+<tr>
+<td>Boolean</td>
+<td>布尔型有 true 和 false，{“x” : true}</td>
+</tr>
+<tr>
+<td>Number</td>
+<td>数值：客户端默认使用 64 位浮点型数值。{“x” : 3.14} 或 {“x” : 3}。对于整型值，包括 NumberInt（4 字节符号整数）或 NumberLong（8 字节符号整数），用户可以指定数值类型，{“x” : NumberInt(“3”)}</td>
+</tr>
+<tr>
+<td>String</td>
+<td>字符串：BSON 字符串是 UTF-8，{“x” : “中文”}</td>
+</tr>
+<tr>
+<td>Regular Expression</td>
+<td>正则表达式：语法与 <a href="http://c.biancheng.net/js/">JavaScript</a> 的正则表达式相同，{“x” : /[cba]/}</td>
+</tr>
+<tr>
+<td>Array</td>
+<td>数组：使用“[]”表示，{“x” : [“a”, “b”, “c”]}</td>
+</tr>
+<tr>
+<td>Object</td>
+<td>内嵌文档：文档的值是嵌套文档，{“a” : {“b” : 3}}</td>
+</tr>
+<tr>
+<td>ObjectId</td>
+<td>对象 id：对象 id 是一个 12 字节的字符串，是文档的唯一标识，{“x” : objectId()}</td>
+</tr>
+<tr>
+<td>BinaryData</td>
+<td>二进制数据：二进制数据是一个任意字节的字符串。它不能直接在 Shell 中使用。如果要将非 UTF-8 字符保存到数据库中，二进制数据是唯一的方式</td>
+</tr>
+<tr>
+<td>JavaScript</td>
+<td>代码：查询和文档中可以包括任何 JavaScript 代码，{“x” : function(){/<em>…</em>/}}</td>
+</tr>
+<tr>
+<td>Data</td>
+<td>日期：{“x” : new Date()}</td>
+</tr>
+<tr>
+<td>Timestamp</td>
+<td>时间戳：var a = new Timestamp()</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="运行与命令行使用"><a href="#运行与命令行使用" class="headerlink" title="运行与命令行使用"></a>运行与命令行使用</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 运行</span></span><br><span class="line">mongod --dbpath C:\mongodb\data -logpath C:\mongodb\log\db.log</span><br><span class="line"><span class="meta">#</span><span class="bash"> 连接使用</span></span><br><span class="line">mongo</span><br></pre></td></tr></table></figure>
+<h3 id="CRUD语句"><a href="#CRUD语句" class="headerlink" title="CRUD语句"></a>CRUD语句</h3><h4 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h4><p>查看数据库的帮助<code>db.help()</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 查看数据库</span><br><span class="line"><span class="keyword">show</span> dbs</span><br><span class="line">// 如果数据库不存在，则创建数据库，否则切换到指定数据库</span><br><span class="line"><span class="keyword">use</span> &lt;<span class="keyword">DataBase</span>&gt;</span><br><span class="line">// 删除数据库</span><br><span class="line">db.dropDatabase()</span><br><span class="line">// 查看当前数据库</span><br><span class="line">db</span><br></pre></td></tr></table></figure>
+<h5 id="修改数据库名"><a href="#修改数据库名" class="headerlink" title="修改数据库名"></a>修改数据库名</h5><p>拷贝数据库后，删除原来的数据库</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">db.copyDatabase('old_name', 'new_name'); </span><br><span class="line"><span class="keyword">use</span> old_name </span><br><span class="line">db.dropDatabase();</span><br></pre></td></tr></table></figure>
+<h4 id="数据表"><a href="#数据表" class="headerlink" title="数据表"></a>数据表</h4><p>查看数据表的帮助</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.&lt;DataBase&gt;.help()</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 查看当前数据库内的所有集合</span><br><span class="line"><span class="keyword">show</span> collections</span><br><span class="line">// 或者</span><br><span class="line">db.getCollectionNames()</span><br><span class="line">// 插入数据</span><br><span class="line">db.数据表名.insert(&#123;<span class="string">"name"</span>: <span class="string">"tom"</span>&#125;)</span><br><span class="line">// 注：如果没有该数据表的话，会自动创建</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">// 注：数据库里没有数据表的话是不显示的</span><br><span class="line">// 选择数据库</span><br><span class="line"><span class="keyword">use</span> &lt;<span class="keyword">DataBase</span>&gt;</span><br><span class="line"></span><br><span class="line">db.stats ()         //统计数据信息</span><br><span class="line">&#123; </span><br><span class="line">    <span class="string">"db"</span> : <span class="string">"test"</span>,     //数据库名</span><br><span class="line">    <span class="string">"collections"</span> : <span class="number">0</span>, //集合数量</span><br><span class="line">    <span class="string">"views"</span> : <span class="number">0</span>,</span><br><span class="line">    <span class="string">"objects"</span> : <span class="number">0</span>,     //文档数量</span><br><span class="line">    <span class="string">"avgObjSize"</span> : <span class="number">0</span>,  //平均每个文档的大小</span><br><span class="line">    <span class="string">"dataSize"</span> : <span class="number">0</span>,    //数据占用空间大小，不包括索引，单位为字节</span><br><span class="line">    <span class="string">"storageSize"</span> : <span class="number">0</span>, //分配的存储空间</span><br><span class="line">    <span class="string">"nuinExtents"</span> : <span class="number">0</span>, //连续分配的数据块</span><br><span class="line">    <span class="string">"indexes"</span> : <span class="number">0</span>,     //索引个数</span><br><span class="line">    <span class="string">"indexsize"</span> : <span class="number">0</span>,   //索引占用空间大小</span><br><span class="line">    <span class="string">"fileSize"</span> : <span class="number">0</span>,    //物理存储文件的大小</span><br><span class="line">    <span class="string">"ok"</span> : <span class="number">1</span> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h4><p>显式创建集合可通过使用<code>db.createCollection(name, options)</code>方法来实现，参数 name 指要创建的集合名称，options 是可选项，指定内存大小和索引等</p>
+<p>options 可以使用的选项</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>capped</td>
+<td>Boolean</td>
+<td>（可选）如果为 true，则启用封闭的集合。上限集合是固定大小的集合，它在达到其最大时自动覆盖其最旧的条目。如果指定 true，则还需要指定 size 参数</td>
+</tr>
+<tr>
+<td>size</td>
+<td>数字</td>
+<td>（可选）指定上限集合的最大大小（以字节为单位）。如果 capped 为 true，那么还需要指定次字段的值</td>
+</tr>
+<tr>
+<td>max</td>
+<td>数字</td>
+<td>（可选）指定上限集合中允许的最大文档数</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="数据表帮助"><a href="#数据表帮助" class="headerlink" title="数据表帮助"></a>数据表帮助</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">db.AddUser(username,password[, readOnly=false])  添加用户</span><br><span class="line">db.auth(usrename,password)     设置数据库连接验证</span><br><span class="line">db.cloneDataBase(fromhost)     从目标服务器克隆一个数据库</span><br><span class="line">db.commandHelp(name)           returns the help for the command</span><br><span class="line">db.copyDatabase(fromdb,todb,fromhost)  复制数据库fromdb---源数据库名称，todb---目标数据库名称，fromhost---源数据库服务器地址</span><br><span class="line">db.createCollection(name,&#123;size:3333,capped:333,max:88888&#125;)  创建一个数据集，相当于一个表 </span><br><span class="line">db.currentOp()                 取消当前库的当前操作</span><br><span class="line">db.dropDataBase()              删除当前数据库</span><br><span class="line">db.eval(func,args)             run code server-side</span><br><span class="line">db.getCollection(cname)        取得一个数据集合，同用法：db['cname'] or</span><br><span class="line">db.getCollenctionNames()       取得所有数据集合的名称列表</span><br><span class="line">db.getLastError()              返回最后一个错误的提示消息</span><br><span class="line">db.getLastErrorObj()           返回最后一个错误的对象</span><br><span class="line">db.getMongo()                  取得当前服务器的连接对象get the server</span><br><span class="line">db.getMondo().setSlaveOk()     allow this connection to read from then nonmaster membr of a replica pair</span><br><span class="line">db.getName()                   返回当操作数据库的名称</span><br><span class="line">db.getPrevError()              返回上一个错误对象</span><br><span class="line">db.getProfilingLevel()         获取profile level</span><br><span class="line">db.getReplicationInfo()        获得重复的数据</span><br><span class="line">db.getSisterDB(name)           get the db at the same server as this onew</span><br><span class="line">db.killOp()                    停止（杀死）在当前库的当前操作</span><br><span class="line">db.printCollectionStats()      返回当前库的数据集状态</span><br><span class="line">db.printReplicationInfo()        打印主数据库的复制状态信息</span><br><span class="line">db.printSlaveReplicationInfo()        打印从数据库的复制状态信息</span><br><span class="line">db.printShardingStatus()       返回当前数据库是否为共享数据库</span><br><span class="line">db.removeUser(username)        删除用户</span><br><span class="line">db.repairDatabase()            修复当前数据库</span><br><span class="line">db.resetError()</span><br><span class="line">db.runCommand(cmdObj)          run a database command. if cmdObj is a string, turns it into &#123;cmdObj:1&#125;</span><br><span class="line">db.setProfilingLevel(level)    设置profile level 0=off,1=slow,2=all</span><br><span class="line">db.shutdownServer()            关闭当前服务程序</span><br><span class="line">db.stats()                       返回当前数据库的状态信息</span><br><span class="line">db.version()                   返回当前程序的版本信息</span><br></pre></td></tr></table></figure>
+<h4 id="数据表帮助-1"><a href="#数据表帮助-1" class="headerlink" title="数据表帮助"></a>数据表帮助</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">db.test.find(&#123;id:10&#125;)          返回test数据集ID=10的数据集</span><br><span class="line">db.test.find(&#123;id:10&#125;).count()  返回test数据集ID=10的数据总数</span><br><span class="line">db.test.find(&#123;id:10&#125;).limit(2) 返回test数据集ID=10的数据集从第二条开始的数据集</span><br><span class="line">db.test.find(&#123;id:10&#125;).skip(8)  返回test数据集ID=10的数据集从0到第八条的数据集</span><br><span class="line">db.test.find(&#123;id:10&#125;).limit(2).skip(8)  返回test数据集ID=1=的数据集从第二条到第八条的数据 </span><br><span class="line">db.test.find(&#123;id:10&#125;).sort()   返回test数据集ID=10的排序数据集</span><br><span class="line">db.test.findOne([query])       返回符合条件的一条数据</span><br><span class="line">db.test.getDB()                返回此数据集所属的数据库名称</span><br><span class="line">db.test.getIndexes()           返回些数据集的索引信息</span><br><span class="line">db.test.group(&#123;key:...,initial:...,reduce:...[,cond:...]&#125;)    返回分组信息</span><br><span class="line">db.test.mapReduce(mayFunction,reduceFunction,&lt;optional params&gt;)  这个有点像存储过程</span><br><span class="line">db.test.remove(query)                      在数据集中删除一条数据</span><br><span class="line">db.test.renameCollection(newName)          重命名些数据集名称</span><br><span class="line">db.test.save(obj)                          往数据集中插入一条数据</span><br><span class="line">db.test.stats()                            返回此数据集的状态</span><br><span class="line">db.test.storageSize()                      返回此数据集的存储大小</span><br><span class="line">db.test.totalIndexSize()                   返回此数据集的索引文件大小</span><br><span class="line">db.test.totalSize()                        返回些数据集的总大小</span><br><span class="line">db.test.update(query,object[,upsert_bool]) 在此数据集中更新一条数据</span><br><span class="line">db.test.validate()                         验证此数据集</span><br><span class="line">db.test.getShardVersion()                  返回数据集共享版本号</span><br></pre></td></tr></table></figure>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="music/High Free Spirits.mp3">
+            </audio>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+		data-enable='false'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

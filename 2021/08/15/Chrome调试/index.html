@@ -1,0 +1,435 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW" class="loading">
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Chrome调试 - Hermit_Yoshino</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Hermit_Yoshino,"> 
+    <meta name="description" content="Chrome调试写在前面Chrome DevTools是一个直接内置在Google Chrome浏览器中的Web开发工具，官方文档中面列举了所有的支持的调试工具以及详细的调试方法，同时官方建议开启访,"> 
+    <meta name="author" content="Misaki Akeno"> 
+    <link rel="alternative" href="atom.xml" title="Hermit_Yoshino" type="application/atom+xml"> 
+    <link rel="icon" href="/img/ico_black.png"> 
+    
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+<meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body class="loading">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="config-title" style="display:none">Hermit_Yoshino</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://harekaze-misakiakeno.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">Chrome调试</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Chrome调试</h1>
+        <div class="stuff">
+            <span>八月 15, 2021</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Css/" rel="tag">Css</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Html/" rel="tag">Html</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E8%B0%83%E8%AF%95/" rel="tag">调试</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="Chrome调试"><a href="#Chrome调试" class="headerlink" title="Chrome调试"></a>Chrome调试</h1><h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p><strong>Chrome DevTools</strong>是一个直接内置在<strong>Google Chrome</strong>浏览器中的<strong>Web</strong>开发工具，<a href="https://developer.chrome.com/docs/devtools/">官方文档</a>中面列举了所有的支持的调试工具以及详细的调试方法，同时官方建议开启访客模式，避免插件产生的干扰，同时官方文档基于版本与我的<code>Chrome</code>版本不同，以下的内容都为我实测的结果</p>
+<h2 id="Chrome版本"><a href="#Chrome版本" class="headerlink" title="Chrome版本"></a>Chrome版本</h2><ol>
+<li><strong>ubuntu20.04tls</strong> 91.0.4472.164 (正式版本) （64 位）</li>
+<li><strong>windows10</strong> 92.0.4515.131 (正式版本) （64 位） (cohort: 92_win_131)</li>
+</ol>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li><a href="https://developer.chrome.com/docs/devtools/">https://developer.chrome.com/docs/devtools/</a></li>
+<li><a href="https://cloud.tencent.com/developer/article/1503476">https://cloud.tencent.com/developer/article/1503476</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/143358849">https://zhuanlan.zhihu.com/p/143358849</a></li>
+<li>[<a href="https://www.cnblogs.com/ranyonsue/p/9342839.html">https://www.cnblogs.com/ranyonsue/p/9342839.html</a></li>
+<li><a href="https://segmentfault.com/a/1190000016811577">https://segmentfault.com/a/1190000016811577</a></li>
+</ol>
+<h2 id="js代码"><a href="#js代码" class="headerlink" title="js代码"></a>js代码</h2><h3 id="设置断点"><a href="#设置断点" class="headerlink" title="设置断点"></a>设置断点</h3><p>有两种方法可以给代码添加断点</p>
+<h4 id="方法1：在-Source-内容区设置"><a href="#方法1：在-Source-内容区设置" class="headerlink" title="方法1：在 Source 内容区设置"></a>方法1：在 Source 内容区设置</h4><ol>
+<li>找到要调试的文件，然后在内容源代码左侧的代码标记行处点击，即可打上一个断点。</li>
+<li>刷新浏览器，当页面代码运行到断点处便会暂停执行。</li>
+</ol>
+<h4 id="方法2：在-js-文件中设置"><a href="#方法2：在-js-文件中设置" class="headerlink" title="方法2：在 js 文件中设置"></a>方法2：在 js 文件中设置</h4><p>（1）我们在 js 源文件中需要执行断点操作的代码前加上 debugger。<br>（2）刷新浏览器，当页面代码运行到断点处会暂停执行</p>
+<h2 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h2><h3 id="性能测试"><a href="#性能测试" class="headerlink" title="性能测试"></a>性能测试</h3><p>在<code>Lighthouse</code>点击<code>Generate report</code>即可生成报告，报告中含有各项性能的指标，以及相关的问题，可以为我们提供了一些可以优化的方向</p>
+<h4 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h4><ul>
+<li>Performance<ul>
+<li>表现</li>
+</ul>
+</li>
+<li>Community Plugins<ul>
+<li>社区插件</li>
+</ul>
+</li>
+<li>Device<ul>
+<li>选择手机或是桌面平台</li>
+</ul>
+</li>
+</ul>
+<h3 id="性能调试"><a href="#性能调试" class="headerlink" title="性能调试"></a>性能调试</h3><p>在<code>performance</code>选项卡中，点击<code>record</code>就会开始记录当前页面的性能，点击<code>stop</code>就会停止记录，这里的记录时间我实测不建议过长（本人电脑性能不佳，录制大约30s会有明显卡顿，期间多次失去响应）</p>
+<h4 id="可选的选项"><a href="#可选的选项" class="headerlink" title="可选的选项"></a>可选的选项</h4><p>点击<code>Capture Settings</code>会出现更多选项</p>
+<ul>
+<li>Screenshots<ul>
+<li>截图：操作页面的实时截图</li>
+</ul>
+</li>
+<li>Memory <ul>
+<li>内存消耗记录：勾选后可以看到各种内存消耗曲线</li>
+</ul>
+</li>
+<li>Web Vitals <ul>
+<li>性能体验和质量指标</li>
+</ul>
+</li>
+<li>Disable javaScript samples <ul>
+<li>关闭javaScript样本：减少在手机运行时的开销，模拟手机运行时勾选</li>
+</ul>
+</li>
+<li>Network <ul>
+<li>网络模拟：可以模拟在3G / 4G等网络条件下运行页面</li>
+</ul>
+</li>
+<li>Enable advanced paint instrumentation(slow)<ul>
+<li>记录渲染事件的细节：选择frames中的一块，此时区域会增加Layers </li>
+</ul>
+</li>
+<li>CPU<ul>
+<li>CPU限制：主要为了模拟低CPU下运行性能</li>
+</ul>
+</li>
+</ul>
+<p>从上到下的三个区域</p>
+<h4 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h4><p>鼠标悬停时会显示当前页面的截图<br>选择部分后，可以使用 W、A、S 和 D 键调整您的选择。 W 和 S 分别代表放大和缩小。 A 和 D 分别代表左移和右移<br>可以放大显示一部分记录，以便简化分析。使用 Overview 窗格可以放大显示一部分记录。 放大后，火焰图会自动缩放以匹配同一部分</p>
+<p>Overview 窗格从上到下：</p>
+<ol>
+<li>FPS:<br> 每秒帧数。绿色竖线越高，FPS 越高。 FPS 图表上的红色块表示长时间帧，这就表示页面出现卡顿，这时会非常影响用户体验，可以针对fps过低的时间段查找问题</li>
+<li>CPU<br> CPU 资源。此面积图指示消耗 CPU 资源的事件类型，这里的颜色与最下方的总结区域相对应，如果长时间同一种情况占用大量的资源，可以先从占用大量资源的情况问题找起</li>
+<li>NET<br> 每条彩色横杠表示一种资源。横杠越长，检索资源所需的时间越长。 每个横杠的浅色部分表示等待时间（从请求资源到第一个字节下载完成的时间）</li>
+</ol>
+<h4 id="火焰图"><a href="#火焰图" class="headerlink" title="火焰图"></a>火焰图</h4><p>在火焰图上看到一到三条垂直的虚线。蓝线代表 DOMContentLoaded 事件。 绿线代表首次绘制的时间。 红线代表 load 事件<br>在火焰图中选择事件时，Details 窗格会显示与事件相关的其他信息<br>这里我们优先关注右上角红色三角形的函数，点击下方会出现详细事件，<code>Function</code>会有代码出现的位置</p>
+<h4 id="总结区域"><a href="#总结区域" class="headerlink" title="总结区域"></a>总结区域</h4><p>蓝色(Loading)：网络通信和HTML解析<br>黄色(Scripting)：JavaScript执行<br>紫色(Rendering)：样式计算和布局，即重排<br>绿色(Painting)：重绘<br>灰色(other)：其它事件花费的时间<br>白色(Idle)：空闲时间 </p>
+<h5 id="Loading事件"><a href="#Loading事件" class="headerlink" title="Loading事件"></a>Loading事件</h5><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>事件</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Parse HTML</td>
+<td>浏览器执行HTML解析</td>
+</tr>
+<tr>
+<td>Finish Loading</td>
+<td>网络请求完毕事件</td>
+</tr>
+<tr>
+<td>Receive Data</td>
+<td>请求的响应数据到达事件，如果响应数据很大（拆包），可能会多次触发该事件</td>
+</tr>
+<tr>
+<td>Receive Response</td>
+<td>响应头报文到达时触发</td>
+</tr>
+<tr>
+<td>Send Request</td>
+<td>发送网络请求时触发</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h5 id="Scripting事件"><a href="#Scripting事件" class="headerlink" title="Scripting事件"></a>Scripting事件</h5><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>事件</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Animation Frame Fired</td>
+<td>一个定义好的动画帧发生并开始回调处理时触发</td>
+</tr>
+<tr>
+<td>Cancel Animation Frame</td>
+<td>取消一个动画帧时触发</td>
+</tr>
+<tr>
+<td>GC Event</td>
+<td>垃圾回收时触发</td>
+</tr>
+<tr>
+<td>DOMContentLoaded</td>
+<td>当页面中的DOM内容加载并解析完毕时触发</td>
+</tr>
+<tr>
+<td>Evaluate Script</td>
+<td>A script was evaluated.</td>
+</tr>
+<tr>
+<td>Event</td>
+<td>js事件</td>
+</tr>
+<tr>
+<td>Function Call</td>
+<td>只有当浏览器进入到js引擎中时触发</td>
+</tr>
+<tr>
+<td>Install Timer</td>
+<td>创建计时器（调用setTimeout()和setInterval()）时触发</td>
+</tr>
+<tr>
+<td>Request Animation Frame</td>
+<td>A requestAnimationFrame() call scheduled a new frame</td>
+</tr>
+<tr>
+<td>Remove Timer</td>
+<td>当清除一个计时器时触发</td>
+</tr>
+<tr>
+<td>Time</td>
+<td>调用console.time()触发</td>
+</tr>
+<tr>
+<td>Time End</td>
+<td>调用console.timeEnd()触发</td>
+</tr>
+<tr>
+<td>Timer Fired</td>
+<td>定时器激活回调后触发</td>
+</tr>
+<tr>
+<td>XHR Ready State Change</td>
+<td>当一个异步请求为就绪状态后触发</td>
+</tr>
+<tr>
+<td>XHR Load</td>
+<td>当一个异步请求完成加载后触发</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h5 id="Rendering事件"><a href="#Rendering事件" class="headerlink" title="Rendering事件"></a>Rendering事件</h5><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>事件</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Invalidate layout</td>
+<td>当DOM更改导致页面布局失效时触发</td>
+</tr>
+<tr>
+<td>Layout</td>
+<td>页面布局计算执行时触发</td>
+</tr>
+<tr>
+<td>Recalculate style</td>
+<td>Chrome重新计算元素样式时触发</td>
+</tr>
+<tr>
+<td>Scroll</td>
+<td>内嵌的视窗滚动时触发</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h5 id="Painting事件"><a href="#Painting事件" class="headerlink" title="Painting事件"></a>Painting事件</h5><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>事件</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Composite Layers</td>
+<td>Chrome的渲染引擎完成图片层合并时触发</td>
+</tr>
+<tr>
+<td>Image Decode</td>
+<td>一个图片资源完成解码后触发</td>
+</tr>
+<tr>
+<td>Image Resize</td>
+<td>一个图片被修改尺寸后触发</td>
+</tr>
+<tr>
+<td>Paint</td>
+<td>合并后的层被绘制到对应显示区域后触发</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="html与css"><a href="#html与css" class="headerlink" title="html与css"></a>html与css</h2><h3 id="伪类"><a href="#伪类" class="headerlink" title="伪类"></a>伪类</h3><p>由于部分伪类需要鼠标才能显现，很多时候并不是非常方便，这是我们可以借助Chrome提供的<code>force state</code>功能，在<code>Elements</code>中找到需要调试的节点，或是使用快捷键<code>ctrl + shift + c</code>的快捷键选中需要调试的节点</p>
+<ol>
+<li>active   激活(鼠标按住时)</li>
+<li>hover    鼠标悬停</li>
+<li>focus    键盘事件或输入的元素激活时</li>
+<li>visited  已访问链接</li>
+<li>focus-within   元素本身及其子元素，同focus</li>
+<li>focus-visible  当元素匹配:focus伪类并且客户端(UA)的启发式引擎决定焦点应当可见(在这种情况下很多浏览器默认显示“焦点框”。)时</li>
+</ol>
+<h2 id="其他调试"><a href="#其他调试" class="headerlink" title="其他调试"></a>其他调试</h2><h3 id="手机远程调试"><a href="#手机远程调试" class="headerlink" title="手机远程调试"></a>手机远程调试</h3><p>Chrome桌面版固然可以模仿手机浏览，但这并不实际手机，如果我们需要在手机上进行调试，可以使用chrome的远程调试功能，首先手机需要开启<code>USB 调试选项</code>并用且连接电脑，开启调试模式，当然手机也需要开启Chrome，同时手机和电脑都需要能访问谷歌（实测下来如此）</p>
+<p>用桌面端的chome访问<code>chrome://inspect/#devices</code>，此时可以在<code>Remote Target</code>看到手机型号，通过<code>open</code>可以打开网站，点击<code>inspect</code>即可开启调试，此时电脑就可以看到手机上的画面与各项输出</p>
+<h3 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h3><p><code>F12</code>开启开发者模式，通过快捷键<code>Ctrl+Shift+P</code>即可开启搜索</p>
+<h4 id="fps"><a href="#fps" class="headerlink" title="fps"></a>fps</h4><p>搜索fps即可查看当前网页的fps情况</p>
+<h4 id="截图"><a href="#截图" class="headerlink" title="截图"></a>截图</h4><p>搜索<code>screenshot</code></p>
+<ul>
+<li><p>Capture area screenshot</p>
+<p>截取鼠标选取的位置</p>
+</li>
+<li><p>Capture full size screenshot</p>
+<p>截取所有网页的截图</p>
+</li>
+<li><p>Capture node screenshot</p>
+<p>截取当前节点的截图</p>
+</li>
+<li><p>Capture screenshot</p>
+<p>截取当前Chrome显示的截图</p>
+</li>
+</ul>
+<h2 id="chrome插件"><a href="#chrome插件" class="headerlink" title="chrome插件"></a>chrome插件</h2><h3 id="react"><a href="#react" class="headerlink" title="react"></a>react</h3><p><a href="https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi">https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi</a></p>
+<h3 id="vue"><a href="#vue" class="headerlink" title="vue"></a>vue</h3><p><a href="https://chrome.google.com/webstore/detail/vuejs-devtools/ljjemllljcmogpfapbkkighbhhppjdbg">https://chrome.google.com/webstore/detail/vuejs-devtools/ljjemllljcmogpfapbkkighbhhppjdbg</a></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='/High Free Spirits.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+		data-enable='false'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

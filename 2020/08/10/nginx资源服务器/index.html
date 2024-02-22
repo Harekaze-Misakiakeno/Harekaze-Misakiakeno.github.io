@@ -1,0 +1,216 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW" class="loading">
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>nginx资源服务器 - Hermit_Yoshino</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Hermit_Yoshino,"> 
+    <meta name="description" content="Nginx 局域网资源服务器安装及配置（新手向）写在前面这次安装配置Nginx静态服务器的主要目的为了实现在局域网的情况下，实现对Nginx服务器上资源的读取、修改与上传。实现类似（但不限于）NAS,"> 
+    <meta name="author" content="Misaki Akeno"> 
+    <link rel="alternative" href="atom.xml" title="Hermit_Yoshino" type="application/atom+xml"> 
+    <link rel="icon" href="/img/ico_black.png"> 
+    
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+<meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body class="loading">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="config-title" style="display:none">Hermit_Yoshino</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://harekaze-misakiakeno.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">nginx资源服务器</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">nginx资源服务器</h1>
+        <div class="stuff">
+            <span>八月 10, 2020</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="Nginx-局域网资源服务器安装及配置（新手向）"><a href="#Nginx-局域网资源服务器安装及配置（新手向）" class="headerlink" title="Nginx 局域网资源服务器安装及配置（新手向）"></a>Nginx 局域网资源服务器安装及配置（新手向）</h1><h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>这次安装配置<strong>Nginx</strong>静态服务器的主要目的为了实现在局域网的情况下，实现对<strong>Nginx</strong>服务器上资源的读取、修改与上传。实现类似（但不限于）<strong>NAS网络存储服务器</strong>或是<strong>windows局域网共享磁盘</strong>的功能，本博客只是提供一种我尝试可行的方法，不保证在所以情况下都可行。望给有类似需求以及喜欢<strong>DIY</strong>的朋友一个参考与简单的思路。</p>
+<h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><h3 id="系统版本"><a href="#系统版本" class="headerlink" title="系统版本"></a>系统版本</h3><p>这是我的系统版本</p>
+<p><img src="http://r.photo.store.qq.com/psc?/V51omi8H2ZybVP1W54I94cQfjz2sEfyp/45NBuzDIW489QBoVep5mcYkMCtpvKZy8nhs87uiJQcT59m9g6M9sWic.Sys8IVMXq0Ng5uOUhwXZq1WIx4iE0Yhm56Cpill0VUjiRvXkdH0!/r" alt=""></p>
+<p>windows10可以使用<code>win + R</code>在输入<code>winver</code>查看版本</p>
+<h3 id="设置静态IP"><a href="#设置静态IP" class="headerlink" title="设置静态IP"></a>设置静态IP</h3><p>注：设置<strong>静态IP</strong>并不是必须的，但如果不设置的话服务器的IP有可能在每次电脑开机时变化，所以当你再次访问IP时需要查看web服务器的IP地址，嫌麻烦的可以跳过</p>
+<p>在win10中可以使用<code>win + R</code>在输入<code>cmd</code>打开命令行，或者右击屏幕左下角<strong>开始菜单</strong>在选择<strong>命令行提示符(Windows PowerShell)</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看当前电脑的IP</span></span><br><span class="line">ipconfig</span><br></pre></td></tr></table></figure>
+<p>右击右下角的网络图标点击<strong>打开“网络 和 internet”设置</strong>，之后按下图操作</p>
+<p><img src="http://r.photo.store.qq.com/psc?/V51omi8H2ZybVP1W54I94cQfjz2sEfyp/45NBuzDIW489QBoVep5mcSxUmTZ9Nyu02gmc4lRzgvzMJpKgVB.QhtzIhrDzHEVlt5tpW1ql8ElTcmuHY4CdXRAOZOkxa3aUgBwps3y7e9I!/r" alt="http://r.photo.store.qq.com/psc?/V51omi8H2ZybVP1W54I94cQfjz2sEfyp/45NBuzDIW489QBoVep5mcSxUmTZ9Nyu02gmc4lRzgvzMJpKgVB.QhtzIhrDzHEVlt5tpW1ql8ElTcmuHY4CdXRAOZOkxa3aUgBwps3y7e9I!/r"></p>
+<p>之后保存并关闭，这里的可能需要重启或者插拔网线或者重新连接，再次查看IP可以看到本机IP已经切换到了设置的<code>192.168.1.49</code></p>
+<p>注：这里的网关要和<code>ipconfig</code>查询结果的默认网关相同</p>
+<h3 id="关闭局域网防火墙"><a href="#关闭局域网防火墙" class="headerlink" title="关闭局域网防火墙"></a>关闭局域网防火墙</h3><p>注：这也不是必须的，你可以添加出入站规则</p>
+<p>在桌面右击选择<strong>个性化</strong>，之后搜索防火墙</p>
+<p><img src="http://r.photo.store.qq.com/psc?/V51omi8H2ZybVP1W54I94cQfjz2sEfyp/45NBuzDIW489QBoVep5mcSxUmTZ9Nyu02gmc4lRzgvyRQrs8YuVWlZo1Duy8W4fziW0XTmAFZdf3tYPcdDoN2XA3otzpvH35BLcX6DxzJFg!/r" alt="http://r.photo.store.qq.com/psc?/V51omi8H2ZybVP1W54I94cQfjz2sEfyp/45NBuzDIW489QBoVep5mcSxUmTZ9Nyu02gmc4lRzgvyRQrs8YuVWlZo1Duy8W4fziW0XTmAFZdf3tYPcdDoN2XA3otzpvH35BLcX6DxzJFg!/r"></p>
+<p>选择后，点击<code>启用或关闭Windows Defender防火墙</code>，选择关闭</p>
+<p><img src="http://r.photo.store.qq.com/psc?/V51omi8H2ZybVP1W54I94cQfjz2sEfyp/45NBuzDIW489QBoVep5mcWSn7zPAbC*Vr5paSSRVGaTLeR9iUaKENZdDGdzrZ8OR5bhLetHJMDUkbHkjJg2lmVQLYxtSmXoRtiwe9yEffdI!/r" alt="http://r.photo.store.qq.com/psc?/V51omi8H2ZybVP1W54I94cQfjz2sEfyp/45NBuzDIW489QBoVep5mcWSn7zPAbC*Vr5paSSRVGaTLeR9iUaKENZdDGdzrZ8OR5bhLetHJMDUkbHkjJg2lmVQLYxtSmXoRtiwe9yEffdI!/r"></p>
+<h2 id="下载并安装Nginx"><a href="#下载并安装Nginx" class="headerlink" title="下载并安装Nginx"></a>下载并安装Nginx</h2><p>官网下载链接：<a href="http://nginx.org/en/download.html">http://nginx.org/en/download.html</a></p>
+<p>我下载的是当前最新版<strong><a href="http://nginx.org/download/nginx-1.18.0.zip">nginx/Windows-1.18.0</a></strong> </p>
+<p>下载后解压，<strong>注意Nginx启动需要在命令行下，双击图标无法启动</strong></p>
+<p>在win10中可以使用<code>win + R</code>在输入<code>cmd</code>打开命令行，或者右击屏幕左下角<strong>开始菜单</strong>在选择<strong>命令行提示符(Windows PowerShell)</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 进入程序目录</span></span><br><span class="line">cd C:\nginx\nginx-1.18.0</span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动程序</span></span><br><span class="line">.\nginx.exe</span><br></pre></td></tr></table></figure>
+<p>之后打开浏览器访问<code>127.0.0.1</code>，看到下图则表示启动成功</p>
+<p><img src="http://r.photo.store.qq.com/psc?/V51omi8H2ZybVP1W54I94cQfjz2sEfyp/45NBuzDIW489QBoVep5mcQqrUz6Gxs4dIVv3.TzWnGAwVASL2dO3KKmr3Bf7zGH3UPq.9*vcmfO9Uko3CvslCGpHyrmjPkECWz8Rw.9bWsg!/r" alt="http://r.photo.store.qq.com/psc?/V51omi8H2ZybVP1W54I94cQfjz2sEfyp/45NBuzDIW489QBoVep5mcQqrUz6Gxs4dIVv3.TzWnGAwVASL2dO3KKmr3Bf7zGH3UPq.9*vcmfO9Uko3CvslCGpHyrmjPkECWz8Rw.9bWsg!/r"></p>
+<h2 id="修改配置文件实现下载"><a href="#修改配置文件实现下载" class="headerlink" title="修改配置文件实现下载"></a>修改配置文件实现下载</h2><p>注意：路径不要有中文，否则会出现无法访问的情况</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        listen  100;</span><br><span class="line">		#服务器访问端口，在有防火墙的情况下，需要允许该端口访问</span><br><span class="line">		root D:&#x2F;;</span><br><span class="line">		#允许访问的文件目录</span><br><span class="line">		add_header Cache-Control &quot;no-cache,must-revalidate&quot;;</span><br><span class="line">		#禁用浏览器缓存</span><br><span class="line">		location &#x2F; &#123;</span><br><span class="line">		    add_header Access-Control-Allow-Origin *; </span><br><span class="line">			#允许跨域请求</span><br><span class="line">			autoindex on;</span><br><span class="line">			#打开目录浏览功能</span><br><span class="line">			autoindex_exact_size off;</span><br><span class="line">			#默认为on，显示出文件的确切大小，单位是bytes</span><br><span class="line">			#off时，显示出文件的大概大小，单位是kB或者MB或者GB</span><br><span class="line">			autoindex_localtime on;</span><br><span class="line">			#默认为off，显示的文件时间为GMT时间。</span><br><span class="line">			#改为on后，显示的文件时间为文件的服务器时间</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>当然这只能，单个进行文件传输，如果我想一次性的传输一个文件夹内的所有文件怎么办？</p>
+<p>等等…………网上好像没有找到，那就自己写吧，不过个之后再说，先实现上传功能再说</p>
+<p>关于文件续传，这个日后再说</p>
+<h2 id="实现文件上传"><a href="#实现文件上传" class="headerlink" title="实现文件上传"></a>实现文件上传</h2><h2 id="性能优化及问题解决"><a href="#性能优化及问题解决" class="headerlink" title="性能优化及问题解决"></a>性能优化及问题解决</h2><p>这个部分主要记录在使用过程中遇到的问题，以及相关性能优化</p>
+<ol>
+<li><p>当服务器主机在运行时，出现无线网突然断连的情况</p>
+<p>猜测原因：</p>
+<p>路由器问题，用的老式路由器，当初买来不到50，有可能死机了，或是卡了，因为断流的时候，手机也断流了</p>
+<p>电脑问题，因为之前电脑在连接不同路由，也有断流的情况</p>
+<p>解决方法：</p>
+<p>使用有线连接</p>
+</li>
+<li><p>服务器主机在满速传输时，无法对外通讯</p>
+<p>当其他电脑向服务器请求下载文件时，服务器主机电脑无法浏览网页</p>
+<p>猜测原因：</p>
+<p>由于上行传输速度会满</p>
+</li>
+<li><p>windows任务管理器显示9.9Mbps上传，但请求下载主机0速度</p>
+</li>
+<li><p>类似上文情况，但传输断断续续</p>
+<p>可能原因：</p>
+<p>路由器或主机问题</p>
+<p>请求主机使用idm下载，尝试使用其他软件下载再测试</p>
+<p>请求过多，一下请求20多个文件</p>
+<p>解决方法：</p>
+<p>重启路由器，重启服务器主机，重启nginx服务器</p>
+</li>
+<li></li>
+</ol>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="music/High Free Spirits.mp3">
+            </audio>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+		data-enable='false'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

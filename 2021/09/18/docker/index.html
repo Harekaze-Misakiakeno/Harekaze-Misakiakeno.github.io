@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW" class="loading">
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>开始使用docker - Hermit_Yoshino</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Hermit_Yoshino,"> 
+    <meta name="description" content="docker相关知识写在前面docker有自己的官方文档
+参考资料
+https://docs.docker.com/
+https://kalasearch.cn/community/tutorial,"> 
+    <meta name="author" content="Misaki Akeno"> 
+    <link rel="alternative" href="atom.xml" title="Hermit_Yoshino" type="application/atom+xml"> 
+    <link rel="icon" href="/img/ico_black.png"> 
+    
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+<meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body class="loading">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="config-title" style="display:none">Hermit_Yoshino</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://harekaze-misakiakeno.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">开始使用docker</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">开始使用docker</h1>
+        <div class="stuff">
+            <span>九月 18, 2021</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/docker/" rel="tag">docker</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="docker相关知识"><a href="#docker相关知识" class="headerlink" title="docker相关知识"></a>docker相关知识</h1><h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>docker有自己的<a href="https://docs.docker.com/">官方文档</a></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li><a href="https://docs.docker.com/">https://docs.docker.com/</a></li>
+<li><a href="https://kalasearch.cn/community/tutorials/how-to-install-and-use-docker-on-ubuntu/">https://kalasearch.cn/community/tutorials/how-to-install-and-use-docker-on-ubuntu/</a></li>
+<li><a href="https://blog.csdn.net/kun_931013/article/details/85234684">https://blog.csdn.net/kun_931013/article/details/85234684</a></li>
+<li><a href="https://blog.csdn.net/weixin_37773766/article/details/80702926">https://blog.csdn.net/weixin_37773766/article/details/80702926</a></li>
+<li><a href="https://vuepress.mirror.docker-practice.com/container/attach_exec/#attach-%E5%91%BD%E4%BB%A4">https://vuepress.mirror.docker-practice.com/container/attach_exec/#attach-%E5%91%BD%E4%BB%A4</a></li>
+<li><a href="https://cloud.tencent.com/developer/article/1848185">https://cloud.tencent.com/developer/article/1848185</a></li>
+</ol>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install apt-transport-https ca-certificates curl software-properties-common</span><br><span class="line">curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</span><br><span class="line">sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"</span><br><span class="line">sudo apt update</span><br><span class="line">apt-cache policy docker-ce</span><br><span class="line">sudo apt install docker-ce</span><br><span class="line">sudo systemctl status docker</span><br><span class="line"></span><br><span class="line">docker -v 查看当前版本</span><br></pre></td></tr></table></figure>
+<h3 id="启动与暂停"><a href="#启动与暂停" class="headerlink" title="启动与暂停"></a>启动与暂停</h3><h4 id="docker"><a href="#docker" class="headerlink" title="docker"></a>docker</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">systemctl start docker</span><br><span class="line">service docker start</span><br><span class="line"></span><br><span class="line">systemctl stop docker</span><br><span class="line">service docker stop</span><br></pre></td></tr></table></figure>
+<p>如果出现<code>Warning: Stopping docker.service, but it can still be activated by: docker.socket</code><br>则需要优先停止<code>docker.socket</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop docker.socket</span><br></pre></td></tr></table></figure>
+<h4 id="镜像"><a href="#镜像" class="headerlink" title="镜像"></a>镜像</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker run 镜像名</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看正在运行的镜像</span></span><br><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><h4 id="帮助"><a href="#帮助" class="headerlink" title="帮助"></a>帮助</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker --help</span><br></pre></td></tr></table></figure>
+<h4 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h4><p>您可以通过将docker命令与search子命令配合使用来搜索 Docker Hub 上可用的镜像。</p>
+<p>例如，要搜索 Ubuntu 的镜像，请输入：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker search ubuntu</span><br></pre></td></tr></table></figure>
+<h4 id="进入镜像内部"><a href="#进入镜像内部" class="headerlink" title="进入镜像内部"></a>进入镜像内部</h4><p>docker exec -it (repository) bash</p>
+<h4 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull ubuntu</span><br></pre></td></tr></table></figure>
+<h4 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker rmi 镜像</span><br><span class="line">docker rmi -f 镜像</span><br></pre></td></tr></table></figure>
+<h4 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker login --username=</span><br></pre></td></tr></table></figure>
+<h3 id="docker-run常用参数"><a href="#docker-run常用参数" class="headerlink" title="docker run常用参数"></a>docker run常用参数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">#后台运行容器,并返回容器ID</span><br><span class="line">-d</span><br><span class="line">#以交互式运行容器,通常与-t同时使用</span><br><span class="line">-i</span><br><span class="line">#端口映射,格式为 主机(宿主)端口:容器端口</span><br><span class="line">-p</span><br><span class="line">#为容器重新分配一个伪输入终端,通常与-i同时使用</span><br><span class="line">-t</span><br><span class="line">#设置环境变量</span><br><span class="line">-e arg&#x3D;&quot;value&quot;</span><br><span class="line"></span><br><span class="line">#从指定文件读入环境变量</span><br><span class="line">-env-file&#x3D;[]</span><br><span class="line">#绑定容器到指定的cpu运行</span><br><span class="line">--cpuset&#x3D;&quot;0-2&quot; or --cpuset&#x3D;&quot;0,1,2&quot;</span><br><span class="line">设置容器使用内存最大值</span><br><span class="line">-m</span><br><span class="line">#路径映射 可以使用多个-v</span><br><span class="line">-v外部路径:内部路径</span><br><span class="line"></span><br><span class="line">#端口映射 可以使用多个-p</span><br><span class="line">-p外部端口:内部端口</span><br><span class="line"></span><br><span class="line">#内部端口与外部端口相同</span><br><span class="line">--network&#x3D;host</span><br></pre></td></tr></table></figure>
+<h3 id="发布docker镜像"><a href="#发布docker镜像" class="headerlink" title="发布docker镜像"></a>发布docker镜像</h3><ol>
+<li><code>docker images</code>命令可以列出所有安装过的镜像。</li>
+<li><code>docker push 镜像名</code></li>
+</ol>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>docker-compose<br><a href="https://www.cnblogs.com/trblog/p/14065905.html">https://www.cnblogs.com/trblog/p/14065905.html</a></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='/High Free Spirits.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+		data-enable='false'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

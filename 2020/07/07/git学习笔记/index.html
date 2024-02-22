@@ -1,0 +1,315 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW" class="loading">
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>git学习笔记 - Hermit_Yoshino</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Hermit_Yoshino,"> 
+    <meta name="description" content="Git學習筆記寫在前面之前一直在使用git，但確實沒有好好學習過，現在決定寫個筆記，但主要以我目前用過的爲主，以及之後可能會遇到的問題，參考文檔為：
+
+git的學習文檔https://git-scm,"> 
+    <meta name="author" content="Misaki Akeno"> 
+    <link rel="alternative" href="atom.xml" title="Hermit_Yoshino" type="application/atom+xml"> 
+    <link rel="icon" href="/img/ico_black.png"> 
+    
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+<meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body class="loading">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="config-title" style="display:none">Hermit_Yoshino</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://harekaze-misakiakeno.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">git学习笔记</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">git学习笔记</h1>
+        <div class="stuff">
+            <span>七月 07, 2020</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E8%BB%9F%E4%BB%B6%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/" rel="tag">軟件版本管理</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="Git學習筆記"><a href="#Git學習筆記" class="headerlink" title="Git學習筆記"></a>Git學習筆記</h1><h2 id="寫在前面"><a href="#寫在前面" class="headerlink" title="寫在前面"></a>寫在前面</h2><p>之前一直在使用git，但確實沒有好好學習過，現在決定寫個筆記，但主要以我目前用過的爲主，以及之後可能會遇到的問題，參考文檔為：</p>
+<ol>
+<li><a href="https://git-scm.com/book/zh/v2">git的學習文檔https://git-scm.com/book/zh/v2</a></li>
+<li><a href="https://www.liaoxuefeng.com/wiki/896043488029600">廖雪峰的教程https://www.liaoxuefeng.com/wiki/896043488029600</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2014/06/git_remote.html">阮一峰的網絡日志1http://www.ruanyifeng.com/blog/2014/06/git_remote.html</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2012/07/git.html">阮一峰的網絡日志2http://www.ruanyifeng.com/blog/2012/07/git.html</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2020/04/git-cherry-pick.html">阮一峰的網絡日志3http://www.ruanyifeng.com/blog/2020/04/git-cherry-pick.html</a></li>
+<li><a href="https://www.open-open.com/lib/view/open1328069889514.html">Git分支https://www.open-open.com/lib/view/open1328069889514.html</a></li>
+</ol>
+<p>在寫這篇博客是使用的系統為windows，使用的是<strong>git for windows</strong></p>
+<p>版本為<code>2.21.0.windows.1</code></p>
+<p>關於學習與練習，可以訪問<a href="https://learngitbranching.js.org">https://learngitbranching.js.org</a>進行學習與練習</p>
+<h2 id="git初始化及其基本命令"><a href="#git初始化及其基本命令" class="headerlink" title="git初始化及其基本命令"></a>git初始化及其基本命令</h2><h3 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h3><p>git在linux上可以使用命令直接安裝，在windows上我使用的是<a href="https://gitforwindows.org/"><strong>git fot windows</strong></a></p>
+<h3 id="第一步及基本命令"><a href="#第一步及基本命令" class="headerlink" title="第一步及基本命令"></a>第一步及基本命令</h3><p>在安裝完git之後首先需要設置你的用戶名與郵箱</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name "用戶名"</span><br><span class="line">git config --global user.email "郵箱"</span><br></pre></td></tr></table></figure>
+<p>可以使用命令查看當前的配置信息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --list</span><br><span class="line"><span class="meta">#</span><span class="bash"> 輸入q推出</span></span><br></pre></td></tr></table></figure>
+<p>也可以單獨查看某一個配置信息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config user.email</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看你之前使用的郵箱</span></span><br></pre></td></tr></table></figure>
+<p>這裏可以配置默認的文本編輯器，官方文檔說“当 Git 需要你输入信息时会调用它”，但我好像不記得我用過了，不過這裏記一下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> linux</span></span><br><span class="line">git config --global core.editor emacs</span><br><span class="line"><span class="meta">#</span><span class="bash"> windows</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 則例使用的是notepad++</span></span><br><span class="line">git config --global core.editor "'C:/Program Files/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin"</span><br></pre></td></tr></table></figure>
+<p>遇到了麻煩可以使用該命令來獲取幫助</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git --help</span><br></pre></td></tr></table></figure>
+<p>如果是需要單獨命令的幫助可以使用</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git help &lt;命令&gt;</span><br><span class="line">git &lt;命令&gt; --help</span><br><span class="line"><span class="meta">#</span><span class="bash"> 也可以使用</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> git &lt;命令&gt; -h</span></span><br></pre></td></tr></table></figure>
+<h3 id="使用git進行本地版本管理"><a href="#使用git進行本地版本管理" class="headerlink" title="使用git進行本地版本管理"></a>使用git進行本地版本管理</h3><p>進入到你想要使用git的文件夾中（windows可以在進入文件夾后，右擊<strong>Git Bash Here</strong>來使用命令進行管理），通過命令對初始化本地倉庫</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+<p>這個命令可以在空或者非空的文件夾中執行，執行過後會生成<strong>.git</strong>文件，這個就是Git来跟踪管理版本库的</p>
+<p>可以使用下面命令對文件進行添加以及進行本地管理</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 添加文件到本地倉庫</span></span><br><span class="line">git add 文件或文件夾的名稱</span><br><span class="line"><span class="meta">#</span><span class="bash"> 把文件提交倉庫並進行説明</span></span><br><span class="line">git commit -m "説明"</span><br></pre></td></tr></table></figure>
+<h4 id="其他説明"><a href="#其他説明" class="headerlink" title="其他説明"></a>其他説明</h4><p>这里之后会陆续更新</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git add 文件或文件夾的名稱</span><br><span class="line"><span class="meta">#</span><span class="bash"> 这里后面可以更多个文件名</span></span><br><span class="line">git add -A</span><br><span class="line"><span class="meta">#</span><span class="bash"> 可以添加所有</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 但是在windows实际使用中会遇到小问题</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 比如这个里面的文件是别人写的，拷贝到你电脑上来，然后你想使用这个命令添加的话会报转义符的错误（我没记错的话好像是的，之后遇到里再补截图）</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 解决方法是使用git add .</span></span><br></pre></td></tr></table></figure>
+<h3 id="遠程倉庫管理"><a href="#遠程倉庫管理" class="headerlink" title="遠程倉庫管理"></a>遠程倉庫管理</h3><p>遠程倉庫可以使用<a href="https://gitee.com/">gitee</a>或者<a href="https://github.com/">github</a>或者自己搭建的git服務器或者其他的</p>
+<p>這裏我是用的是gitee進行測試</p>
+<p><strong>最簡單方便省事的方法就是在git伺服器中建立倉庫並且選擇使用Readme檔初始化倉庫,之後使用命令克隆到本地倉庫,再把需要管理的檔案複製到克隆建立的資料夾裡,之後使用命令提交到遠端倉庫</strong></p>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM1P7FKd/gliYV*h0f2f2HjcOdYSYvTz3CHB2DYQSjcdR0mc8zMYm0YD0nqWOgARVq*G9wQCAm5D**0L6K7x1t5HMZ8qVnQpSNmwC39JUL7H1Rk9Qfhk!/r" alt=""></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 從遠程倉庫中克隆</span></span><br><span class="line">git clone 複製的地址（這裏可以先使用https協議）</span><br><span class="line"><span class="meta">#</span><span class="bash"> 添加所有文件</span></span><br><span class="line">git add -A</span><br><span class="line"><span class="meta">#</span><span class="bash"> 把文件提交倉庫並進行説明</span></span><br><span class="line">git commit -m "説明"</span><br><span class="line"><span class="meta">#</span><span class="bash"> 推送到遠程倉庫</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+<p>當然你也可以在初始化完本地倉庫后，將之于遠端創建的空倉庫關聯起來</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 初始化</span></span><br><span class="line">git init</span><br><span class="line"><span class="meta">#</span><span class="bash"> 將遠端與倉庫與本地倉庫關聯起來</span></span><br><span class="line">git remote add origin 遠端地址</span><br><span class="line"><span class="meta">#</span><span class="bash"> 推送到遠程倉庫並將當前分支設置為主分支</span></span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch --set-upstream-to=origin/&lt;branch&gt; master</span><br><span class="line"><span class="meta">#</span><span class="bash"> 該命令可以將遠程分支與本地分支進行關聯</span></span><br></pre></td></tr></table></figure>
+<p>可以使用命令查看倉庫使用的簡寫與其對應的url</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
+<p>如果遠端有更新可以使用命令同步到本地</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull</span><br></pre></td></tr></table></figure>
+<p>查看提交記錄及壽説明</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log</span><br></pre></td></tr></table></figure>
+<p>其中commit 右邊為版本號，Author為提交人，Date為時間，下方為提交説明</p>
+<p>可以使用命令退回到指定版本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard 版本號</span><br></pre></td></tr></table></figure>
+<p>退回上一個版本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD</span><br></pre></td></tr></table></figure>
+<p>之後將會詳細的講解版本管理，這裏製作簡單介紹</p>
+<h4 id="git-push"><a href="#git-push" class="headerlink" title="git push"></a>git push</h4><p><code>git push</code>將本地倉庫的更新推送到遠程倉庫，簡單列舉常用參數</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git push -f | --force</span><br><span class="line"><span class="meta">#</span><span class="bash"> 强制推送，儅我們返回較老版本的時候，會出現無法推送的情況，此時可以强制推送</span></span><br><span class="line">git push --set-upstream 遠端主機名 分支名</span><br><span class="line"><span class="meta">#</span><span class="bash"> 如果创建了新分支 可以将新分支推送到远端</span></span><br></pre></td></tr></table></figure>
+<h4 id="關於主機名"><a href="#關於主機名" class="headerlink" title="關於主機名"></a>關於主機名</h4><p>为了便于管理，Git要求每个远程主机都必须指定一个主机名。<code>git remote</code>命令就用于管理主机名</p>
+<p>查看遠程的所有主機</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote</span><br></pre></td></tr></table></figure>
+<p>查看遠程主機的網址</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
+<p>當然還可以修改、添加、刪除，不過這裏不做羅列，具體的可以查看詳細的文檔或者使用<code>help</code></p>
+<p>修改遠程倉庫地址</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote set-url 主機名 主機地址</span><br></pre></td></tr></table></figure>
+<h4 id="仓库更新"><a href="#仓库更新" class="headerlink" title="仓库更新"></a>仓库更新</h4><p>關於仓库更新的大致如下圖所示，具體的後面會再次分析（這張圖不一定完全正確，但可以表達各個命令的意思與作用）</p>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM1P7FKd/gliYV*h0f2f2HjcOdYSYvYTtRnIdCvPxcZt5esRfKt2Mqug7eM2RIbMVYs9E*s*fXcIFFLNezGITmQmb6MuCVa2sXGRMKGVVkmnGVwJhdm0!/r" alt="git提交"></p>
+<p>其中可以使用<code>git status</code>查看當前倉庫的狀態，例如本地有沒有更新修改，遠端有沒有新的版本提交修改（這裏的遠端倉庫更新需要<code>git fetch</code>才能看見，否則是看不見的）</p>
+<p><code>git diff</code>可以查看本地每個文件的修改情況</p>
+<p>接下來介紹<strong><code>git fetch</code>與<code>git merge</code></strong></p>
+<p>其实从上图也可以看出 <code>git fetch</code> + <code>git merge</code> == <code>git pull</code></p>
+<p>那這裏有什麽不同麽，既然既然可以直接更新爲什麽還要分成兩部呢？</p>
+<p>簡單來説分開來的好處是可以產看遠端倉庫更新了什麽，與本地的區別，再進行更新同步</p>
+<h5 id="git-fetch"><a href="#git-fetch" class="headerlink" title="git fetch"></a>git fetch</h5><p><code>git fetch</code>會將遠端的更新取回本地，但並不會直接合并到本地倉庫，這樣就不會直接造成版本文件的衝突，這裏可以像上圖那樣理解使用<code>git fetch</code>后將遠端倉庫移動至本地的<strong>遠端倉庫副本</strong></p>
+<p>這裏可以使用命令查看具體情況</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git branch -a</span><br><span class="line"><span class="meta">#</span><span class="bash"> 輸出</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> * master   （这个就是我们当前的本的分支，这里只有主分支）</span></span><br><span class="line"><span class="meta">#</span><span class="bash">   remotes/origin/master （这里是远端仓库在本地的副本）</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 关于分支的后面会详细将，这里就看看</span></span><br></pre></td></tr></table></figure>
+<p>之後我們可以查看遠端分支與本地的區別，我找到了以下的幾種方法，具體的方法肯定還有很多，這裏只列舉我找的（暫不考慮有多分支的情況，這裏我只嘗試的簡單的情況，後續可能會更新其他負責的情況）</p>
+<ol>
+<li><p>通過使用<code>git log</code>比較兩個分支的區別</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log -p master.. origin/master</span><br></pre></td></tr></table></figure>
+<p>通過使用<code>git log -p</code>可以比較每次提交或者不同分支的差異</p>
+<p>可以查看到各個增刪改的文件的差異（不同的部分）</p>
+<p>以下也是同理（在將更新同步到本地后產生一個FETCH_HEAD）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log -p FETCH_HEAD</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>使用<code>git difftool</code>使用圖形化界面比較修改文件差異</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git difftool origin</span><br><span class="line"><span class="meta">#</span><span class="bash"> :qa! 退出</span></span><br></pre></td></tr></table></figure>
+<p>其中左邊的是遠端的，右邊是本地的</p>
+</li>
+</ol>
+<ol>
+<li><p>在<strong>VSCODE</strong>中可以使用<strong>GitLens</strong>插件（簡單無腦還直觀，確實不錯，比較推薦）</p>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM1P7FKd/gliYV*h0f2f2HjcOdYSYvVPH2ugpILgUsBFXhPjAcXcVI0Ib1zXnge*NanyJVRbk*biwBdchrCwCuvLdzDlCt66GWgHBrIHWcKePAzEHKxk!/r" alt=""></p>
+<p>之後即可點擊查看具體更新的内用以及差異</p>
+<p><img src="http://r.photo.store.qq.com/psc?/V11nI3qM1P7FKd/gliYV*h0f2f2HjcOdYSYvQaIrjd6U0I82inmgUfp0XU0hSzQ2jS8ngSB79oDvyaV4Bv7cnDYsx0AdA5NmVV5hzMiwvA5J7ULjKc.nEF7QWU!/r" alt=""></p>
+</li>
+</ol>
+<h5 id="git-merge"><a href="#git-merge" class="headerlink" title="git merge"></a>git merge</h5><p><code>git merge</code>是用于分支合并的命令，这里的作用其实将origin/master合并到master</p>
+<p>具体的可以查看后买你的分支管理</p>
+<h3 id="版本管理"><a href="#版本管理" class="headerlink" title="版本管理"></a>版本管理</h3><p>关于git的版本管理主要由幾個命令組成</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git log # 查看提交的历史纪录</span><br><span class="line">git reflog # 查看历史操作记录</span><br><span class="line">git reset # 版本回退</span><br><span class="line">git revert # 撤销操作</span><br></pre></td></tr></table></figure>
+<h4 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h4><p><code>git log</code>會記錄你每次提交的更新，從新到舊降序配列</p>
+<p>其中commit 右邊為版本號，Author為提交人，Date為時間，下方為提交説明</p>
+<p>一下為<code>git log</code>後面可以跟的常用參數列舉</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git log -&lt;number&gt;</span><br><span class="line"><span class="meta">#</span><span class="bash"> 列舉最近n條記錄</span></span><br><span class="line">git log --stat </span><br><span class="line"><span class="meta">#</span><span class="bash"> 列舉出每次提交與提交前的不同的行數</span></span><br><span class="line">git log --patch</span><br><span class="line"><span class="meta">#</span><span class="bash"> 列舉出每次提交與提交前具體的不同之處 這裏也可以用簡寫 -p 或 -u</span></span><br><span class="line">git log --author=&lt;pattern&gt;</span><br><span class="line"><span class="meta">#</span><span class="bash"> 列出指定作者的提交，這裏的&lt;pattern&gt;可以是name或是email 同時只要包含該子字符串的都會匹配，所以你可以之輸入部分關鍵字符</span></span><br></pre></td></tr></table></figure>
+<p>最後你可以使用<code>gitk</code>命令使用圖形化工具來查看提交歷史</p>
+<h4 id="git-reflog"><a href="#git-reflog" class="headerlink" title="git reflog"></a>git reflog</h4><p><code>git reflog</code>會記錄之前操作的歷史例如：<code>git reset</code> <code>git commit</code> <code>git revert</code> <code>git pull</code>等命令的記錄</p>
+<p>其中 最左邊的是版號的前面7位，右邊為具體命令以及提示</p>
+<h5 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h5><p><code>git log</code>只能查看到前及以前的版本，例如：你現在提交到了第5次，當你使用<code>git reset</code>回到第3次后，你是無法在查看第4、5次提交的，但通過<code>git reflog</code>可以查看到你每次的操作歷史，可以通過reflog的版本號來進行恢復</p>
+<h4 id="git-reset"><a href="#git-reset" class="headerlink" title="git reset"></a>git reset</h4><p><code>git reset</code>可以將版本回復到指定的狀態，通常用於撤銷之前的操作、關於常用參數主要有一下三個</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git reset --mixed 版本號</span><br><span class="line"><span class="meta">#</span><span class="bash"> mixed：将HEAD之后的变更内容放到工作区中</span></span><br><span class="line">git reset --hard 版本號</span><br><span class="line"><span class="meta">#</span><span class="bash"> soft：代表将HEAD之后的变更内容放到暂存区中。</span></span><br><span class="line">git reset --hard 版本號</span><br><span class="line"><span class="meta">#</span><span class="bash"> hard：将HEAD之后的变更内容全部丢弃。</span></span><br><span class="line">git reset --hard 分支名</span><br><span class="line"><span class="meta">#</span><span class="bash"> 可是其他分支覆盖当前分支，但这个分支不能是当前分支</span></span><br></pre></td></tr></table></figure>
+<h5 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h5><p>關於後面的<strong>版本號</strong>，可以是<code>git log</code>或者是<code>git reflog</code>中的</p>
+<p>版本號可以不用完全輸全，只輸前幾位也可以，但必須是從頭開始，不可以是不包含第一位的子串，當然也可以是<code>HEAD^</code>之類的</p>
+<h4 id="git-revert"><a href="#git-revert" class="headerlink" title="git revert"></a>git revert</h4><p><code>git revert</code>可以將版本撤銷（有的也叫反做），可以理解為將版本回滾到某個版本，但與<code>git reset</code>不同的是、<code>git revert</code>是將撤銷后的版本作爲新的版本。例如：我現在提交到了第5次，當我使用<code>git revert</code>撤銷到地3次提交后、使用<code>git log</code>查看歷史版本會發現，實際上這裏第6次提交，只是内容與地3次相同罷了</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git revert 版本號 | HEAD</span><br></pre></td></tr></table></figure>
+<h5 id="tips-1"><a href="#tips-1" class="headerlink" title="tips"></a>tips</h5><p>儅我們使用<code>git revert HEAD</code>時，會撤銷回上一次操作，這裏的上一次指的是<code>git reflog</code>中的上一次</p>
+<h4 id="經典的小問題"><a href="#經典的小問題" class="headerlink" title="經典的小問題"></a>經典的小問題</h4><ol>
+<li><p>來自<a href="https://cloud.tencent.com/developer/article/1413097">https://cloud.tencent.com/developer/article/1413097</a></p>
+<p>簡述一下就是小白目前提交到了第6次，但是不小心使用<code>git reset --hard</code>回滾到了第1次，同時有進行了一次提交一共7次，問如何把前5次恢復，同時保留剛剛提交的第7次</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git reflog</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看歷史操作</span></span><br><span class="line">git reset --hard 第6次提交的版本號</span><br><span class="line"><span class="meta">#</span><span class="bash"> 回滾到第6次提交的地方</span></span><br><span class="line">git cherry-pick 第7次提交的版本號</span><br><span class="line"><span class="meta">#</span><span class="bash"> 解決衝突並添加第7次</span></span><br></pre></td></tr></table></figure>
+</li>
+<li></li>
+</ol>
+<h3 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h3><p>分支管理可以説是<code>git</code>一個非常非常强大的功能了，以下是主要相关命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br><span class="line">git checkout</span><br><span class="line">git merge</span><br></pre></td></tr></table></figure>
+<h4 id="git-branch"><a href="#git-branch" class="headerlink" title="git branch"></a>git branch</h4><p><code>git branch</code>可以列出，創建或刪除分支</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br><span class="line"><span class="meta">#</span><span class="bash"> 列出目前分支，帶星號的表示當前所在分支</span></span><br><span class="line">git branch -r</span><br><span class="line"><span class="meta">#</span><span class="bash"> 僅列出遠程分支</span></span><br><span class="line">git branch -a</span><br><span class="line"><span class="meta">#</span><span class="bash"> 列出所有分支</span></span><br><span class="line">git branch 新分支名</span><br><span class="line"><span class="meta">#</span><span class="bash"> 創建新分支</span></span><br><span class="line">git branch -d 分支名</span><br><span class="line"><span class="meta">#</span><span class="bash"> 刪除分支</span></span><br><span class="line">git branch -m 原分支名 新分支名</span><br><span class="line"><span class="meta">#</span><span class="bash"> 修改分支名</span></span><br></pre></td></tr></table></figure>
+<h4 id="git-checkout"><a href="#git-checkout" class="headerlink" title="git checkout"></a>git checkout</h4><p><code>git checkout</code>可以用于切換分支或還原工作樹文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git checkout 分支名</span><br><span class="line"><span class="meta">#</span><span class="bash"> 切換分支</span></span><br><span class="line">git checkout -b 分支名</span><br><span class="line"><span class="meta">#</span><span class="bash"> 創建並切換分支</span></span><br><span class="line">git checkout -- 文件名</span><br><span class="line"><span class="meta">#</span><span class="bash"> 撤銷該文件在工作區的修改</span></span><br><span class="line">git checkout HEAD^</span><br><span class="line"><span class="meta">#</span><span class="bash"> 切換到上一次提交</span></span><br></pre></td></tr></table></figure>
+<h5 id="git-switch"><a href="#git-switch" class="headerlink" title="git switch"></a>git switch</h5><p>在<code>2.27.0</code>及往後版本中，你可以使用<code>git switch</code>來切換分支（我電腦中的版本太老了不支持）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git switch 分支名</span><br><span class="line"><span class="meta">#</span><span class="bash"> 切換分支</span></span><br><span class="line">git switch -c 分支名</span><br><span class="line"><span class="meta">#</span><span class="bash"> 創建並切換分支</span></span><br></pre></td></tr></table></figure>
+<h4 id="git-merge-1"><a href="#git-merge-1" class="headerlink" title="git merge"></a>git merge</h4><p><code>git merge</code>可以將兩個或多個版本合并在一起</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git merge 分支名</span><br><span class="line"><span class="meta">#</span><span class="bash"> 將該分支與當前分支合并</span></span><br></pre></td></tr></table></figure>
+<p>git reset —hard</p>
+<h5 id="關於-分支衝突"><a href="#關於-分支衝突" class="headerlink" title="關於 分支衝突"></a>關於 分支衝突</h5><ol>
+<li><p>手動解決</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;&lt;&lt;&lt;&lt;&lt;&lt; 當前分支名</span><br><span class="line">不同的内容a</span><br><span class="line">&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line">不同的内容b</span><br><span class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt; 想要合并的分支名</span><br></pre></td></tr></table></figure>
+<p>兩個内容選擇一個留下</p>
+</li>
+<li></li>
+</ol>
+<h3 id="使用ssh密鑰進行無密碼提交"><a href="#使用ssh密鑰進行無密碼提交" class="headerlink" title="使用ssh密鑰進行無密碼提交"></a>使用ssh密鑰進行無密碼提交</h3><p>由於使用https進行提交的話可能每次都需要輸入賬戶和密碼，所以我們可以使用ssh密鑰進行面密碼提交</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 生產ssh密鑰</span></span><br><span class="line">ssh-keygen -t rsa -C "你的郵箱"</span><br><span class="line"><span class="meta">#</span><span class="bash"> 之後連續按三下會車</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看密鑰</span></span><br><span class="line">cat ~/.ssh/id_rsa.pub</span><br><span class="line"><span class="meta">#</span><span class="bash"> 之後把密鑰添加到遠程對應的位置</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 進行測試，我這裏使用的是gitee</span></span><br><span class="line">ssh -T git@gitee.com</span><br></pre></td></tr></table></figure>
+<p>若返回<code>Hi XXX! You&#39;ve successfully authenticated, but Gitee.com does not provide shell access.</code> 内容，則表示添加成功。</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='/High Free Spirits.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+		data-enable='false'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

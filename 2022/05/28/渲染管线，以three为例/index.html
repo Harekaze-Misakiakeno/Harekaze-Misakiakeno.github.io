@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW" class="loading">
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>渲染管线，以three为例 - Hermit_Yoshino</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Hermit_Yoshino,"> 
+    <meta name="description" content="渲染管线，以three为例参考资料
+https://en.wikipedia.org/wiki/Graphics_pipeline
+https://zhuanlan.zhihu.com/p/1377,"> 
+    <meta name="author" content="Misaki Akeno"> 
+    <link rel="alternative" href="atom.xml" title="Hermit_Yoshino" type="application/atom+xml"> 
+    <link rel="icon" href="/img/ico_black.png"> 
+    
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+<meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body class="loading">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="config-title" style="display:none">Hermit_Yoshino</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://harekaze-misakiakeno.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">渲染管线，以three为例</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">渲染管线，以three为例</h1>
+        <div class="stuff">
+            <span>五月 28, 2022</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/three/" rel="tag">three</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/webgl/" rel="tag">webgl</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/" rel="tag">渲染管线</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="渲染管线，以three为例"><a href="#渲染管线，以three为例" class="headerlink" title="渲染管线，以three为例"></a>渲染管线，以three为例</h1><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li><a href="https://en.wikipedia.org/wiki/Graphics_pipeline">https://en.wikipedia.org/wiki/Graphics_pipeline</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/137780634">https://zhuanlan.zhihu.com/p/137780634</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/415005108">https://zhuanlan.zhihu.com/p/415005108</a></li>
+<li>《交互式计算机图形学——基于WEBGL的自顶向下方法》（第7版） 第8章 从几何到像素 p301</li>
+<li><a href="https://zhuanlan.zhihu.com/p/79183044">https://zhuanlan.zhihu.com/p/79183044</a></li>
+<li><a href="https://github.com/mrdoob/three.js">https://github.com/mrdoob/three.js</a></li>
+<li><a href="https://www.bilibili.com/video/BV1Q54y1G7v3">https://www.bilibili.com/video/BV1Q54y1G7v3</a></li>
+<li><a href="https://blog.csdn.net/waeceo/article/details/50580607">https://blog.csdn.net/waeceo/article/details/50580607</a></li>
+</ol>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>绘图流水线（Graphics pipeline，亦称绘图管线）是计算机图形系统将三维模型渲染到二维屏幕上的过程。简单地说，在计算机即将显示电子游戏或三维动画内的三维模型时，绘图流水线就是把该模型转换成屏幕画面的过程。图形渲染管线是实时渲染的核心组件。渲染管线的功能是通过给定虚拟相机、3D场景物体以及光源等场景要素来产生或者渲染一副2D的图像。</p>
+<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><h3 id="应用程序阶段"><a href="#应用程序阶段" class="headerlink" title="应用程序阶段"></a>应用程序阶段</h3><p>这是一个由CPU主要负责的阶段，且完全由开发人员掌控。在这个阶段，CPU将决定递给GPU什么样的数据，根据需要对场景进行更改，并且告诉GPU这些数据的渲染状态。<br>在这个过程中用户会决定场景中有什么物体，拥有那几种光源、位于那些位置，每个物体拥有什么材质，也包括体积碰撞、动画变形等。<br>据个例子就是，在常见的第三人称射击游戏中：玩家所处的环境位置决定了光源，在室内可能是电灯发出的点光源，在室外则是太阳发出的定向光；玩家操纵不同的人物，手中的枪械、装备，是否驾驶载具决定了场景中有那些模型物体；同时这些不同的物体也决定了他们各自的材质；同时，游戏的制作时的物理引擎决定了这些模型处于场景中的何种位置，人物位于载具之中，而载具位于空中、陆地或者是海洋之中。<br>通常在这一步中，只有那些位于相机可视内的物体数据才会被传入到gpu中，相机完全不可见的物体数据将不被传入，下面是<code>three.js</code>中的剔除过程</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// three通过视锥体（frustum）判断对象是否需要渲染</span></span><br><span class="line"><span class="comment">// 这里只展示关键并简化过的代码，便于理解这个过程</span></span><br><span class="line"><span class="comment">// WebGLRenderer.js</span></span><br><span class="line"><span class="keyword">if</span> ( ! mesh.frustumCulled || intersectsObject( mesh ) ) &#123;</span><br><span class="line">  <span class="comment">// 只有该对象需要在相机可视范围内，或者不做相机可视判断</span></span><br><span class="line">  <span class="comment">// 才加入渲染数组</span></span><br><span class="line">  currentRenderList.push( mesh );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Frustum.js</span></span><br><span class="line"><span class="keyword">const</span> _sphere = <span class="keyword">new</span> Sphere();</span><br><span class="line"><span class="comment">// 对象相交判断</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">intersectsObject</span>(<span class="params"> mesh </span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> geometry = mesh.geometry;</span><br><span class="line">  <span class="keyword">if</span> ( geometry.boundingSphere === <span class="literal">null</span> ) geometry.computeBoundingSphere();</span><br><span class="line">  <span class="comment">// 边界球乘以世界矩阵，得到该对象位于世界坐标系的位置</span></span><br><span class="line">  _sphere.copy( geometry.boundingSphere ).applyMatrix4( mesh.matrixWorld );</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.intersectsSphere( _sphere );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 边界球判断</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">intersectsSphere</span>(<span class="params"> sphere </span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 视锥体的六个平面 Plane对象</span></span><br><span class="line">  <span class="keyword">const</span> planes = <span class="keyword">this</span>.planes;</span><br><span class="line">  <span class="comment">// 边界球中心</span></span><br><span class="line">  <span class="keyword">const</span> center = sphere.center;</span><br><span class="line">  <span class="comment">// 边界球半径</span></span><br><span class="line">  <span class="keyword">const</span> negRadius = - sphere.radius;</span><br><span class="line">  <span class="keyword">for</span> ( <span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i ++ ) &#123;</span><br><span class="line">    <span class="keyword">const</span> distance = planes[ i ].distanceToPoint( center );</span><br><span class="line">    <span class="comment">// 边界球完全在视锥体之外 返回false</span></span><br><span class="line">    <span class="keyword">if</span> ( distance &lt; negRadius ) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当然除了视锥体剔除以外，还有遮挡剔除、层级剔除等等</p>
+<h3 id="几何阶段"><a href="#几何阶段" class="headerlink" title="几何阶段"></a>几何阶段</h3><p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Geometry_pipeline_en.svg/825px-Geometry_pipeline_en.svg.png" alt="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Geometry_pipeline_en.svg/825px-Geometry_pipeline_en.svg.png"></p>
+<h4 id="世界坐标系转换"><a href="#世界坐标系转换" class="headerlink" title="世界坐标系转换"></a>世界坐标系转换</h4><p>几何阶段的首要目标是将模型坐标系转化为统一的世界坐标系，参考three中的代码</p>
+<figure class="highlight glsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#include &lt;begin_vertex&gt;</span></span><br><span class="line"><span class="type">vec3</span> transformed = <span class="type">vec3</span>( position );</span><br><span class="line"></span><br><span class="line"><span class="meta">#include &lt;worldpos_vertex&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#if defined( USE_ENVMAP ) || defined( DISTANCE ) || defined ( USE_SHADOWMAP ) || defined ( USE_TRANSMISSION )</span></span><br><span class="line"></span><br><span class="line">  <span class="type">vec4</span> worldPosition = <span class="type">vec4</span>( transformed, <span class="number">1.0</span> );</span><br><span class="line"></span><br><span class="line">  <span class="meta">#ifdef USE_INSTANCING</span></span><br><span class="line">    <span class="comment">// 这里是three的InstancedMesh</span></span><br><span class="line">    worldPosition = instanceMatrix * worldPosition;</span><br><span class="line"></span><br><span class="line">  <span class="meta">#endif</span></span><br><span class="line"></span><br><span class="line">  worldPosition = modelMatrix * worldPosition;</span><br><span class="line"></span><br><span class="line"><span class="meta">#endif</span></span><br></pre></td></tr></table></figure>
+<h4 id="相机变换"><a href="#相机变换" class="headerlink" title="相机变换"></a>相机变换</h4><p>世界坐标系到相机坐标系的转换可以视作一系列矩阵的运算，具体参看如下图所示：</p>
+<p><img src="https://img-blog.csdn.net/20141102170636562?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvb250aGV3YXlzdWNjZXNz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="https://img-blog.csdn.net/20141102170636562?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvb250aGV3YXlzdWNjZXNz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center"><sup><a href="#fn_1" id="reffn_1">1</a></sup></p>
+<p>three将这些相机坐标系与投影坐标系转换步骤放在了同一步处理</p>
+<figure class="highlight glsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#include &lt;begin_vertex&gt;</span></span><br><span class="line"><span class="type">vec3</span> transformed = <span class="type">vec3</span>( position );</span><br><span class="line"></span><br><span class="line"><span class="meta">#include &lt;project_vertex&gt;</span></span><br><span class="line"><span class="type">vec4</span> mvPosition = <span class="type">vec4</span>( transformed, <span class="number">1.0</span> );</span><br><span class="line"></span><br><span class="line"><span class="meta">#ifdef USE_INSTANCING</span></span><br><span class="line"></span><br><span class="line">	mvPosition = instanceMatrix * mvPosition;</span><br><span class="line"></span><br><span class="line"><span class="meta">#endif</span></span><br><span class="line"><span class="comment">// 相机矩阵</span></span><br><span class="line">mvPosition = modelViewMatrix * mvPosition;</span><br><span class="line"><span class="comment">// 投影矩阵</span></span><br><span class="line"><span class="built_in">gl_Position</span> = projectionMatrix * mvPosition;</span><br></pre></td></tr></table></figure>
+<h4 id="照明"><a href="#照明" class="headerlink" title="照明"></a>照明</h4><p>场景通常包含放置在不同位置的光源，以使对象的照明看起来更逼真。在这种情况下，基于光源和与相应三角形关联的材料属性为每个顶点计算纹理的增益因子。在后面的光栅化步骤中，三角形的顶点值在其表面上进行插值。普通照明（环境光）应用于所有表面。它是场景的漫反射亮度，因此与方向无关。太阳是一个定向光源，可以假设它是无限远的。太阳在表面上产生的光照是通过形成来自太阳的方向矢量和表面的法线矢量的标量积来确定的。如果值为负，则表面朝向太阳。z</p>
+<h4 id="投影"><a href="#投影" class="headerlink" title="投影"></a>投影</h4><p>这一部发生在</p>
+<p>3D投影步骤将视图体积转换为具有角点坐标（-1, -1, 0）和（1, 1, 1）的立方体；有时也使用其他目标卷。此步骤称为投影，即使它将一个体积转换为另一个体积，因为生成的 Z 坐标不存储在图像中，而仅用于稍后光栅化步骤中的Z 缓冲。在透视图中，使用了中心投影。为了限制显示对象的数量，使用了两个额外的剪切平面；因此，视觉体积是一个截断的金字塔（平截头体）。平行或正交投影例如，用于技术表示，因为它的优点是对象空间中的所有平行线在图像空间中也是平行的，并且无论与观察者的距离如何，表面和体积都是相同的大小。</p>
+<h4 id="裁剪"><a href="#裁剪" class="headerlink" title="裁剪"></a>裁剪</h4><p>裁剪的本质为了去除那些不会出或是不想现在屏幕上的像素的操作，three其实分别在几个步骤都进行了这样的操作：</p>
+<ol>
+<li>前面应用阶段介绍的对模型的整体剔除</li>
+<li>图元装配与光栅化阶段，不可操作的背面剔除，与屏幕外裁剪</li>
+<li>光栅化后片段<code>shader</code>所使用的主动剔除</li>
+</ol>
+<p>下面是three中通过设置切面，主动对模型的部分的剔除<br><figure class="highlight glsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// vertex</span></span><br><span class="line"><span class="meta">#include &lt;clipping_planes_pars_vertex&gt;</span></span><br><span class="line"><span class="meta">#if NUM_CLIPPING_PLANES &gt; 0</span></span><br><span class="line"></span><br><span class="line">  vClipPosition = - mvPosition.xyz;</span><br><span class="line"></span><br><span class="line"><span class="meta">#endif</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#include &lt;clipping_planes_vertex&gt;</span></span><br><span class="line"><span class="meta">#if NUM_CLIPPING_PLANES &gt; 0</span></span><br><span class="line"></span><br><span class="line">	vClipPosition = - mvPosition.xyz;</span><br><span class="line"></span><br><span class="line"><span class="meta">#endif</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight glsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// fragment</span></span><br><span class="line"><span class="meta">#include &lt;clipping_planes_pars_fragment&gt;</span></span><br><span class="line"><span class="meta">#if NUM_CLIPPING_PLANES &gt; 0</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">varying</span> <span class="type">vec3</span> vClipPosition;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">uniform</span> <span class="type">vec4</span> clippingPlanes[ NUM_CLIPPING_PLANES ];</span><br><span class="line"></span><br><span class="line"><span class="meta">#endif</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#include &lt;clipping_planes_fragment&gt;</span></span><br><span class="line"><span class="meta">#if NUM_CLIPPING_PLANES &gt; 0</span></span><br><span class="line"></span><br><span class="line">  <span class="type">vec4</span> plane;</span><br><span class="line"></span><br><span class="line">  <span class="meta">#pragma unroll_loop_start</span></span><br><span class="line">  <span class="keyword">for</span> ( <span class="type">int</span> i = <span class="number">0</span>; i &lt; UNION_CLIPPING_PLANES; i ++ ) &#123;</span><br><span class="line"></span><br><span class="line">    plane = clippingPlanes[ i ];</span><br><span class="line">    <span class="keyword">if</span> ( <span class="built_in">dot</span>( vClipPosition, plane.xyz ) &gt; plane.w ) <span class="keyword">discard</span>;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="meta">#pragma unroll_loop_end</span></span><br><span class="line"></span><br><span class="line">  <span class="meta">#if UNION_CLIPPING_PLANES &lt; NUM_CLIPPING_PLANES</span></span><br><span class="line"></span><br><span class="line">    <span class="type">bool</span> clipped = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">#pragma unroll_loop_start</span></span><br><span class="line">    <span class="keyword">for</span> ( <span class="type">int</span> i = UNION_CLIPPING_PLANES; i &lt; NUM_CLIPPING_PLANES; i ++ ) &#123;</span><br><span class="line"></span><br><span class="line">      plane = clippingPlanes[ i ];</span><br><span class="line">      clipped = ( <span class="built_in">dot</span>( vClipPosition, plane.xyz ) &gt; plane.w ) &amp;&amp; clipped;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">#pragma unroll_loop_end</span></span><br><span class="line">    <span class="comment">// 判定为被裁剪的部分被主动剔除</span></span><br><span class="line">    <span class="keyword">if</span> ( clipped ) <span class="keyword">discard</span>;</span><br><span class="line"></span><br><span class="line">  <span class="meta">#endif</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#endif</span></span><br></pre></td></tr></table></figure>
+<h4 id="窗口视口转换"><a href="#窗口视口转换" class="headerlink" title="窗口视口转换"></a>窗口视口转换</h4><p>为了将图像输出到屏幕的任何目标区域（视口），必须应用另一个转换，即Window-Viewport 转换。这是一个转变，然后是缩放。结果坐标是输出设备的设备坐标。视口包含 6 个值：窗口的高度和宽度（以像素为单位）、窗口左上角的窗口坐标（通常为 0、0）以及 Z 的最小值和最大值（通常为 0 和 1）。<br>在现代硬件上，大多数几何计算步骤都是在顶点着色器中执行的。这原则上是可自由编程的，但通常至少执行点的变换和照明计算。对于 DirectX 编程接口，从版本 10 开始就需要使用自定义顶点着色器，而旧版本仍然有标准着色器。</p>
+<h3 id="光栅化阶段"><a href="#光栅化阶段" class="headerlink" title="光栅化阶段"></a>光栅化阶段</h3><p>经过图元组装以及屏幕映射阶段后，我们将物体坐标变换到了窗口坐标。光栅化是个离散化的过程，将3D连续的物体转化为离散屏幕像素点的过程。包括三角形组装和三角形遍历两个阶段。光栅化会确定图元所覆盖的片段，利用顶点属性插值得到片段的属性信息，然后送到片段着色器进行颜色计算，我们这里需要注意到片段是像素的候选者，只有通过后续的测试，片段才会成为最终显示的像素点。</p>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><blockquote id="fn_1">
+<sup>1</sup>. <a href="https://blog.csdn.net/waeceo/article/details/50580607">世界坐标系和相机坐标系,图像坐标系的关系</a><a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a>
+</blockquote>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='/High Free Spirits.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+		data-enable='false'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

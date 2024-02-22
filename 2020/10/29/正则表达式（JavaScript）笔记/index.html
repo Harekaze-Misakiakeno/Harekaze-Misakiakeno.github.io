@@ -1,0 +1,451 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW" class="loading">
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>正则表达式（JavaScript）笔记 - Hermit_Yoshino</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Hermit_Yoshino,"> 
+    <meta name="description" content="正则表达式（JavaScript）笔记创建时间：2020-10-28 23:14:47
+参考资料https://developer.mozilla.org/zh-CN/docs/Web/JavaSc,"> 
+    <meta name="author" content="Misaki Akeno"> 
+    <link rel="alternative" href="atom.xml" title="Hermit_Yoshino" type="application/atom+xml"> 
+    <link rel="icon" href="/img/ico_black.png"> 
+    
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+<meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body class="loading">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="config-title" style="display:none">Hermit_Yoshino</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://harekaze-misakiakeno.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">正则表达式（JavaScript）笔记</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">正则表达式（JavaScript）笔记</h1>
+        <div class="stuff">
+            <span>十月 29, 2020</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="正则表达式（JavaScript）笔记"><a href="#正则表达式（JavaScript）笔记" class="headerlink" title="正则表达式（JavaScript）笔记"></a>正则表达式（JavaScript）笔记</h1><p>创建时间：2020-10-28 23:14:47</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions</a></p>
+<h2 id="正篇"><a href="#正篇" class="headerlink" title="正篇"></a>正篇</h2><h3 id="在js中创建一个正则表达式"><a href="#在js中创建一个正则表达式" class="headerlink" title="在js中创建一个正则表达式"></a>在js中创建一个正则表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> re = <span class="regexp">/ab+c/</span>;</span><br><span class="line"><span class="comment">// 这两种写法等价</span></span><br><span class="line"><span class="keyword">var</span> re = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"ab+c"</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="正则表达式中的可选参数"><a href="#正则表达式中的可选参数" class="headerlink" title="正则表达式中的可选参数"></a>正则表达式中的可选参数</h3><p>在创建正则表达式时可以增加一些可选参数，这些参数既可以单独使用也能以任意顺序一起使用, 并且被包含在正则表达式实例中。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">标志</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">g</td>
+<td style="text-align:left">全局搜索。</td>
+</tr>
+<tr>
+<td style="text-align:left">i</td>
+<td style="text-align:left">不区分大小写搜索。</td>
+</tr>
+<tr>
+<td style="text-align:left">m</td>
+<td style="text-align:left">多行搜索。</td>
+</tr>
+<tr>
+<td style="text-align:left">s</td>
+<td style="text-align:left">允许<code>.</code>匹配换行符。</td>
+</tr>
+<tr>
+<td style="text-align:left">u</td>
+<td style="text-align:left">使用<code>unicode</code>码的模式进行匹配。</td>
+</tr>
+<tr>
+<td style="text-align:left">y</td>
+<td style="text-align:left">执行“粘性(<code>sticky</code>)”搜索,匹配从目标字符串的当前位置开始。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>例如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> re = <span class="regexp">/ab+c/g</span>;</span><br><span class="line"><span class="comment">// 或</span></span><br><span class="line"><span class="keyword">var</span> re = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"ab+c"</span>, <span class="string">"gi"</span>); </span><br><span class="line"><span class="comment">// 如要使用多个参数，直接连写即可</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="js中可以使用正则表达式的相关方法"><a href="#js中可以使用正则表达式的相关方法" class="headerlink" title="js中可以使用正则表达式的相关方法"></a>js中可以使用正则表达式的相关方法</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">RegExp对象</th>
+<th style="text-align:left">方法描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">exec</td>
+<td style="text-align:left">一个在字符串中执行查找匹配的RegExp方法，它返回一个数组（未匹配到则返回 null）</td>
+</tr>
+<tr>
+<td style="text-align:center">test</td>
+<td style="text-align:left">一个在字符串中测试是否匹配的RegExp方法，它返回 true 或 false</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> reg = <span class="regexp">/abc/</span></span><br><span class="line"><span class="keyword">let</span> text = <span class="string">`abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz`</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> myReg = <span class="function"><span class="keyword">function</span>(<span class="params">text, reg</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">typeof</span>(reg.exec(text)), <span class="string">" : "</span>, reg.exec(text))</span><br><span class="line">  <span class="comment">// object  :  ["abc"]</span></span><br><span class="line">  <span class="comment">// 注： node 14.13.1  返回 object 但按照官方文档应返回array</span></span><br><span class="line">  <span class="comment">// object  :  [</span></span><br><span class="line">  <span class="comment">//   'abc',</span></span><br><span class="line">  <span class="comment">//   index: 0,</span></span><br><span class="line">  <span class="comment">//   input: 'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz',</span></span><br><span class="line">  <span class="comment">//   groups: undefined</span></span><br><span class="line">  <span class="comment">// ]</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">typeof</span>(reg.test(text)), <span class="string">" : "</span>, reg.test(text))</span><br><span class="line">  <span class="comment">//  boolean  :  true</span></span><br><span class="line">&#125;</span><br><span class="line">myReg(text, reg)</span><br></pre></td></tr></table></figure></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">String对象</th>
+<th style="text-align:left">方法描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">match</td>
+<td style="text-align:left">一个在字符串中执行查找匹配的String方法，它返回一个数组，在未匹配到时会返回 null</td>
+</tr>
+<tr>
+<td style="text-align:center">matchAll</td>
+<td style="text-align:left">一个在字符串中执行查找所有匹配的String方法，它返回一个迭代器（iterator）</td>
+</tr>
+<tr>
+<td style="text-align:center">search</td>
+<td style="text-align:left">一个在字符串中测试匹配的String方法，它返回匹配到的位置索引，或者在失败时返回-1</td>
+</tr>
+<tr>
+<td style="text-align:center">replace</td>
+<td style="text-align:left">一个在字符串中执行查找匹配的String方法，并且使用替换字符串替换掉匹配到的子字符串</td>
+</tr>
+<tr>
+<td style="text-align:center">split</td>
+<td style="text-align:left">一个使用正则表达式或者一个固定字符串分隔一个字符串，并将分隔后的子字符串存储到数组中的<code>String</code> 方法</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> reg = <span class="regexp">/abc/g</span></span><br><span class="line"><span class="keyword">let</span> text = <span class="string">"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> myReg = <span class="function"><span class="keyword">function</span>(<span class="params">text, reg</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">typeof</span>(text.match(reg)), <span class="string">"match: "</span>, text.match(reg))</span><br><span class="line">  <span class="comment">// object match:  [ 'abc', 'abc' ]</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"==================="</span>)</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">typeof</span>(text.matchAll(reg)), <span class="string">"matchAll: "</span>, [...text.matchAll(reg)])</span><br><span class="line">  <span class="comment">// 注：matchAll为全局匹配，正则表达式后必须有 g </span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"==================="</span>)</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">typeof</span>(text.search(reg)), <span class="string">"search: "</span>, text.search(reg))</span><br><span class="line">  <span class="comment">// number search:  0</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"==================="</span>)</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">typeof</span>(text.replace(reg)), <span class="string">"replace: "</span>, text.replace(reg))</span><br><span class="line">  <span class="comment">// 注：如果没有参数，会修改为 undefined</span></span><br><span class="line">  <span class="comment">// string replace:  undefineddefghijklmnopqrstuvwxyzundefineddefghijklmnopqrstuvwxyz</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"==================="</span>)</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">typeof</span>(text.split(reg)), <span class="string">"split: "</span>, text.split(reg))</span><br><span class="line">  <span class="comment">// object split:  [ '', 'defghijklmnopqrstuvwxyz', 'defghijklmnopqrstuvwxyz' ]</span></span><br><span class="line">&#125;</span><br><span class="line">myReg(text, reg)</span><br></pre></td></tr></table></figure>
+<h3 id="正则表达式中的特殊字符"><a href="#正则表达式中的特殊字符" class="headerlink" title="正则表达式中的特殊字符"></a>正则表达式中的特殊字符</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字符</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\</td>
+<td style="text-align:left">依照下列规则匹配：<br/>在非特殊字符之前的反斜杠表示下一个字符是特殊字符，不能按照字面理解。例如，前面没有 “\” 的 “b” 通常匹配小写字母 “b”，即字符会被作为字面理解，无论它出现在哪里。但如果前面加了 “\”，它将不再匹配任何字符，而是表示一个字符边界。<br/>在特殊字符之前的反斜杠表示下一个字符不是特殊字符，应该按照字面理解。详情请参阅下文中的 “转义（Escaping）” 部分。<br/>如果你想将字符串传递给 RegExp 构造函数，不要忘记在字符串字面量中反斜杠是转义字符。所以为了在模式中添加一个反斜杠，你需要在字符串字面量中转义它。/[a-z]\s/i 和 new RegExp(“[a-z]\s”, “i”) 创建了相同的正则表达式：一个用于搜索后面紧跟着空白字符（\s 可看后文）并且在 a-z 范围内的任意字符的表达式。为了通过字符串字面量给 RegExp 构造函数创建包含反斜杠的表达式，你需要在字符串级别和正则表达式级别都对它进行转义。例如 /[a-z]:\/i 和 new RegExp(“[a-z]:\\“,”i”) 会创建相同的表达式，即匹配类似 “C:\” 字符串。</td>
+</tr>
+<tr>
+<td style="text-align:left">^</td>
+<td style="text-align:left">匹配输入的开始。如果多行标志被设置为 true，那么也匹配换行符后紧跟的位置。<br/>例如，/^A/ 并不会匹配 “an A” 中的 ‘A’，但是会匹配 “An E” 中的 ‘A’。<br/>当 ‘^’ 作为第一个字符出现在一个字符集合模式时，它将会有不同的含义。反向字符集合 一节有详细介绍和示例。</td>
+</tr>
+<tr>
+<td style="text-align:left">$</td>
+<td style="text-align:left">匹配输入的结束。如果多行标志被设置为 true，那么也匹配换行符前的位置。<br/>例如，/t$/ 并不会匹配 “eater” 中的 ‘t’，但是会匹配 “eat” 中的 ‘t’。</td>
+</tr>
+<tr>
+<td style="text-align:left">*</td>
+<td style="text-align:left">匹配前一个表达式 0 次或多次。等价于 {0,}。<br/>例如，/bo*/ 会匹配 “A ghost boooooed” 中的 ‘booooo’ 和 “A bird warbled” 中的 ‘b’，但是在 “A goat grunted” 中不会匹配任何内容。</td>
+</tr>
+<tr>
+<td style="text-align:left">+</td>
+<td style="text-align:left">匹配前面一个表达式 1 次或者多次。等价于 {1,}。<br/>例如，/a+/ 会匹配 “candy” 中的 ‘a’ 和 “caaaaaaandy” 中所有的 ‘a’，但是在 “cndy” 中不会匹配任何内容。</td>
+</tr>
+<tr>
+<td style="text-align:left">?</td>
+<td style="text-align:left">匹配前面一个表达式 0 次或者 1 次。等价于 {0,1}。<br/>例如，/e?le?/ 匹配 “angel” 中的 ‘el’、”angle” 中的 ‘le’ 以及 “oslo’ 中的 ‘l’。<br/>如果紧跟在任何量词 *、 +、? 或 {} 的后面，将会使量词变为非贪婪（匹配尽量少的字符），和缺省使用的贪婪模式（匹配尽可能多的字符）正好相反。例如，对 “123abc” 使用 /\d+/ 将会匹配 “123”，而使用 /\d+?/ 则只会匹配到 “1”。<br/>还用于先行断言中，如本表的 x(?=y) 和 x(?!y) 条目所述。<br/>（小数点）默认匹配除换行符之外的任何单个字符。<br/>例如，/.n/ 将会匹配 “nay, an apple is on the tree” 中的 ‘an’ 和 ‘on’，但是不会匹配 ‘nay’。<br/>如果 s (“dotAll”) 标志位被设为 true，它也会匹配换行符。</td>
+</tr>
+<tr>
+<td style="text-align:left">(x)</td>
+<td style="text-align:left">像下面的例子展示的那样，它会匹配 ‘x’ 并且记住匹配项。其中括号被称为捕获括号。<br/>模式 /(foo) (bar) \1 \2/ 中的 ‘(foo)’ 和 ‘(bar)’ 匹配并记住字符串 “foo bar foo bar” 中前两个单词。模式中的 \1 和 \2 表示第一个和第二个被捕获括号匹配的子字符串，即 foo 和 bar，匹配了原字符串中的后两个单词。注意 \1、\2、…、\n 是用在正则表达式的匹配环节，详情可以参阅后文的 \n 条目。而在正则表达式的替换环节，则要使用像 $1、$2、…、$n 这样的语法，例如，’bar foo’.replace(/(…) (…)/, ‘$2 $1’)。$&amp; 表示整个用于匹配的原字符串。</td>
+</tr>
+<tr>
+<td style="text-align:left">(?:x)</td>
+<td style="text-align:left">匹配 ‘x’ 但是不记住匹配项。这种括号叫作非捕获括号，使得你能够定义与正则表达式运算符一起使用的子表达式。看看这个例子 /(?:foo){1,2}/。如果表达式是 /foo{1,2}/，{1,2} 将只应用于 ‘foo’ 的最后一个字符 ‘o’。如果使用非捕获括号，则 {1,2} 会应用于整个 ‘foo’ 单词。更多信息，可以参阅下文的 Using parentheses 条目.</td>
+</tr>
+<tr>
+<td style="text-align:left">x(?=y)</td>
+<td style="text-align:left">匹配’x’仅仅当’x’后面跟着’y’.这种叫做先行断言。<br/>例如，/Jack(?=Sprat)/会匹配到’Jack’仅当它后面跟着’Sprat’。/Jack(?=Sprat\</td>
+<td>Frost)/匹配‘Jack’仅当它后面跟着’Sprat’或者是‘Frost’。但是‘Sprat’和‘Frost’都不是匹配结果的一部分。</td>
+</tr>
+<tr>
+<td style="text-align:left">(?&lt;=y)x</td>
+<td style="text-align:left">匹配’x’仅当’x’前面是’y’.这种叫做后行断言。<br/>例如，/(?&lt;=Jack)Sprat/会匹配到’ Sprat ‘仅仅当它前面是’ Jack ‘。/(?&lt;=Jack\</td>
+<td>Tom)Sprat/匹配‘ Sprat ’仅仅当它前面是’Jack’或者是‘Tom’。但是‘Jack’和‘Tom’都不是匹配结果的一部分。</td>
+</tr>
+<tr>
+<td style="text-align:left">x(?!y)</td>
+<td style="text-align:left">仅仅当’x’后面不跟着’y’时匹配’x’，这被称为正向否定查找。<br/>例如，仅仅当这个数字后面没有跟小数点的时候，/\d+(?!.)/ 匹配一个数字。正则表达式/\d+(?!.)/.exec(“3.141”)匹配‘141’而不是‘3.141’</td>
+</tr>
+<tr>
+<td style="text-align:left">(?&lt;!y)x</td>
+<td style="text-align:left">仅仅当’x’前面不是’y’时匹配’x’，这被称为反向否定查找。<br/>例如, 仅仅当这个数字前面没有负号的时候，/(?&lt;!-)\d+/ 匹配一个数字。<br/>/(?&lt;!-)\d+/.exec(‘3’) 匹配到 “3”.<br/>/(?&lt;!-)\d+/.exec(‘-3’) 因为这个数字前有负号，所以没有匹配到。</td>
+</tr>
+<tr>
+<td style="text-align:left">x\</td>
+<td style="text-align:left">y</td>
+<td>匹配‘x’或者‘y’。<br/>例如，/green\</td>
+<td>red/匹配“green apple”中的‘green’和“red apple”中的‘red’</td>
+</tr>
+<tr>
+<td style="text-align:left">{n}</td>
+<td style="text-align:left">n 是一个正整数，匹配了前面一个字符刚好出现了 n 次。<br/>比如， /a{2}/ 不会匹配“candy”中的’a’,但是会匹配“caandy”中所有的 a，以及“caaandy”中的前两个’a’。</td>
+</tr>
+<tr>
+<td style="text-align:left">{n,}</td>
+<td style="text-align:left">n是一个正整数，匹配前一个字符至少出现了n次。<br/>例如, /a{2,}/ 匹配 “aa”, “aaaa” 和 “aaaaa” 但是不匹配 “a”。</td>
+</tr>
+<tr>
+<td style="text-align:left">{n,m}</td>
+<td style="text-align:left">n 和 m 都是整数。匹配前面的字符至少n次，最多m次。如果 n 或者 m 的值是0， 这个值被忽略。<br/>例如，/a{1, 3}/ 并不匹配“cndy”中的任意字符，匹配“candy”中的a，匹配“caandy”中的前两个a，也匹配“caaaaaaandy”中的前三个a。注意，当匹配”caaaaaaandy“时，匹配的值是“aaa”，即使原始的字符串中有更多的a。</td>
+</tr>
+<tr>
+<td style="text-align:left">[xyz]</td>
+<td style="text-align:left">一个字符集合。匹配方括号中的任意字符，包括转义序列。你可以使用破折号（-）来指定一个字符范围。对于点（.）和星号（*）这样的特殊符号在一个字符集中没有特殊的意义。他们不必进行转义，不过转义也是起作用的。<br/>例如，[abcd] 和[a-d]是一样的。他们都匹配”brisket”中的‘b’,也都匹配“city”中的‘c’。/[a-z.]+/ 和/[\w.]+/与字符串“test.i.ng”匹配。</td>
+</tr>
+<tr>
+<td style="text-align:left">[\^xyz]</td>
+<td style="text-align:left">一个反向字符集。也就是说， 它匹配任何没有包含在方括号中的字符。你可以使用破折号（-）来指定一个字符范围。任何普通字符在这里都是起作用的。<br/>例如，<sup><a href="#fn_abc" id="reffn_abc">abc</a></sup> 和 <sup><a href="#fn_a-c" id="reffn_a-c">a-c</a></sup> 是一样的。他们匹配”brisket”中的‘r’，也匹配“chop”中的‘h’。</td>
+</tr>
+<tr>
+<td style="text-align:left">[\b]</td>
+<td style="text-align:left">匹配一个退格(U+0008)。（不要和\b混淆了。）</td>
+</tr>
+<tr>
+<td style="text-align:left">\b</td>
+<td style="text-align:left">匹配一个词的边界。一个词的边界就是一个词不被另外一个“字”字符跟随的位置或者前面跟其他“字”字符的位置，例如在字母和空格之间。注意，匹配中不包括匹配的字边界。换句话说，一个匹配的词的边界的内容的长度是0。（不要和[\b]混淆了）<br/><br/>使用”moon”举例：<br/>/\bm/匹配“moon”中的‘m’；<br/>/oo\b/并不匹配”moon”中的’oo’，因为’oo’被一个“字”字符’n’紧跟着。<br/>/oon\b/匹配”moon”中的’oon’，因为’oon’是这个字符串的结束部分。这样他没有被一个“字”字符紧跟着。<br/>/\w\b\w/将不能匹配任何字符串，因为在一个单词中间的字符永远也不可能同时满足没有“字”字符跟随和有“字”字符跟随两种情况。</td>
+</tr>
+<tr>
+<td style="text-align:left">\B</td>
+<td style="text-align:left">匹配一个非单词边界。匹配如下几种情况：<br/>字符串第一个字符为非“字”字符<br/>字符串最后一个字符为非“字”字符<br/>两个单词字符之间<br/>两个非单词字符之间<br/>空字符串<br/>例如，/\B../匹配”noonday”中的’oo’, 而/y\B../匹配”possibly yesterday”中的’yes‘</td>
+</tr>
+<tr>
+<td style="text-align:left">\cX</td>
+<td style="text-align:left">当X是处于A到Z之间的字符的时候，匹配字符串中的一个控制符。<br/>例如，/\cM/ 匹配字符串中的 control-M (U+000D)。</td>
+</tr>
+<tr>
+<td style="text-align:left">\d</td>
+<td style="text-align:left">匹配一个数字。等价于[0-9]。<br/>例如， /\d/ 或者 /[0-9]/ 匹配”B2 is the suite number.”中的’2’。</td>
+</tr>
+<tr>
+<td style="text-align:left">\D</td>
+<td style="text-align:left">匹配一个非数字字符。等价于[\^0-9]。<br/>例如， /\D/ 或者 /<sup><a href="#fn_0-9" id="reffn_0-9">0-9</a></sup>/ 匹配”B2 is the suite number.”中的’B’ 。</td>
+</tr>
+<tr>
+<td style="text-align:left">\f</td>
+<td style="text-align:left">匹配一个换页符 (U+000C)。</td>
+</tr>
+<tr>
+<td style="text-align:left">\n</td>
+<td style="text-align:left">匹配一个换行符 (U+000A)。</td>
+</tr>
+<tr>
+<td style="text-align:left">\r</td>
+<td style="text-align:left">匹配一个回车符 (U+000D)。</td>
+</tr>
+<tr>
+<td style="text-align:left">\s</td>
+<td style="text-align:left">匹配一个空白字符，包括空格、制表符、换页符和换行符。等价于<br/>[\f\n\r\t\v\u00a0\u1680\u180e\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]。<br/>例如, /\s\w*/ 匹配”foo bar.”中的’ bar’。<br/>经测试，\s不匹配”\u180e”，在当前版本Chrome(v80.0.3987.122)和Firefox(76.0.1)控制台输入/\s/.test(“\u180e”)均返回false。</td>
+</tr>
+<tr>
+<td style="text-align:left">\S</td>
+<td style="text-align:left">匹配一个非空白字符。等价于 [\^ \f\n\r\t\v\u00a0\u1680\u180e\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]。<br/>例如，/\S\w*/ 匹配”foo bar.”中的’foo’。</td>
+</tr>
+<tr>
+<td style="text-align:left">\t</td>
+<td style="text-align:left">匹配一个水平制表符 (U+0009)。</td>
+</tr>
+<tr>
+<td style="text-align:left">\v</td>
+<td style="text-align:left">匹配一个垂直制表符 (U+000B)。</td>
+</tr>
+<tr>
+<td style="text-align:left">\w</td>
+<td style="text-align:left">匹配一个单字字符（字母、数字或者下划线）。等价于 [A-Za-z0-9_]。<br/>例如, /\w/ 匹配 “apple,” 中的 ‘a’，”$5.28,”中的 ‘5’ 和 “3D.” 中的 ‘3’。</td>
+</tr>
+<tr>
+<td style="text-align:left">\W</td>
+<td style="text-align:left">匹配一个非单字字符。等价于 [\^A-Za-z0-9<em>]。<br/>例如, /\W/ 或者 /[\^A-Za-z0-9</em>]/ 匹配 “50%.” 中的 ‘%’。</td>
+</tr>
+<tr>
+<td style="text-align:left">\n</td>
+<td style="text-align:left">在正则表达式中，它返回最后的第n个子捕获匹配的子字符串(捕获的数目以左括号计数)。<br/>比如 /apple(,)\sorange\1/ 匹配”apple, orange, cherry, peach.”中的’apple, orange,’ 。</td>
+</tr>
+<tr>
+<td style="text-align:left">\0</td>
+<td style="text-align:left">匹配 NULL（U+0000）字符， 不要在这后面跟其它小数，因为 \0<digits> 是一个八进制转义序列。</td>
+</tr>
+<tr>
+<td style="text-align:left">\xhh</td>
+<td style="text-align:left">匹配一个两位十六进制数（\x00-\xFF）表示的字符。</td>
+</tr>
+<tr>
+<td style="text-align:left">\uhhhh</td>
+<td style="text-align:left">匹配一个四位十六进制数表示的 UTF-16 代码单元。</td>
+</tr>
+<tr>
+<td style="text-align:left">\u{hhhh}或\u{hhhhh}</td>
+<td style="text-align:left">（仅当设置了u标志时）匹配一个十六进制数表示的 Unicode 字符。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="未完，待续。。。。"><a href="#未完，待续。。。。" class="headerlink" title="未完，待续。。。。"></a>未完，待续。。。。</h3>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='/High Free Spirits.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+		data-enable='false'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>
