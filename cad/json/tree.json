@@ -1,0 +1,164 @@
+{
+    "point": [
+        {
+            "partType": "CadPoint",
+            "topologyIndex": "CadPoint-1",
+            "position": {
+                "0": 12.75030517578125,
+                "1": 0,
+                "2": 7.425323486328125
+            }
+        },
+        {
+            "partType": "CadPoint",
+            "topologyIndex": "CadPoint-2",
+            "position": {
+                "0": 8.9923095703125,
+                "1": 0,
+                "2": -26.285675048828125
+            }
+        },
+        {
+            "partType": "CadPoint",
+            "topologyIndex": "CadPoint-3",
+            "position": {
+                "0": -40.100555419921875,
+                "1": 0,
+                "2": 31.453826904296875
+            }
+        },
+        {
+            "partType": "CadPoint",
+            "topologyIndex": "CadPoint-4",
+            "position": {
+                "0": -19.0792236328125,
+                "1": 0,
+                "2": -16.08392333984375
+            }
+        },
+        {
+            "partType": "CadPoint",
+            "topologyIndex": "CadPoint-5",
+            "position": {
+                "0": 7.808258056640625,
+                "1": 0,
+                "2": 26.77850341796875
+            }
+        },
+        {
+            "partType": "CadPoint",
+            "topologyIndex": "CadPoint-6",
+            "position": {
+                "0": -4.909423828125,
+                "1": 0,
+                "2": 21.04986572265625
+            }
+        },
+        {
+            "partType": "CadPoint",
+            "topologyIndex": "CadPoint-7",
+            "position": {
+                "0": 29.48004150390625,
+                "1": 0,
+                "2": -10.457305908203125
+            }
+        },
+        {
+            "partType": "CadPoint",
+            "topologyIndex": "CadPoint-8",
+            "position": {
+                "0": -29.830352783203125,
+                "1": 0,
+                "2": -1.87420654296875
+            }
+        },
+        {
+            "partType": "CadPoint",
+            "topologyIndex": "CadPoint-9",
+            "position": {
+                "0": -26.0364990234375,
+                "1": 0,
+                "2": 24.88360595703125
+            }
+        },
+        {
+            "partType": "CadPoint",
+            "topologyIndex": "CadPoint-10",
+            "position": {
+                "0": 18.985382080078125,
+                "1": 0,
+                "2": -29.937835693359375
+            }
+        },
+        {
+            "partType": "CadPoint",
+            "topologyIndex": "CadPoint-11",
+            "position": {
+                "0": 34.833587646484375,
+                "1": 0,
+                "2": 26.84613037109375
+            }
+        }
+    ],
+    "line": [
+        {
+            "partType": "CadLine",
+            "topologyIndex": "CadLine-0",
+            "start": "CadPoint-6",
+            "end": "CadPoint-7",
+            "properity": {
+                "lineType": "default"
+            }
+        },
+        {
+            "partType": "CadLine",
+            "topologyIndex": "CadLine-1",
+            "start": "CadPoint-5",
+            "end": "CadPoint-8",
+            "properity": {
+                "lineType": "default"
+            }
+        }
+    ],
+    "quad": [
+        {
+            "partType": "CadQuad",
+            "topologyIndex": "CadQuad-0",
+            "point": "CadPoint-9",
+            "normal": {
+                "0": 0,
+                "1": 1,
+                "2": 0
+            },
+            "properity": {
+                "quadType": "default"
+            }
+        },
+        {
+            "partType": "CadQuad",
+            "topologyIndex": "CadQuad-1",
+            "point": "CadPoint-10",
+            "normal": {
+                "0": 0,
+                "1": 1,
+                "2": 0
+            },
+            "properity": {
+                "quadType": "default"
+            }
+        },
+        {
+            "partType": "CadQuad",
+            "topologyIndex": "CadQuad-2",
+            "point": "CadPoint-11",
+            "normal": {
+                "0": 0,
+                "1": 1,
+                "2": 0
+            },
+            "properity": {
+                "quadType": "default"
+            }
+        }
+    ]
+}
